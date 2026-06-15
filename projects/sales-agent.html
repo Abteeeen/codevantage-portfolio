@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Sales Agent (BDE Agent) — Automated Lead Generation &amp; Outreach | CodeVantage</title>
+  <meta name="description" content="AI-powered business development agent that scans 378+ hiring posts, verifies emails via SMTP, and drafts personalized outreach — replacing 3-4 hours of daily manual prospecting.">
+  <link rel="stylesheet" href="./shared.css">
+  <link rel="stylesheet" href="./sales-agent.css">
+</head>
+<body>
+
+  <!-- ========== BACK NAV ========== -->
+  <nav class="back-nav" aria-label="Breadcrumb">
+    <div class="container back-nav__inner">
+      <a href="../index.html" class="back-nav__link" aria-label="Back to all projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        All Projects
+      </a>
+      <span class="back-nav__title">AI Sales Agent</span>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="project-hero">
+    <div class="container">
+      <p class="project-hero__label reveal">Business Development Automation</p>
+      <h1 class="project-hero__title reveal reveal-d1">AI Sales Agent</h1>
+      <p class="project-hero__desc reveal reveal-d2">An intelligent business development agent that automates lead generation from job boards and Hacker News — scanning, verifying, and drafting personalized outreach at scale.</p>
+      <div class="project-hero__badges reveal reveal-d3">
+        <span class="badge badge--blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          378+ Leads / Run
+        </span>
+        <span class="badge badge--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          SMTP Verified
+        </span>
+        <span class="badge badge--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Auto-Draft Outreach
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== PROBLEM / SOLUTION ========== -->
+    <section id="problem-solution">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">Challenge &amp; Approach</p>
+          <h2 class="sh__title">Manual Prospecting Is Broken</h2>
+        </div>
+        <div class="two-col">
+          <div class="ps-card reveal reveal-d1">
+            <div class="ps-card__icon ps-card__icon--problem">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h3 class="ps-card__title">The Problem</h3>
+            <div class="ps-card__text">
+              <p>Manual lead hunting consumes 3–4 hours every day. BDE reps scroll through hundreds of hiring posts, guess email addresses with no verification, and send generic outreach that gets ignored.</p>
+              <ul>
+                <li>Hundreds of posts scanned manually each morning</li>
+                <li>Email addresses guessed — no SMTP verification</li>
+                <li>Generic copy-paste outreach with low response rates</li>
+                <li>High-value targets buried in noise</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ps-card reveal reveal-d2">
+            <div class="ps-card__icon ps-card__icon--solution">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="ps-card__title">The Solution</h3>
+            <div class="ps-card__text">
+              <p>An AI agent scans 378+ hiring posts per run, extracts company details, verifies emails via SMTP code 250, and drafts personalized 4-sentence outreach — all autonomously.</p>
+              <ul>
+                <li>Automated scanning of HN "Who is Hiring" threads &amp; job boards</li>
+                <li>AI/ML keyword filtering and company size analysis</li>
+                <li>SMTP handshake verification (code 250 = confirmed valid)</li>
+                <li>GPT-generated personalized emails referencing specific hiring needs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ARCHITECTURE ========== -->
+    <section id="architecture">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">System Architecture</p>
+          <h2 class="sh__title">End-to-End Lead Pipeline</h2>
+        </div>
+        <div class="arch-diagram reveal reveal-d1">
+          <div class="flow">
+            <!-- Node 1: Scan Sources -->
+            <div class="flow-node">
+              <div class="flow-node__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <span class="flow-node__label">Scan Sources</span>
+              <span class="flow-node__sub">HN / Job Boards</span>
+            </div>
+            <div class="flow-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <!-- Node 2: Filter -->
+            <div class="flow-node">
+              <div class="flow-node__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+              </div>
+              <span class="flow-node__label">Filter AI Cos</span>
+              <span class="flow-node__sub">Keyword Matching</span>
+            </div>
+            <div class="flow-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <!-- Node 3: Extract Details -->
+            <div class="flow-node">
+              <div class="flow-node__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              </div>
+              <span class="flow-node__label">Extract Details</span>
+              <span class="flow-node__sub">Company + Contact</span>
+            </div>
+            <div class="flow-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <!-- Node 4: SMTP Verify -->
+            <div class="flow-node">
+              <div class="flow-node__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span class="flow-node__label">SMTP Verify</span>
+              <span class="flow-node__sub">Code 250 Check</span>
+            </div>
+            <div class="flow-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <!-- Node 5: Draft Outreach -->
+            <div class="flow-node">
+              <div class="flow-node__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </div>
+              <span class="flow-node__label">Draft Outreach</span>
+              <span class="flow-node__sub">GPT Personalized</span>
+            </div>
+            <div class="flow-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <!-- Node 6: Review & Send -->
+            <div class="flow-node">
+              <div class="flow-node__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+              <span class="flow-node__label">Review &amp; Send</span>
+              <span class="flow-node__sub">Human-in-Loop</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PIPELINE STEPS ========== -->
+    <section id="pipeline">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">Pipeline Breakdown</p>
+          <h2 class="sh__title">Four Steps to Qualified Outreach</h2>
+        </div>
+        <div class="steps">
+          <div class="step-card reveal">
+            <div class="step-card__num">1</div>
+            <div class="step-card__content">
+              <h3 class="step-card__title">Source Scanning</h3>
+              <p class="step-card__desc">The agent crawls Hacker News "Who is Hiring" monthly threads, job board aggregators, and LinkedIn postings. Each run processes 378+ individual hiring posts, extracting raw company names, roles, and technology mentions.</p>
+            </div>
+          </div>
+          <div class="step-card reveal reveal-d1">
+            <div class="step-card__num">2</div>
+            <div class="step-card__content">
+              <h3 class="step-card__title">AI/ML Company Filtering</h3>
+              <p class="step-card__desc">Posts are scored against AI/ML keyword dictionaries — matching terms like "LLM," "computer vision," "MLOps," and "fine-tuning." Additional filters evaluate company size signals and technology stack mentions to surface only relevant targets.</p>
+            </div>
+          </div>
+          <div class="step-card reveal reveal-d2">
+            <div class="step-card__num">3</div>
+            <div class="step-card__content">
+              <h3 class="step-card__title">Email Discovery &amp; SMTP Verification</h3>
+              <p class="step-card__desc">For each qualified company, the agent generates candidate email addresses using common patterns (first@company.com, f.last@company.com, first.last@company.com). Each address is verified via SMTP handshake — only addresses returning code 250 are marked as confirmed valid.</p>
+            </div>
+          </div>
+          <div class="step-card reveal reveal-d3">
+            <div class="step-card__num">4</div>
+            <div class="step-card__content">
+              <h3 class="step-card__title">Personalized Outreach Drafting</h3>
+              <p class="step-card__desc">GPT-4 generates concise 4-sentence emails that reference the company's specific hiring needs, tech stack, and growth signals. Each draft is unique — no templates, no generic pitches. A human reviews and approves before sending.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EMAIL VERIFICATION ========== -->
+    <section id="smtp-verification">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">Email Verification</p>
+          <h2 class="sh__title">SMTP Handshake Protocol</h2>
+        </div>
+        <div class="two-col">
+          <div class="smtp-visual reveal reveal-d1">
+            <div class="smtp-visual__title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><polyline points="2 3 12 13 22 3"/></svg>
+              SMTP Verification Flow
+            </div>
+            <div class="smtp-steps">
+              <div class="smtp-step">
+                <span class="smtp-step__dir smtp-step__dir--send">SEND</span>
+                <span class="smtp-step__cmd">HELO verify.codevantage.ai</span>
+                <span class="smtp-step__status smtp-step__status--info">Handshake</span>
+              </div>
+              <div class="smtp-step">
+                <span class="smtp-step__dir smtp-step__dir--recv">RECV</span>
+                <span class="smtp-step__cmd">220 mx.company.com ESMTP ready</span>
+                <span class="smtp-step__status smtp-step__status--ok">Connected</span>
+              </div>
+              <div class="smtp-step">
+                <span class="smtp-step__dir smtp-step__dir--send">SEND</span>
+                <span class="smtp-step__cmd">MAIL FROM:&lt;verify@codevantage.ai&gt;</span>
+                <span class="smtp-step__status smtp-step__status--info">Sender</span>
+              </div>
+              <div class="smtp-step">
+                <span class="smtp-step__dir smtp-step__dir--recv">RECV</span>
+                <span class="smtp-step__cmd">250 OK</span>
+                <span class="smtp-step__status smtp-step__status--ok">Accepted</span>
+              </div>
+              <div class="smtp-step">
+                <span class="smtp-step__dir smtp-step__dir--send">SEND</span>
+                <span class="smtp-step__cmd">RCPT TO:&lt;cto@targetcompany.com&gt;</span>
+                <span class="smtp-step__status smtp-step__status--info">Verify</span>
+              </div>
+              <div class="smtp-step">
+                <span class="smtp-step__dir smtp-step__dir--recv">RECV</span>
+                <span class="smtp-step__cmd">250 Recipient OK</span>
+                <span class="smtp-step__status smtp-step__status--ok">Verified</span>
+              </div>
+            </div>
+          </div>
+          <div class="reveal reveal-d2">
+            <div class="callout" style="margin-bottom: 1.25rem;">
+              <strong>Why SMTP verification matters:</strong> Pattern-based email guessing alone has a 40–60% bounce rate. By performing a live SMTP handshake up to the RCPT TO stage (without sending any email), we confirm the mailbox exists — bringing bounce rates near zero.
+            </div>
+            <div class="callout callout--whale">
+              <strong>Whale Hunter Report:</strong> The agent also produces a separate "Whale Hunter" report that identifies high-value enterprise targets — companies with 50+ employees, multiple AI roles open, and Series B+ funding — flagged for premium, high-touch outreach by senior BDE reps.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SAMPLE OUTPUT ========== -->
+    <section id="sample-output">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">Sample Output</p>
+          <h2 class="sh__title">Generated Outreach Email</h2>
+        </div>
+        <div class="two-col">
+          <div class="email-preview reveal reveal-d1">
+            <div class="email-preview__header">
+              <div class="email-preview__row">
+                <strong>To:</strong> <span>alex.chen@novaml.com</span>
+                <span class="verified-inline">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  250 OK
+                </span>
+              </div>
+              <div class="email-preview__row">
+                <strong>Subject:</strong> <span>Re: Your ML Engineer roles — augmenting your pipeline</span>
+              </div>
+            </div>
+            <div class="email-preview__body">
+              <p>Hi Alex,</p>
+              <p>I noticed NovaML is hiring for <span class="email-preview__highlight">3 ML Engineers</span> and a <span class="email-preview__highlight">Computer Vision Lead</span> — it looks like you're scaling the applied research team significantly.</p>
+              <p>We've helped similar teams (Series A–B AI startups) accelerate their hiring pipeline by deploying pre-vetted AI/ML contractors within 48 hours, so your full-time search doesn't bottleneck delivery.</p>
+              <p>Would a 15-minute call this week make sense to see if there's a fit?</p>
+              <div class="email-preview__sig">
+                Best,<br>
+                BDE Agent — CodeVantage AI
+              </div>
+            </div>
+          </div>
+          <div class="reveal reveal-d2">
+            <div class="callout" style="margin-bottom: 1rem;">
+              <strong>What makes this different:</strong> Each email references the company's specific open roles, team size signals, and technology stack. No templates — GPT-4 generates every draft from extracted context.
+            </div>
+            <div class="code-block">
+<span class="comment"># Outreach generation pipeline</span>
+<span class="keyword">def</span> <span class="func">generate_outreach</span>(company_data):
+    context = {
+        <span class="string">"company"</span>: company_data.name,
+        <span class="string">"roles"</span>: company_data.open_roles,
+        <span class="string">"tech_stack"</span>: company_data.technologies,
+        <span class="string">"hiring_signals"</span>: company_data.signals,
+    }
+    
+    email = gpt4.generate(
+        template=<span class="string">"4_sentence_outreach"</span>,
+        context=context,
+        tone=<span class="string">"professional_concise"</span>,
+    )
+    
+    <span class="keyword">return</span> email.with_subject_line()
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TECH STACK ========== -->
+    <section id="tech-stack">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">Technology</p>
+          <h2 class="sh__title">Tech Stack</h2>
+        </div>
+        <div class="tech-grid reveal reveal-d1">
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            Python 3.11
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            GPT-4 (OpenAI)
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            Gmail API
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            SMTP Protocol
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            Hermes Framework
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            BeautifulSoup
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            Hacker News API
+          </div>
+          <div class="tech-item">
+            <span class="tech-item__dot"></span>
+            Pandas
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== METRICS ========== -->
+    <section id="metrics">
+      <div class="container">
+        <div class="sh reveal">
+          <p class="sh__label">Real Results</p>
+          <h2 class="sh__title">Performance Metrics</h2>
+        </div>
+        <div class="metrics reveal reveal-d1">
+          <div class="metric">
+            <div class="metric__value">378+</div>
+            <div class="metric__label">Posts Scanned / Run</div>
+          </div>
+          <div class="metric">
+            <div class="metric__value">250</div>
+            <div class="metric__label">SMTP Verify Code</div>
+          </div>
+          <div class="metric">
+            <div class="metric__value">4</div>
+            <div class="metric__label">Sentences / Email</div>
+          </div>
+          <div class="metric">
+            <div class="metric__value">3–4h</div>
+            <div class="metric__label">Daily Time Saved</div>
+          </div>
+          <div class="metric">
+            <div class="metric__value">&lt;2m</div>
+            <div class="metric__label">Per-Run Duration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>Built by <a href="../index.html">CodeVantage AI</a></p>
+    </div>
+  </footer>
+
+  <script src="./shared.js"></script>
+</body>
+</html>

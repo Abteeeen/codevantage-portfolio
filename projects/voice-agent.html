@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceDesk AI — AI Voice Receptionist for Medical Clinics | CodeVantage</title>
+  <meta name="description" content="VoiceDesk AI (Maya): An AI voice receptionist that handles unlimited clinic calls 24/7 — appointment booking, doctor info, FAQs — built in under 1 hour at near-zero cost.">
+  <meta name="keywords" content="AI voice agent, medical receptionist, VAPI, n8n, GPT-4o-mini, clinic automation, appointment booking">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="voice-agent.css">
+</head>
+<body>
+
+  <!-- ============ BACK NAV ============ -->
+  <nav class="back-nav" aria-label="Back navigation">
+    <div class="container back-nav__inner">
+      <a href="../index.html" class="back-nav__link" aria-label="Back to all projects">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+        All Projects
+      </a>
+      <span class="back-nav__title">VoiceDesk AI</span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="project-hero" id="top">
+    <div class="container">
+      <p class="project-hero__label reveal">Case Study</p>
+      <h1 class="project-hero__title reveal reveal-d1">VoiceDesk AI</h1>
+      <p class="project-hero__desc reveal reveal-d2">
+        Meet Maya — an AI voice receptionist that answers every clinic call 24/7, books appointments, and answers patient questions. Built from idea to working MVP in under one hour.
+      </p>
+      <div class="project-hero__badges reveal reveal-d3">
+        <span class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          24/7 Availability
+        </span>
+        <span class="badge badge--green">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          &lt;1 Hour Build
+        </span>
+        <span class="badge badge--amber">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          $0 Testing Cost
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PROBLEM / SOLUTION ============ -->
+  <section id="problem-solution" aria-labelledby="ps-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">The Challenge</p>
+        <h2 class="sh__title" id="ps-title">Why Clinics Need an AI Receptionist</h2>
+      </div>
+
+      <div class="two-col reveal reveal-d1">
+        <!-- Problem -->
+        <div class="problem-card">
+          <div class="card-icon card-icon--problem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="card-title">The Problem</h3>
+          <ul class="card-list">
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Clinics spend ₹15,000–25,000/month on human receptionists
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Limited to 8–10 working hours per day
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Handles only 50–100 calls per day
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Missed calls after hours = lost patients
+            </li>
+          </ul>
+        </div>
+
+        <!-- Solution -->
+        <div class="solution-card">
+          <div class="card-icon card-icon--solution">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="card-title">Our Solution — Maya</h3>
+          <ul class="card-list">
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Works 24/7 — never takes a day off
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Handles unlimited concurrent calls
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Books appointments &amp; answers FAQs automatically
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Production cost: ~$0.05–0.10 per call
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Maya greeting callout -->
+      <div class="maya-greeting reveal reveal-d2">
+        <p class="maya-greeting__label">Maya's First Message</p>
+        <p>"Hello! Thank you for calling HealthBridge Medical Center. This is Maya, your AI assistant. How may I help you today?"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section id="architecture" aria-labelledby="arch-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">System Design</p>
+        <h2 class="sh__title" id="arch-title">Call Pipeline Architecture</h2>
+      </div>
+
+      <div class="arch-diagram reveal reveal-d1">
+        <div class="flow">
+          <!-- Node 1: Customer -->
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <span class="flow-node__label">Customer Calls</span>
+            <span class="flow-node__sub">Incoming call</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <!-- Node 2: VAPI -->
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
+            <span class="flow-node__label">VAPI Routes</span>
+            <span class="flow-node__sub">Voice platform</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <!-- Node 3: Maya AI -->
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14H8a4 4 0 0 0-4 4v2h16v-2a4 4 0 0 0-4-4z"/></svg>
+            </div>
+            <span class="flow-node__label">Maya Responds</span>
+            <span class="flow-node__sub">GPT-4o-mini</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <!-- Node 4: Intent -->
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <span class="flow-node__label">Intent Detection</span>
+            <span class="flow-node__sub">Classify request</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <!-- Node 5: n8n -->
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <span class="flow-node__label">n8n Tool Calls</span>
+            <span class="flow-node__sub">Business logic</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <!-- Node 6: Response -->
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="flow-node__label">Response</span>
+            <span class="flow-node__sub">Back to caller</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS — n8n WORKFLOWS ============ -->
+  <section id="workflows" aria-labelledby="wf-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Under the Hood</p>
+        <h2 class="sh__title" id="wf-title">The 4 n8n Workflows Powering Maya</h2>
+      </div>
+
+      <div class="steps">
+        <!-- Workflow 1 -->
+        <div class="step-card reveal">
+          <div class="step-card__num">1</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Check Availability</h3>
+            <p class="step-card__desc">
+              When a patient asks for an appointment, Maya triggers this workflow to query the doctor's real-time schedule. Returns available time slots filtered by doctor speciality and preferred date.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST /check-availability</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow 2 -->
+        <div class="step-card reveal reveal-d1">
+          <div class="step-card__num">2</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Book Appointment</h3>
+            <p class="step-card__desc">
+              Once the patient confirms a slot, this workflow creates the appointment record, generates a unique appointment ID (e.g., APT-MQ9684CE), and returns a confirmation message with all details.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST /book-appointment</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow 3 -->
+        <div class="step-card reveal reveal-d2">
+          <div class="step-card__num">3</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Clinic FAQ</h3>
+            <p class="step-card__desc">
+              Handles common questions like clinic hours, location, accepted insurance, parking info, and more. Pulls answers from a curated knowledge base of 12 FAQ entries for instant, accurate responses.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST /clinic-faq</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow 4 -->
+        <div class="step-card reveal reveal-d3">
+          <div class="step-card__num">4</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Call Summary</h3>
+            <p class="step-card__desc">
+              Fires automatically when a call ends. Generates a structured summary of the conversation — patient intent, actions taken, follow-ups needed — and sends it via webhook to the clinic's dashboard.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST /call-summary</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KNOWLEDGE BASE ============ -->
+  <section id="knowledge-base" aria-labelledby="kb-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Data Layer</p>
+        <h2 class="sh__title" id="kb-title">Knowledge Base &amp; Doctor Directory</h2>
+      </div>
+
+      <div class="two-col reveal reveal-d1">
+        <div>
+          <div class="callout" style="margin-bottom: 1rem;">
+            <strong>clinic-info.json</strong> — Operating hours, address, and list of services offered by HealthBridge Medical Center.
+          </div>
+          <div class="callout">
+            <strong>faq.json</strong> — 12 curated FAQ entries covering insurance, parking, wait times, prescription refills, and more.
+          </div>
+        </div>
+        <div>
+          <div class="table-wrap">
+            <table class="info-table">
+              <thead>
+                <tr>
+                  <th>Doctor</th>
+                  <th>Speciality</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dr. Ananya Iyer</td>
+                  <td>General Medicine</td>
+                </tr>
+                <tr>
+                  <td>Dr. Vikram Raj</td>
+                  <td>Cardiology</td>
+                </tr>
+                <tr>
+                  <td>Dr. Priya Menon</td>
+                  <td>Pediatrics</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEST RESULTS ============ -->
+  <section id="test-results" aria-labelledby="tr-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Quality Assurance</p>
+        <h2 class="sh__title" id="tr-title">8-Step Call Flow Verification</h2>
+      </div>
+
+      <div class="table-wrap reveal reveal-d1">
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Scenario</th>
+              <th>Expected Behavior</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Customer calls</td>
+              <td>Maya greets professionally</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Appointment request</td>
+              <td>Checks doctor availability</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Available slot confirmed</td>
+              <td>Books appointment (APT-MQ9684CE)</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Doctor info query</td>
+              <td>Returns specialties &amp; profiles</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>FAQ question asked</td>
+              <td>Answers from knowledge base</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Off-topic question</td>
+              <td>Politely redirects to clinic scope</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Call ends</td>
+              <td>Summary webhook fires</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Error / edge case</td>
+              <td>Graceful fallback response</td>
+              <td>
+                <span class="status-pass">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pass
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section id="tech-stack" aria-labelledby="ts-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Technologies</p>
+        <h2 class="sh__title" id="ts-title">Tech Stack</h2>
+      </div>
+
+      <div class="tech-grid reveal reveal-d1">
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          VAPI.ai — Voice Platform
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          n8n — Workflow Automation
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          GPT-4o-mini — Language Model
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Deepgram — STT / TTS
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Webhooks — API Integration
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          JSON Knowledge Base
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ============ -->
+  <section id="metrics" aria-labelledby="m-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">By the Numbers</p>
+        <h2 class="sh__title" id="m-title">Key Metrics</h2>
+      </div>
+
+      <div class="metrics reveal reveal-d1">
+        <div class="metric">
+          <p class="metric__value">&lt;1hr</p>
+          <p class="metric__label">Idea to MVP</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">8/8</p>
+          <p class="metric__label">Tests Passed</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">$0</p>
+          <p class="metric__label">Testing Cost</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">24/7</p>
+          <p class="metric__label">Availability</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">4</p>
+          <p class="metric__label">n8n Workflows</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">$0.05</p>
+          <p class="metric__label">Per Call (Prod)</p>
+        </div>
+      </div>
+
+      <!-- Cost callout -->
+      <div class="cost-row reveal reveal-d2">
+        <div class="cost-row__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="cost-row__text">
+          <strong>$0 for testing</strong> using VAPI's free tier. In production, each call costs approximately <strong>$0.05–$0.10</strong> — compared to ₹15,000–25,000/month for a human receptionist handling far fewer calls.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>VoiceDesk AI — Built by <a href="../index.html">CodeVantage</a></p>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

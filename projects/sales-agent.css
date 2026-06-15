@@ -1,0 +1,310 @@
+/* ============================================================
+   THEME — AI Sales Agent (BDE Agent)
+   Flat Design · Corporate Light Blue
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #0369A1;
+  --primary-light: #0EA5E9;
+  --accent: #059669;
+  --bg: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --border: #E2E8F0;
+  --node-bg: #FFFFFF;
+  --node-border: #0369A1;
+  --icon-bg: #E0F2FE;
+  --badge-bg: #E0F2FE;
+  --badge-text: #0369A1;
+  --badge-border: #7DD3FC;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* — Hero accent bar — */
+.project-hero {
+  border-bottom: 1px solid var(--border);
+}
+
+/* — Problem / Solution two-col cards — */
+.ps-card {
+  padding: 1.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.ps-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.ps-card__icon--problem {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.ps-card__icon--solution {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.ps-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.ps-card__text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.ps-card__text ul {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ps-card__text li {
+  padding-left: 1.15rem;
+  position: relative;
+  list-style: none;
+}
+
+.ps-card__text li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.ps-card__icon--problem + .ps-card__title + .ps-card__text li::before {
+  background: #DC2626;
+}
+
+/* — SMTP Handshake Visual — */
+.smtp-visual {
+  padding: 2rem;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+
+.smtp-visual__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.smtp-visual__title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+}
+
+.smtp-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.smtp-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #F1F5F9;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+
+.smtp-step:hover {
+  border-color: var(--primary);
+}
+
+.smtp-step__dir {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  width: 44px;
+  text-align: center;
+  flex-shrink: 0;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+}
+
+.smtp-step__dir--send {
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.smtp-step__dir--recv {
+  background: #DCFCE7;
+  color: #16A34A;
+}
+
+.smtp-step__cmd {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.smtp-step__status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+}
+
+.smtp-step__status--ok {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+}
+
+.smtp-step__status--info {
+  background: #EFF6FF;
+  color: #2563EB;
+  border: 1px solid #BFDBFE;
+}
+
+/* — Email Preview Card — */
+.email-preview {
+  padding: 0;
+  border-radius: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.email-preview__header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: #F8FAFC;
+}
+
+.email-preview__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.email-preview__row:last-child {
+  margin-bottom: 0;
+}
+
+.email-preview__row strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  min-width: 60px;
+}
+
+.email-preview__body {
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+.email-preview__body p {
+  margin-bottom: 0.75rem;
+}
+
+.email-preview__body p:last-child {
+  margin-bottom: 0;
+}
+
+.email-preview__highlight {
+  background: #FEF3C7;
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  color: #92400E;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.email-preview__sig {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* — Whale hunter callout — */
+.callout--whale {
+  border-left-color: #0369A1;
+  background: #F0F9FF;
+}
+
+.callout--whale strong {
+  color: #0369A1;
+}
+
+/* — Verified badge inline — */
+.verified-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  border: 1px solid #A7F3D0;
+  vertical-align: middle;
+}
+
+.verified-inline svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* — Responsive — */
+@media (max-width: 768px) {
+  .smtp-step {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .smtp-step__cmd {
+    order: 3;
+    width: 100%;
+  }
+}

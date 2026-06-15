@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Menu Rebuilder — CodeVantage AI</title>
+  <meta name="description" content="Transforms outdated paper restaurant menus into stunning digital experiences with AI-written descriptions and mobile-first design.">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="menu-rebuilder.css">
+</head>
+<body>
+
+  <!-- Back Nav -->
+  <nav class="back-nav">
+    <div class="container back-nav__inner">
+      <a href="../index.html" class="back-nav__link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+      <span class="back-nav__title">AI Menu Rebuilder</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <div class="project-hero__label reveal">Case Study 05</div>
+      <h1 class="project-hero__title reveal reveal-d1">AI Menu Rebuilder</h1>
+      <p class="project-hero__desc reveal reveal-d2">Transforms outdated paper or PDF restaurant menus into stunning, elegant digital experiences with AI-written descriptions and QR codes.</p>
+      <div class="project-hero__badges reveal reveal-d3">
+        <span class="badge"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> AI-Powered</span>
+        <span class="badge badge--amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="3"/><rect x="14" y="7" width="3" height="3"/><rect x="7" y="14" width="3" height="3"/><rect x="14" y="14" width="3" height="3"/></svg> QR Ready</span>
+        <span class="badge badge--green"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Mobile-First</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Solution -->
+  <section class="container">
+    <div class="two-col reveal">
+      <!-- Problem -->
+      <div class="step-card" style="border-top: 4px solid #DC2626;">
+        <div class="step-card__num" style="background:#FEE2E2; color:#DC2626;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        <div class="step-card__content">
+          <h3 class="step-card__title">The Old Way: Paper & PDFs</h3>
+          <p class="step-card__desc">Most restaurants (especially in India) use paper menus or poorly formatted PDFs. They are hard to update, unreadable on mobile, lack appetizing descriptions, and look unprofessional to modern diners.</p>
+        </div>
+      </div>
+      <!-- Solution -->
+      <div class="step-card" style="border-top: 4px solid #10B981;">
+        <div class="step-card__num" style="background:#D1FAE5; color:#059669;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="step-card__content">
+          <h3 class="step-card__title">The New Way: AI Digital Menus</h3>
+          <p class="step-card__desc">Our AI pipeline reads a photo of any menu, extracts the items, uses LLMs to write mouth-watering descriptions, and outputs a premium, branded, mobile-first HTML menu complete with a printable QR code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="container reveal">
+    <div class="sh">
+      <div class="sh__label">Pipeline</div>
+      <h2 class="sh__title">Menu Transformation Flow</h2>
+    </div>
+    <div class="arch-diagram">
+      <div class="flow">
+        <!-- Node 1 -->
+        <div class="flow-node">
+          <div class="flow-node__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <div class="flow-node__label">Menu Photo</div>
+          <div class="flow-node__sub">Input PDF/Img</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 2 -->
+        <div class="flow-node">
+          <div class="flow-node__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="flow-node__label">OCR Extraction</div>
+          <div class="flow-node__sub">Read Items</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 3 -->
+        <div class="flow-node" style="--node-border: var(--accent);">
+          <div class="flow-node__icon" style="color: var(--accent);"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div class="flow-node__label">AI Copywriting</div>
+          <div class="flow-node__sub">Write Descriptions</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 4 -->
+        <div class="flow-node">
+          <div class="flow-node__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="flow-node__label">HTML Design</div>
+          <div class="flow-node__sub">Mobile UI</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 5 -->
+        <div class="flow-node">
+          <div class="flow-node__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="3"/><rect x="14" y="7" width="3" height="3"/><rect x="7" y="14" width="3" height="3"/><rect x="14" y="14" width="3" height="3"/></svg></div>
+          <div class="flow-node__label">QR Gen</div>
+          <div class="flow-node__sub">Deploy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mockup and Features -->
+  <section class="container reveal">
+    <div class="two-col">
+      <!-- Menu Preview -->
+      <div>
+        <div class="sh">
+          <div class="sh__label">AI Enhancement</div>
+          <h2 class="sh__title">From Basic to Beautiful</h2>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">The AI doesn't just copy text—it enhances it. "Chicken Tikka" becomes "Tender chicken tikka marinated in aromatic spices."</p>
+        
+        <div class="menu-preview">
+          <div class="menu-preview__category">Chef's Specials</div>
+          
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__title">Truffle Mushroom Risotto <span class="menu-item__badge">V</span></span>
+              <span class="menu-item__dots"></span>
+              <span class="menu-item__price">$24</span>
+            </div>
+            <div class="menu-item__desc">Creamy arborio rice slow-cooked with wild porcini mushrooms, finished with white truffle oil and aged parmesan.</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__title">Pan-Seared Scallops</span>
+              <span class="menu-item__dots"></span>
+              <span class="menu-item__price">$28</span>
+            </div>
+            <div class="menu-item__desc">Jumbo sea scallops pan-seared to a golden brown, served over a bed of sweet corn purée with crispy pancetta dust.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div>
+        <div class="feature-showcase">
+          <div class="feature-box">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <h4>Appetizing Copy</h4>
+            <p>LLM-generated dish descriptions that increase order value.</p>
+          </div>
+          <div class="feature-box">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <h4>Mobile-First</h4>
+            <p>Responsive design optimized for customers scanning from their phones.</p>
+          </div>
+          <div class="feature-box">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><rect x="7" y="7" width="3" height="3"/><rect x="14" y="7" width="3" height="3"/><rect x="7" y="14" width="3" height="3"/><rect x="14" y="14" width="3" height="3"/></svg>
+            <h4>QR Code Ready</h4>
+            <p>Automatically generates a high-res QR code for table tents and stickers.</p>
+          </div>
+          <div class="feature-box">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <h4>Brand Matching</h4>
+            <p>Color schemes and fonts tailored to match the restaurant's vibe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Grid -->
+  <section class="container reveal">
+    <div class="sh" style="text-align: center;">
+      <div class="sh__label" style="justify-content: center;">Stack</div>
+      <h2 class="sh__title">Technologies Used</h2>
+    </div>
+    <div class="tech-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="tech-item"><div class="tech-item__dot"></div>GPT-4 (Copywriting)</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>OCR (Text Extraction)</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>HTML5 & CSS3</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>Vanilla JS</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>QR Generation API</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>Static Hosting</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>Built by <a href="../index.html">CodeVantage AI</a>. Custom automation systems.</p>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

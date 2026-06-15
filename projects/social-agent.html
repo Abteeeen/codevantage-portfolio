@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Pain Agent — CodeVantage AI</title>
+  <meta name="description" content="A multi-agent AI crew that scrapes social groups to identify customer pain points and buying signals.">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="social-agent.css">
+</head>
+<body>
+
+  <!-- Back Nav -->
+  <nav class="back-nav">
+    <div class="container back-nav__inner">
+      <a href="../index.html" class="back-nav__link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+      <span class="back-nav__title">Social Pain Agent</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <div class="project-hero__label reveal">Case Study 06</div>
+      <h1 class="project-hero__title reveal reveal-d1">Social Pain Agent</h1>
+      <p class="project-hero__desc reveal reveal-d2">An AI multi-agent crew that scrapes social groups, uses NLP to extract customer pain points, scores buying intent, and drafts hyper-targeted outreach.</p>
+      <div class="project-hero__badges reveal reveal-d3">
+        <span class="badge badge--amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Multi-Agent</span>
+        <span class="badge badge--blue"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> NLP-Powered</span>
+        <span class="badge badge--green"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12h4l2-9 5 18 2-9h5"/></svg> Intent Scoring</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Solution -->
+  <section class="container">
+    <div class="two-col reveal">
+      <!-- Problem -->
+      <div class="step-card" style="border-top: 4px solid #E11D48;">
+        <div class="step-card__num" style="background:#FFE4E6; color:#E11D48;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        <div class="step-card__content">
+          <h3 class="step-card__title">The Problem</h3>
+          <p class="step-card__desc">Generic outbound outreach has less than a 2% response rate. Finding people who actually need your product right now requires manually reading thousands of posts in Facebook groups and subreddits to find specific complaints and buying signals.</p>
+        </div>
+      </div>
+      <!-- Solution -->
+      <div class="step-card" style="border-top: 4px solid #10B981;">
+        <div class="step-card__num" style="background:#D1FAE5; color:#059669;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="step-card__content">
+          <h3 class="step-card__title">The Solution</h3>
+          <p class="step-card__desc">A multi-agent crew built with CrewAI that monitors communities 24/7. It uses natural language processing to extract the exact pain points mentioned, scores leads from 1-10 based on urgency, and prepares a personalized message referencing their exact problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture / Flow -->
+  <section class="container reveal">
+    <div class="sh">
+      <div class="sh__label">Multi-Agent System</div>
+      <h2 class="sh__title">CrewAI Architecture Flow</h2>
+    </div>
+    <div class="arch-diagram">
+      <div class="flow">
+        <!-- Node 1 -->
+        <div class="flow-node">
+          <div class="flow-node__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="flow-node__label">Target Groups</div>
+          <div class="flow-node__sub">Input List</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 2 -->
+        <div class="flow-node" style="--node-border: #F59E0B;">
+          <div class="flow-node__icon" style="color: #F59E0B;"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="flow-node__label">Scraper Agent</div>
+          <div class="flow-node__sub">Monitor Posts</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 3 -->
+        <div class="flow-node" style="--node-border: #8B5CF6;">
+          <div class="flow-node__icon" style="color: #8B5CF6;"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div class="flow-node__label">Extractor Agent</div>
+          <div class="flow-node__sub">Find Pain Points</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 4 -->
+        <div class="flow-node" style="--node-border: #10B981;">
+          <div class="flow-node__icon" style="color: #10B981;"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12h4l2-9 5 18 2-9h5"/></svg></div>
+          <div class="flow-node__label">Scorer Agent</div>
+          <div class="flow-node__sub">Intent (1-10)</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <!-- Node 5 -->
+        <div class="flow-node" style="--node-border: var(--primary);">
+          <div class="flow-node__icon" style="color: var(--primary);"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div class="flow-node__label">Writer Agent</div>
+          <div class="flow-node__sub">Draft Outreach</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agent Roles & Analysis -->
+  <section class="container reveal">
+    <div class="two-col">
+      <!-- Roles -->
+      <div>
+        <div class="sh">
+          <div class="sh__label">Crew Setup</div>
+          <h2 class="sh__title">AI Agent Roles</h2>
+        </div>
+        <div class="agent-grid">
+          <div class="agent-card">
+            <div class="agent-card__role">Role: Analyzer</div>
+            <h4 class="agent-card__name">NLP Extractor</h4>
+            <p class="agent-card__desc">Reads scraped text and categorizes the underlying issue (e.g., pricing, bug, churn risk, seeking alternatives).</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-card__role">Role: Lead Scorer</div>
+            <h4 class="agent-card__name">Intent Scorer</h4>
+            <p class="agent-card__desc">Analyzes linguistic urgency. "I hate X" = Score 4. "Need alternative to X immediately, budget approved" = Score 9.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Visual -->
+      <div>
+        <div class="sh">
+          <div class="sh__label">Data Pipeline</div>
+          <h2 class="sh__title">Scoring & Extraction</h2>
+        </div>
+        <div class="score-visual">
+          <div class="score-bar">
+            <div class="score-segment low">1-4: Passive Complaint</div>
+            <div class="score-segment med">5-7: Actively Looking</div>
+            <div class="score-segment high">8-10: High Intent</div>
+          </div>
+          
+          <div class="analysis-visual">
+            <div class="analysis-box">
+              <strong>Raw Post:</strong> "Is anyone else's CRM taking 10 seconds to load a contact? Support isn't answering. We're losing patience."
+            </div>
+            <div style="text-align:center; color: var(--primary);">↓</div>
+            <div class="analysis-box output">
+              {<br>
+              &nbsp;&nbsp;"pain_category": "Performance / Support",<br>
+              &nbsp;&nbsp;"extracted_pain": "Slow load times, unresponsive support",<br>
+              &nbsp;&nbsp;"intent_score": 8.5,<br>
+              &nbsp;&nbsp;"urgency_triggers": ["losing patience", "not answering"]<br>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Output -->
+  <section class="container reveal">
+    <div class="sh" style="text-align: center;">
+      <div class="sh__label" style="justify-content: center;">Results</div>
+      <h2 class="sh__title">Generated Outreach Data</h2>
+    </div>
+    <div class="code-block" style="max-width: 800px; margin: 0 auto;">
+<span class="comment"># Output CSV generated by Writer Agent</span>
+name,group,pain_point,intent_score,suggested_outreach
+"Alex M.","SaaS Founders","High churn from slow onboarding",8.0,"Hey Alex, saw your post in SaaS Founders about users dropping off during the slow onboarding flow. We built an AI tool that cuts setup time by 70%. Would love to show you how it works."
+"Sarah T.","Marketing Pros","Mailchimp pricing too high",9.5,"Hi Sarah, noticed you're looking to move off Mailchimp due to their recent pricing changes. We help agencies migrate to open-source alternatives that save ~$500/mo. Free for a quick chat?"
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="container reveal">
+    <div class="sh" style="text-align: center; margin-top: 2rem;">
+      <div class="sh__label" style="justify-content: center;">Stack</div>
+      <h2 class="sh__title">Technologies Used</h2>
+    </div>
+    <div class="tech-grid" style="max-width: 800px; margin: 0 auto; grid-template-columns: repeat(3, 1fr);">
+      <div class="tech-item"><div class="tech-item__dot"></div>CrewAI</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>LangChain</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>Python</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>GPT-4 (NLP)</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>BeautifulSoup</div>
+      <div class="tech-item"><div class="tech-item__dot"></div>Pandas</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>Built by <a href="../index.html">CodeVantage AI</a>. Custom automation systems.</p>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

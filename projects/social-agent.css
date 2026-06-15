@@ -1,0 +1,167 @@
+/* ============================================================
+   SOCIAL PAIN AGENT — Unique Theme overrides and specific styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Theme Colors */
+  --primary: #E11D48; /* Rose */
+  --bg: #FFF5F6; /* Light Rose Background */
+  --card-bg: #FFFFFF;
+  --text-primary: #1E1B2E;
+  --text-secondary: #6B7280;
+  --border: #FCE4EC;
+  --accent: #2563EB; /* Blue for Links/CTAs */
+
+  /* Nodes & Flow overrides */
+  --node-bg: #FFFFFF;
+  --node-border: #E11D48;
+  --icon-bg: rgba(225, 29, 72, 0.08);
+
+  /* Badge overrides */
+  --badge-bg: rgba(225, 29, 72, 0.1);
+  --badge-text: #BE123C;
+  --badge-border: rgba(225, 29, 72, 0.2);
+
+  /* Typography overrides */
+  --font-heading: 'Fira Sans', system-ui, sans-serif;
+  --font-body: 'Fira Sans', system-ui, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+/* Base resets applying fonts and bg */
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6, .project-hero__title, .sh__title, .process-step__number {
+  font-family: var(--font-heading);
+}
+
+.code-block, .mono-data {
+  font-family: var(--font-mono) !important;
+}
+
+/* Page Specific Overrides */
+.back-nav {
+  background: rgba(255, 245, 246, 0.85);
+}
+
+/* Specific component: Agent Roles */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.agent-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.agent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(225, 29, 72, 0.08);
+  border-color: rgba(225, 29, 72, 0.3);
+}
+
+.agent-card__role {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.agent-card__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.agent-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Specific Component: Scoring System */
+.score-visual {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.score-bar {
+  display: flex;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.score-segment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: white;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.score-segment.low { width: 40%; background: #94A3B8; }
+.score-segment.med { width: 30%; background: #F59E0B; }
+.score-segment.high { width: 30%; background: #10B981; }
+
+.score-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.score-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.score-item__label { font-weight: 500; }
+.score-item__val { font-family: var(--font-mono); color: var(--text-secondary); }
+
+/* Analysis Visual */
+.analysis-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.analysis-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.analysis-box.output {
+  background: #1E293B;
+  color: #F8FAFC;
+  border-color: #334155;
+  font-family: var(--font-mono);
+}
