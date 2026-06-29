@@ -22,6 +22,7 @@
         <a href="#process" class="nav__link">How It Works</a>
         <a href="#results" class="nav__link">Results</a>
         <a href="#about" class="nav__link">About</a>
+        <a href="#pricing" class="nav__link">Pricing</a>
         <a href="#contact" class="btn nav__cta">Get In Touch</a>
       </div>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
@@ -57,11 +58,41 @@
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
           </div>
-          <video class="browser-video" src="assets/youtube.mp4" autoplay loop muted playsinline></video>
+          <video class="browser-video" src="assets/bailey-pow.mp4" autoplay loop muted playsinline></video>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- TECH MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-row" aria-hidden="true">
+      <span class="marquee-item">VAPI.ai</span>
+      <span class="marquee-item">n8n</span>
+      <span class="marquee-item">GPT-4o</span>
+      <span class="marquee-item">Python</span>
+      <span class="marquee-item">CrewAI</span>
+      <span class="marquee-item">LangChain</span>
+      <span class="marquee-item">FFmpeg</span>
+      <span class="marquee-item">DeepSeek</span>
+      <span class="marquee-item">YouTube API</span>
+      <span class="marquee-item">Gmail API</span>
+      <span class="marquee-item">Google Places</span>
+      <span class="marquee-item">Node.js</span>
+      <span class="marquee-item">VAPI.ai</span>
+      <span class="marquee-item">n8n</span>
+      <span class="marquee-item">GPT-4o</span>
+      <span class="marquee-item">Python</span>
+      <span class="marquee-item">CrewAI</span>
+      <span class="marquee-item">LangChain</span>
+      <span class="marquee-item">FFmpeg</span>
+      <span class="marquee-item">DeepSeek</span>
+      <span class="marquee-item">YouTube API</span>
+      <span class="marquee-item">Gmail API</span>
+      <span class="marquee-item">Google Places</span>
+      <span class="marquee-item">Node.js</span>
+    </div>
+  </div>
 
   <!-- ============ INTERACTIVE LEAD CAPTURE ============ -->
   <section class="lead-capture reveal">
@@ -71,7 +102,7 @@
         <p>Enter your website or business name and see how our AI agents would optimize your operations.</p>
         <div class="lead-form" id="leadForm">
           <input type="text" id="leadInput" placeholder="e.g. www.myrestaurant.com" autocomplete="off">
-          <button id="leadBtn" class="btn btn-primary">Generate AI Analysis</button>
+          <button id="leadBtn" class="btn btn--primary">Generate AI Analysis</button>
         </div>
         <div id="leadLoader" class="lead-loader" style="display: none;">
           <div class="spinner"></div>
@@ -82,7 +113,7 @@
           <p>We found 3 workflow bottlenecks and 1 missed revenue opportunity. Enter your email to receive your personalized AI optimization report.</p>
           <div class="lead-form">
             <input type="email" placeholder="Enter your email address">
-            <button class="btn btn-primary">Send Report</button>
+            <button class="btn btn--primary">Send Report</button>
           </div>
         </div>
       </div>
@@ -129,6 +160,24 @@
                 </div>
               </div>
             </div>
+            <div class="tab-metrics-row">
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">2 min</span>
+                <span class="tab-metric-label">Build Time</span>
+              </div>
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">$0</span>
+                <span class="tab-metric-label">Manual Cost</span>
+              </div>
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">100%</span>
+                <span class="tab-metric-label">Automated</span>
+              </div>
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">∞</span>
+                <span class="tab-metric-label">Scalable</span>
+              </div>
+            </div>
             <div style="text-align: center; margin-top: 1.5rem;">
               <a href="projects/menu-rebuilder.html" class="btn btn-outline" style="background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; color: white; border: 1px solid rgba(255,255,255,0.1);">Read Full Case Study</a>
             </div>
@@ -141,6 +190,24 @@
                 <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
               </div>
               <video class="browser-video" src="assets/bailey-pow.mp4" autoplay loop muted playsinline controls></video>
+            </div>
+            <div class="tab-metrics-row">
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">131</span>
+                <span class="tab-metric-label">Leads Found</span>
+              </div>
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">&lt;60s</span>
+                <span class="tab-metric-label">Per Site Built</span>
+              </div>
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">10</span>
+                <span class="tab-metric-label">Industries</span>
+              </div>
+              <div class="tab-metric-box">
+                <span class="tab-metric-value">AI</span>
+                <span class="tab-metric-label">Fully Driven</span>
+              </div>
             </div>
             <div style="text-align: center; margin-top: 1.5rem;">
               <a href="projects/site-builder.html" class="btn btn-outline" style="background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; color: white; border: 1px solid rgba(255,255,255,0.1);">Read Full Case Study</a>
@@ -157,6 +224,57 @@
             </div>
             <div style="text-align: center; margin-top: 1.5rem;">
               <a href="#" class="btn btn-outline" style="background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; color: white; border: 1px solid rgba(255,255,255,0.1); cursor: not-allowed; opacity: 0.5;" onclick="event.preventDefault();">Case Study Coming Soon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label" style="justify-content:center;">Client Results</span>
+        <h2 class="section-title">What <span class="text-gradient">Clients Say</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto 3rem auto; text-align:center; color: var(--text-muted);">Real businesses. Real results. Not demos.</p>
+      </div>
+      <div class="testimonials__grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-badge">Menu Rebuilder</div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Our paper menus were costing us ₹15,000+ a month in reprints. CodeVantage built us a digital QR menu in 48 hours. Guests love it and we haven't touched a printer since."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MK</div>
+            <div>
+              <div class="testimonial-name">Mike Kowalski</div>
+              <div class="testimonial-role">Owner · Mike's Diner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-badge">AI Site Builder</div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"We had no website and were losing customers to competitors who did. Within a week, CodeVantage had a full branded site live with our photos and services. We got 3 calls the first day it went live."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PN</div>
+            <div>
+              <div class="testimonial-name">Priya Nair</div>
+              <div class="testimonial-role">Owner · Nair Beauty Studio</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-badge">Voice Agent</div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Our clinic was missing 40% of after-hours calls. The AI receptionist answers instantly, books appointments, handles FAQs. We haven't missed a patient lead in 2 months."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RK</div>
+            <div>
+              <div class="testimonial-name">Dr. Rajesh Kumar</div>
+              <div class="testimonial-role">Director · City Health Clinic</div>
             </div>
           </div>
         </div>
@@ -230,6 +348,61 @@
 
   <div class="sep"></div>
 
+  <!-- LIVE DEMOS -->
+  <section class="demos-section" id="demos">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label" style="justify-content:center;">Live Demos</span>
+        <h2 class="section-title">Click It. <span class="text-gradient">Try It Yourself.</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto 3rem auto; text-align:center; color: var(--text-muted);">These aren't mockups. These are real, deployed AI systems you can open right now.</p>
+      </div>
+      <div class="demos__grid">
+        <div class="demo-card reveal reveal-delay-1">
+          <div class="demo-card__preview">
+            <img src="assets/mikes-new-menu.png" alt="Mike's Digital Menu — live demo">
+            <div class="demo-card__overlay">
+              <a href="demos/mikes-menu/index.html" target="_blank" rel="noopener" class="demo-card__cta">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open Live Demo
+              </a>
+            </div>
+          </div>
+          <div class="demo-card__info">
+            <h3>Mike's Diner — Digital Menu</h3>
+            <p>Paper menu → AI-generated digital experience with mobile-first design, food photo descriptions, and instant QR access.</p>
+            <div class="demo-card__tags">
+              <span class="tech-badge">AI/LLM</span>
+              <span class="tech-badge">HTML/CSS</span>
+              <span class="tech-badge">QR Gen</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-card reveal reveal-delay-2">
+          <div class="demo-card__preview">
+            <img src="assets/bailey-new-site.png" alt="Bailey AI Website Builder — live demo">
+            <div class="demo-card__overlay">
+              <a href="demos/bailey/index.html" target="_blank" rel="noopener" class="demo-card__cta">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open Live Demo
+              </a>
+            </div>
+          </div>
+          <div class="demo-card__info">
+            <h3>Bailey — AI Website Builder</h3>
+            <p>Type a business name and city. Watch the AI instantly generate a full branded website — copy, design, contact forms, everything.</p>
+            <div class="demo-card__tags">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">DeepSeek</span>
+              <span class="tech-badge">Google Places</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
   <!-- PROCESS -->
   <section class="process" id="process">
     <div class="container">
@@ -259,6 +432,68 @@
         <div class="stat-card reveal reveal-delay-2"><div class="stat-card__value stat-card__value--cyan"><span class="counter" data-target="131">0</span></div><div class="stat-card__label">Businesses Found</div><div class="stat-card__detail">Across 10 industries</div></div>
         <div class="stat-card reveal reveal-delay-3"><div class="stat-card__value stat-card__value--amber"><span class="counter" data-target="6">0</span>/day</div><div class="stat-card__label">Videos Published</div><div class="stat-card__detail">Fully autonomous</div></div>
         <div class="stat-card reveal reveal-delay-4"><div class="stat-card__value stat-card__value--emerald">&lt;<span class="counter" data-target="1">0</span>hr</div><div class="stat-card__label">Voice Agent MVP</div><div class="stat-card__detail">Idea to demo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label" style="justify-content:center;">Investment</span>
+        <h2 class="section-title">Simple, <span class="text-gradient">Transparent Pricing</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto 3rem auto; text-align:center; color: var(--text-muted);">One-time build fee. You own the system. No subscriptions, no lock-in.</p>
+      </div>
+      <div class="pricing__grid">
+
+        <div class="pricing-card reveal reveal-delay-1">
+          <div class="pricing-card__tier">Starter</div>
+          <div class="pricing-card__price">$997</div>
+          <div class="pricing-card__period">one-time build · you own the code</div>
+          <ul class="pricing-card__features">
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 1 AI automation system</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 3-week delivery</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full source code + docs</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day support</li>
+            <li class="feat-no"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Multi-system integrations</li>
+            <li class="feat-no"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Dedicated team pod</li>
+          </ul>
+          <a href="mailto:admin@codevantage.io?subject=Starter%20Plan%20Inquiry" class="btn btn--secondary pricing-card__btn">Get Started</a>
+        </div>
+
+        <div class="pricing-card pricing-card--popular reveal reveal-delay-2">
+          <div class="pricing-card__popular-badge">Most Popular</div>
+          <div class="pricing-card__tier">Scale</div>
+          <div class="pricing-card__price">$2,497</div>
+          <div class="pricing-card__period">one-time build · you own the code</div>
+          <ul class="pricing-card__features">
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 3 AI automation systems</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 3-week delivery</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full source code + docs</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 90-day priority support</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Multi-system integrations</li>
+            <li class="feat-no"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Dedicated team pod</li>
+          </ul>
+          <a href="mailto:admin@codevantage.io?subject=Scale%20Plan%20Inquiry" class="btn btn--primary pricing-card__btn">Get Started</a>
+        </div>
+
+        <div class="pricing-card reveal reveal-delay-3">
+          <div class="pricing-card__tier">Enterprise</div>
+          <div class="pricing-card__price">Custom</div>
+          <div class="pricing-card__period">scoped to your workflow needs</div>
+          <ul class="pricing-card__features">
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI systems</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Dedicated 5-person pod</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full source code + docs</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 12-month SLA support</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Multi-system integrations</li>
+            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Dedicated team pod</li>
+          </ul>
+          <a href="mailto:admin@codevantage.io?subject=Enterprise%20Inquiry" class="btn btn--secondary pricing-card__btn">Book a Call</a>
+        </div>
+
       </div>
     </div>
   </section>
