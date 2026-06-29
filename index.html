@@ -53,9 +53,28 @@
       <div class="hero__showcase reveal reveal-delay-5">
         <div class="browser-frame">
           <div class="browser-header">
-            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
           </div>
-          <video class="browser-video" src="assets/youtube.mp4" autoplay loop muted playsinline></video>
+          <!-- Before/After Slider -->
+          <div class="before-after-slider" id="heroSlider">
+            <div class="before-image">
+              <img src="assets/mikes-old-menu.png" alt="Old Menu">
+              <span class="slider-label label-before">Before (Old Menu)</span>
+            </div>
+            <div class="after-image" id="afterImage">
+              <img src="assets/mikes-new-menu.png" alt="AI Generated Menu">
+              <span class="slider-label label-after">After (AI Generated)</span>
+            </div>
+            <input type="range" min="0" max="100" value="50" class="slider" id="sliderInput">
+            <div class="slider-line" id="sliderLine">
+              <div class="slider-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

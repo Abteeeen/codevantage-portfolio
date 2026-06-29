@@ -356,3 +356,18 @@
   });
 
 })();
+
+// Before/After Slider Logic
+document.addEventListener("DOMContentLoaded", function() {
+  const slider = document.getElementById("sliderInput");
+  const afterImage = document.getElementById("afterImage");
+  const sliderLine = document.getElementById("sliderLine");
+  
+  if(slider && afterImage && sliderLine) {
+    slider.addEventListener("input", function(e) {
+      const sliderVal = e.target.value;
+      afterImage.style.width = sliderVal + "%";
+      sliderLine.style.left = sliderVal + "%";
+    });
+  }
+});

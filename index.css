@@ -225,3 +225,103 @@ section { padding: clamp(3rem, 5vw, 4.5rem) 0; position: relative; }
   .reveal { opacity: 1; transform: none; }
   .hero__orb { animation: none; }
 }
+
+/* Before/After Slider */
+.before-after-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+  border-radius: 12px;
+}
+
+.before-image, .after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.before-image {
+  width: 100%;
+}
+
+.after-image {
+  width: 50%; /* Changed by JS */
+  border-right: 2px solid var(--primary);
+  z-index: 2;
+}
+
+.before-image img, .after-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+.slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  background: var(--primary);
+  z-index: 5;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.slider-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.slider-label {
+  position: absolute;
+  bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(15, 18, 24, 0.85);
+  backdrop-filter: blur(4px);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.label-before { right: 1rem; }
+.label-after { left: 1rem; }
