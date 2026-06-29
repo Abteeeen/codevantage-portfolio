@@ -405,3 +405,33 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+// Lead Capture Form Simulation
+document.addEventListener("DOMContentLoaded", function() {
+  const leadBtn = document.getElementById("leadBtn");
+  const leadInput = document.getElementById("leadInput");
+  const leadForm = document.getElementById("leadForm");
+  const leadLoader = document.getElementById("leadLoader");
+  const leadSuccess = document.getElementById("leadSuccess");
+  
+  if(leadBtn && leadInput) {
+    leadBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      const val = leadInput.value.trim();
+      if(val === "") {
+        alert("Please enter a website or business name.");
+        return;
+      }
+      
+      // Hide form, show loader
+      leadForm.style.display = "none";
+      leadLoader.style.display = "block";
+      
+      // Simulate API call and AI analysis delay
+      setTimeout(function() {
+        leadLoader.style.display = "none";
+        leadSuccess.style.display = "block";
+      }, 3500); // 3.5 seconds of "analyzing"
+    });
+  }
+});
