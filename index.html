@@ -98,24 +98,41 @@
   <section class="lead-capture reveal">
     <div class="container">
       <div class="lead-capture-box">
-        <h3>Try It On Your Business</h3>
-        <p>Enter your website or business name and see how our AI agents would optimize your operations.</p>
-        <div class="lead-form" id="leadForm">
-          <input type="text" id="leadInput" placeholder="e.g. www.myrestaurant.com" autocomplete="off">
-          <button id="leadBtn" class="btn btn--primary">Generate AI Analysis</button>
+
+        <!-- Step 1: initial input -->
+        <div id="leadInitial">
+          <h3>Try It On Your Business</h3>
+          <p>Enter your website or business name and see how our AI agents would optimize your operations.</p>
+          <div class="lead-form" id="leadForm">
+            <input type="text" id="leadInput" placeholder="e.g. www.myrestaurant.com" autocomplete="off">
+            <button id="leadBtn" class="btn btn--primary">Generate AI Analysis</button>
+          </div>
         </div>
+
+        <!-- Step 2: loading -->
         <div id="leadLoader" class="lead-loader" style="display: none;">
           <div class="spinner"></div>
           <p>Analyzing your business structure...</p>
         </div>
+
+        <!-- Step 3: email capture -->
         <div id="leadSuccess" class="lead-success" style="display: none;">
           <h4>Analysis Complete!</h4>
-          <p>We found 3 workflow bottlenecks and 1 missed revenue opportunity. Enter your email to receive your personalized AI optimization report.</p>
-          <div class="lead-form">
-            <input type="email" placeholder="Enter your email address">
-            <button class="btn btn--primary">Send Report</button>
-          </div>
+          <p>We found <strong>3 workflow bottlenecks</strong> and <strong>1 missed revenue opportunity</strong>. Enter your email to receive your personalized AI optimization report.</p>
+          <form id="leadEmailForm" class="lead-form">
+            <input type="email" id="leadEmail" placeholder="Enter your email address" required>
+            <button type="submit" id="leadSubmitBtn" class="btn btn--primary">Send Report</button>
+          </form>
+          <p id="leadEmailError" style="color:#ef4444; font-size:0.8rem; margin-top:0.5rem; display:none;">Something went wrong. Email us at <a href="mailto:admin@codevantage.io" style="color:var(--primary-light);">admin@codevantage.io</a></p>
         </div>
+
+        <!-- Step 4: done -->
+        <div id="leadDone" style="display: none;">
+          <div style="font-size:2rem; margin-bottom:0.75rem;">✅</div>
+          <h4 style="color: var(--success); margin-bottom:0.5rem;">Report on its way!</h4>
+          <p style="color: var(--text-muted); font-size:0.875rem;">Check your inbox — we'll send your personalized AI optimization report within 24 hours.</p>
+        </div>
+
       </div>
     </div>
   </section>
