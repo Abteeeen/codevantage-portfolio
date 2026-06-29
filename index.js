@@ -371,3 +371,37 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+// Tabs Logic
+document.addEventListener("DOMContentLoaded", function() {
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const tabPanes = document.querySelectorAll(".tab-pane");
+  
+  if (tabBtns.length > 0) {
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", function() {
+        // Remove active class from all
+        tabBtns.forEach(b => b.classList.remove("active"));
+        tabPanes.forEach(p => p.classList.remove("active"));
+        
+        // Add active class to clicked tab
+        this.classList.add("active");
+        const target = this.getAttribute("data-tab");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+  }
+
+  // Update Slider Logic for Tabs
+  const tabSlider = document.getElementById("tabSliderInput");
+  const tabAfterImage = document.getElementById("tabAfterImage");
+  const tabSliderLine = document.getElementById("tabSliderLine");
+  
+  if(tabSlider && tabAfterImage && tabSliderLine) {
+    tabSlider.addEventListener("input", function(e) {
+      const sliderVal = e.target.value;
+      tabAfterImage.style.width = sliderVal + "%";
+      tabSliderLine.style.left = sliderVal + "%";
+    });
+  }
+});
