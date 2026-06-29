@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bailey Home Service — Tulsa's Trusted HVAC & Home Performance Family</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== PRO MAX RESET + DESIGN SYSTEM ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Open Sans',sans-serif;
+  background:#EFF6FF;
+  color:#1E3A8A;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ===== TYPOGRAPHY ===== */
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;line-height:1.2;font-weight:700}
+h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:16px}
+h3{font-size:clamp(1.2rem,2vw,1.5rem);margin-bottom:12px}
+.section-label{font-family:'Poppins',sans-serif;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;color:#3B82F6;margin-bottom:8px}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(30,64,175,0.97);backdrop-filter:blur(8px);
+  padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1200px;margin:0 auto;padding:0 24px;
+}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-mark{
+  width:44px;height:44px;
+  background:#FFFFFF;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Poppins',sans-serif;font-weight:800;font-size:1.1rem;
+  color:#1E40AF;
+}
+.logo-text{color:#FFFFFF;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem}
+.logo-text span{color:#93C5FD;font-weight:400;font-size:0.85rem;display:block;margin-top:-2px}
+.header-phone{
+  background:#EA580C;color:#FFFFFF;padding:10px 24px;border-radius:8px;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:1.1rem;
+  transition:background 0.2s;white-space:nowrap;
+}
+.header-phone:hover{background:#D4520A}
+.header-phone small{font-weight:400;font-size:0.7rem;display:block;text-align:center;opacity:0.9}
+nav{display:flex;gap:8px;align-items:center}
+nav a{color:#93C5FD;padding:6px 12px;border-radius:6px;font-size:0.85rem;font-weight:500;transition:all 0.2s}
+nav a:hover{color:#FFFFFF;background:rgba(255,255,255,0.1)}
+
+/* ===== HERO ===== */
+.hero{
+  margin-top:68px;position:relative;overflow:hidden;
+  min-height:88vh;display:flex;align-items:center;
+  background:linear-gradient(135deg,#1E40AF 0%,#1E3A8A 60%,#0F1D5E 100%);
+}
+.hero-img{
+  position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  opacity:0.15;mix-blend-mode:luminosity;
+}
+.hero-overlay{
+  position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;
+  background:radial-gradient(ellipse at 30% 50%,rgba(30,64,175,0.3) 0%,rgba(15,29,94,0.9) 100%);
+}
+.hero-content{position:relative;z-index:2;width:100%}
+.hero-content .container{max-width:900px}
+.hero-badge{
+  display:inline-block;background:rgba(234,88,12,0.9);color:#FFFFFF;
+  padding:6px 16px;border-radius:20px;font-size:0.8rem;font-weight:600;
+  margin-bottom:20px;backdrop-filter:blur(4px);
+}
+.hero h1{color:#FFFFFF;margin-bottom:16px}
+.hero h1 .highlight{color:#FCD34D}
+.hero-sub{
+  font-size:clamp(1rem,2vw,1.25rem);color:#93C5FD;max-width:700px;margin-bottom:36px;line-height:1.8;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#EA580C;color:#FFFFFF;padding:16px 36px;border-radius:12px;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:1.05rem;
+  transition:all 0.2s;border:none;cursor:pointer;
+}
+.btn-primary:hover{background:#D4520A;transform:translateY(-2px);box-shadow:0 8px 30px rgba(234,88,12,0.4)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.1);color:#FFFFFF;padding:16px 36px;border-radius:12px;
+  font-family:'Poppins',sans-serif;font-weight:500;font-size:1.05rem;
+  border:1px solid rgba(255,255,255,0.25);transition:all 0.2s;
+}
+.btn-secondary:hover{background:rgba(255,255,255,0.18)}
+
+/* ===== TRUST STRIP ===== */
+.trust-strip{
+  background:#FFFFFF;border-bottom:1px solid #E9EEF6;padding:20px 0;
+}
+.trust-grid{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;
+}
+.trust-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.9rem;font-weight:500;color:#1E3A8A;
+}
+.trust-item .icon{width:28px;height:28px;background:#EFF6FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem}
+
+/* ===== SECTION COMMON ===== */
+section{padding:80px 0}
+.section-title{text-align:center;margin-bottom:16px}
+.section-subtitle{text-align:center;color:#64748B;max-width:650px;margin:0 auto 48px;font-size:1.05rem}
+
+/* ===== PHILOSOPHY ===== */
+.philosophy{background:#FFFFFF}
+.philosophy-content{max-width:850px;margin:0 auto}
+.philosophy-content .blockquote{
+  border-left:4px solid #3B82F6;padding:20px 24px;margin:24px 0;
+  background:#EFF6FF;border-radius:0 12px 12px 0;
+  font-style:italic;color:#1E3A8A;font-size:1.05rem;line-height:1.8;
+}
+.philosophy-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px;
+}
+.philosophy-principle{
+  background:#F8FAFF;border-radius:12px;padding:24px;
+  border:1px solid #E9EEF6;
+}
+.philosophy-principle h4{color:#1E40AF;margin-bottom:8px}
+.philosophy-principle p{color:#64748B;font-size:0.95rem}
+
+/* ===== SERVICES EXPANDED ===== */
+.services{background:#EFF6FF}
+.services-category{margin-bottom:40px}
+.services-category h3{
+  color:#1E40AF;font-size:1.1rem;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.services-category h3 .cat-badge{
+  font-size:0.7rem;background:#3B82F6;color:#FFFFFF;padding:2px 10px;
+  border-radius:10px;font-weight:500;
+}
+.services-badge{
+  background:#FFFFFF;border:1px solid #E9EEF6;border-radius:12px;padding:24px;
+  transition:all 0.2s;
+}
+.services-badge:hover{border-color:#BFDBFE;box-shadow:0 4px 12px rgba(30,64,175,0.06)}
+.services-badge p{color:#475569;font-size:0.9rem}
+.tag-ps{display:inline-block;background:#FEF3C7;color:#D97706;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;margin-top:8px}
+
+/* ===== PRICING ===== */
+.pricing{background:#FFFFFF}
+.pricing-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;justify-content:center}
+.pricing-tab{
+  padding:8px 20px;border-radius:8px;font-size:0.85rem;font-weight:500;
+  cursor:pointer;transition:all 0.2s;background:#EFF6FF;color:#1E3A8A;border:1px solid transparent;
+}
+.pricing-tab.active{background:#1E40AF;color:#FFFFFF}
+.pricing-tab:hover{background:#BFDBFE}
+.pricing-table-wrapper{display:none}
+.pricing-table-wrapper.active{display:block}
+.pricing-table{width:100%;border-collapse:collapse;font-size:0.9rem;border-radius:8px;overflow:hidden}
+.pricing-table th{background:#1E40AF;color:#FFFFFF;padding:12px 16px;text-align:left;font-weight:600}
+.pricing-table td{padding:10px 16px;border-bottom:1px solid #E9EEF6;color:#475569}
+.pricing-table tr:nth-child(even) td{background:#F8FAFF}
+.pricing-table .price{font-weight:600;color:#1E3A8A;white-space:nowrap}
+.highlight-row td{background:#FEF3C7!important;font-weight:500}
+.pricing-note{
+  background:#EFF6FF;border-radius:12px;padding:24px;margin-top:24px;
+  border-left:4px solid #3B82F6;
+}
+.pricing-note p{color:#475569;font-size:0.9rem;margin-bottom:6px}
+.pricing-note strong{color:#1E3A8A}
+
+/* ===== TECHNICAL AUTHORITY ===== */
+.tech-authority{background:#EFF6FF}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.tech-card{
+  background:#FFFFFF;border-radius:16px;padding:28px;border:1px solid #E9EEF6;
+  position:relative;overflow:hidden;
+}
+.tech-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#EA580C}
+.tech-card h4{color:#1E40AF;margin-bottom:8px;font-size:1.05rem}
+.tech-card p{color:#475569;font-size:0.9rem;line-height:1.7}
+.tech-card .quote{
+  margin-top:12px;padding:12px;background:#F8FAFF;border-radius:8px;
+  border-left:3px solid #BFDBFE;font-style:italic;color:#64748B;font-size:0.85rem;
+}
+
+/* ===== FAQ ===== */
+.faq{background:#FFFFFF}
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{
+  border:1px solid #E9EEF6;border-radius:12px;margin-bottom:12px;
+  overflow:hidden;transition:all 0.2s;
+}
+.faq-item:hover{border-color:#BFDBFE}
+.faq-q{
+  padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;
+  align-items:center;font-weight:600;font-family:'Poppins',sans-serif;color:#1E40AF;font-size:0.95rem;
+  background:#F8FAFF;
+}
+.faq-q .arrow{transition:transform 0.3s;color:#3B82F6;font-size:0.8rem}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height 0.3s ease;
+  padding:0 24px;
+}
+.faq-item.open .faq-a{
+  max-height:500px;padding:0 24px 20px;
+}
+.faq-a p{color:#475569;font-size:0.9rem;line-height:1.7}
+
+/* ===== REVIVAL ===== */
+.revival{background:linear-gradient(135deg,#0F1D5E 0%,#1E40AF 100%);color:#FFFFFF}
+.revival .section-subtitle{color:#93C5FD}
+.revival-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px}
+.revival-card{
+  background:rgba(255,255,255,0.08);border-radius:16px;padding:24px;
+  border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(4px);
+}
+.revival-card h3{color:#FCD34D;display:flex;align-items:center;gap:10px}
+.revival-badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:0.75rem;font-weight:600;margin-bottom:12px}
+.badge-old{background:rgba(220,38,38,0.2);color:#FCA5A5}
+.badge-new{background:rgba(34,197,94,0.2);color:#86EFAC}
+.revival-card .stat{font-size:2rem;font-weight:800;font-family:'Poppins',sans-serif;margin:8px 0 4px}
+.revival-card .stat-label{font-size:0.85rem;opacity:0.7}
+.revival-img-wrap{position:relative;border-radius:12px;overflow:hidden;margin-top:16px;background:rgba(0,0,0,0.2)}
+.revival-img-wrap img{width:100%;height:auto;opacity:0.95}
+
+/* ===== PSO & FINANCING ===== */
+.pso-section{background:#FFFFFF}
+.pso-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.pso-card{
+  background:#EFF6FF;border-radius:16px;padding:32px;border:1px solid #BFDBFE;
+}
+.pso-card h3{color:#1E40AF;display:flex;align-items:center;gap:10px}
+.pso-card ul{list-style:none;padding:0;margin-top:16px}
+.pso-card ul li{padding:8px 0;color:#475569;font-size:0.9rem;display:flex;align-items:flex-start;gap:10px}
+.pso-card ul li::before{content:"✓";color:#3B82F6;font-weight:700}
+.pso-cta{
+  display:inline-block;background:#EA580C;color:#FFFFFF;padding:12px 28px;border-radius:8px;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:0.95rem;margin-top:16px;
+  transition:all 0.2s;
+}
+.pso-cta:hover{background:#D4520A;transform:translateY(-2px)}
+
+/* ===== CONTACT ===== */
+.contact{background:#EFF6FF}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-info h3{color:#1E40AF;margin-bottom:16px}
+.contact-info p{color:#475569;font-size:0.95rem;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.contact-form{background:#FFFFFF;border-radius:16px;padding:32px;border:1px solid #E9EEF6}
+.contact-form input,.contact-form textarea{
+  width:100%;padding:12px 16px;border:1px solid #E9EEF6;border-radius:8px;
+  font-family:'Open Sans',sans-serif;font-size:0.9rem;margin-bottom:16px;transition:border 0.2s;
+}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:#3B82F6}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form button{width:100%}
+
+/* ===== CTA ===== */
+.cta-section{
+  background:linear-gradient(135deg,#0F1D5E 0%,#1E40AF 100%);
+  text-align:center;padding:80px 0;
+}
+.cta-section h2{color:#FFFFFF}
+.cta-section p{color:#93C5FD;font-size:1.1rem;max-width:600px;margin:0 auto 32px}
+.cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.cta-phone{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.1);color:#FFFFFF;padding:16px 36px;border-radius:12px;
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:1.05rem;
+  border:1px solid rgba(255,255,255,0.25);transition:all 0.2s;
+}
+.cta-phone:hover{background:rgba(255,255,255,0.18)}
+
+/* ===== FOOTER ===== */
+footer{background:#0F1D5E;padding:32px 0;border-top:1px solid rgba(255,255,255,0.08)}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;
+  color:#93C5FD;font-size:0.9rem;
+}
+.footer-grid h4{color:#FFFFFF;font-size:1rem;margin-bottom:12px}
+.footer-grid p{line-height:1.8;opacity:0.8}
+.footer-grid a{color:#93C5FD;display:block;padding:4px 0;transition:color 0.2s}
+.footer-grid a:hover{color:#FFFFFF}
+.footer-bottom{
+  margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);
+  text-align:center;color:#64748B;font-size:0.85rem;
+}
+.footer-bottom .pso-badge{
+  display:inline-block;background:rgba(59,130,246,0.2);color:#93C5FD;padding:4px 12px;
+  border-radius:6px;font-size:0.75rem;margin-top:8px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero{min-height:auto;padding:80px 0 60px}
+  .revival-grid,.pso-grid,.contact-grid,.philosophy-grid{grid-template-columns:1fr}
+  .header-phone{padding:8px 16px;font-size:0.9rem}
+  .header-phone small{display:none}
+  nav{display:none}
+  .hero-actions{flex-direction:column;width:100%}
+  .hero-actions .btn-primary,.hero-actions .btn-secondary{width:100%;justify-content:center}
+  .trust-grid{gap:16px}
+  .trust-item{font-size:0.8rem}
+  .pricing-table{font-size:0.8rem}
+}
+@media(min-width:769px) and (max-width:1024px){
+  .pricing-table-wrapper{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-mark">BHS</div>
+      <div class="logo-text">
+        Bailey Home Service
+        <span>Love Your Home · Since 2006</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#tech">Expertise</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:+19184067384" class="header-phone">
+      📞 (918) 406-7384
+      <small>Free Estimate · 20 Yrs Experience</small>
+    </a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="assets/images/mini-split-original.jpg" alt="American Standard HVAC installation by Bailey Home Service">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-badge">⚡ PSO Authorized Rebate Provider · 20 Years in Tulsa</div>
+      <h1>Your Home Is a System.<br>Trust <span class="highlight">Tulsa's Building Scientists.</span></h1>
+      <p class="hero-sub">
+        Bailey Home Service doesn't just install HVAC — we engineer home performance. 
+        From American Standard Gold Series to whole-home insulation and commercial refrigeration, 
+        every system we touch is designed with the <strong>Manual J</strong> standard, tested with 
+        <strong>infrared thermal imaging</strong>, and backed by <strong>PSO rebates</strong> 
+        that save you real money. Your comfort is our science.
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">🎯 Get Your Free Estimate</a>
+        <a href="#pricing" class="btn-secondary">↓ Transparent Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item"><span class="icon">🏠</span> Family Owned Since 2006</div>
+      <div class="trust-item"><span class="icon">⚡</span> PSO Rebate Provider</div>
+      <div class="trust-item"><span class="icon">📍</span> Tulsa + 20-Mile Radius</div>
+      <div class="trust-item"><span class="icon">📞</span> 24/7 Emergency Service</div>
+      <div class="trust-item"><span class="icon">🔧</span> 20 Years Experience</div>
+      <div class="trust-item"><span class="icon">✅</span> Free Estimates</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THE BAILEY REVIVAL ===== -->
+<section class="revival" id="revival">
+  <div class="container">
+    <div class="section-label" style="color:#60A5FA;text-align:center">The Bailey Revival</div>
+    <h2 class="section-title" style="color:#FFFFFF">From Pixelated to Premium</h2>
+    <p class="section-subtitle">
+      We took your old Drupal 7 site with its 42/100 performance, exposed login form, 
+      and 65 DPI imagery — and rebuilt it into a content-rich digital experience 
+      worthy of 20 years of Tulsa home performance expertise.
+    </p>
+    <div class="revival-grid">
+      <div class="revival-card">
+        <div class="revival-badge badge-old">❌ OLD SITE (Drupal 7)</div>
+        <h3>The 65 DPI Problem</h3>
+        <p style="color:#93C5FD;font-size:0.9rem;margin-bottom:12px">
+          300×200 thermal scans blown up to 850px wide = fax machine resolution. 
+          Your login form exposed to every visitor. 42/100 PageSpeed. 
+          Pricing buried six clicks deep in an accordion menu.
+        </p>
+        <div class="revival-img-wrap">
+          <img src="assets/images/old-site-screenshot.png" alt="Old Drupal 7 website">
+        </div>
+        <div class="stat" style="color:#FCA5A5;">42<span style="font-size:1rem;font-weight:400">/100</span></div>
+        <div class="stat-label">Old Performance Score</div>
+      </div>
+      <div class="revival-card">
+        <div class="revival-badge badge-new">✅ REMASTERED</div>
+        <h3>4K Content-First Architecture</h3>
+        <p style="color:#93C5FD;font-size:0.9rem;margin-bottom:12px">
+          Official American Standard product renders. Full pricing table from your 
+          Price Book. Every FAQ, every article, every technical insight — 
+          surfaced in a modern conversion-optimized flow.
+        </p>
+        <div class="revival-img-wrap">
+          <img src="assets/images/american-standard-gold17.png" alt="American Standard Gold 17 4K Product Render" style="width:auto;height:280px;margin:0 auto;object-fit:contain">
+        </div>
+        <div class="stat" style="color:#86EFAC;">95+<span style="font-size:1rem;font-weight:400">/100</span></div>
+        <div class="stat-label">New Target Performance Score</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY ===== -->
+<section class="philosophy" id="philosophy">
+  <div class="container">
+    <div class="section-label" style="text-align:center">The Bailey Philosophy</div>
+    <h2 class="section-title">"Love Your Home" — It Means More Than You Think</h2>
+    <div class="philosophy-content">
+      <p style="color:#475569;font-size:1.05rem;line-height:1.8;margin-bottom:20px">
+        Bailey Home Service was founded on a mission: <strong>"To glorify God through service to others 
+        by having a positive influence on all who come in contact with us, and to treat each person 
+        with honor, dignity and respect."</strong> That mission drives everything we do — from the 
+        precision of our Manual J load calculations to the way we explain your options without pressure.
+      </p>
+      <div class="blockquote">
+        "To Love your home means to not hurt it. Don't do things to your home that will harm it. 
+        I see mistakes all the time that are mostly done because of ignorance. 
+        You don't know what you don't know until you know it."
+      </div>
+      <p style="color:#475569;font-size:1.05rem;line-height:1.8;margin-bottom:20px">
+        We view your home as a <strong>complete system</strong> — every part interconnected. 
+        A microwave installed wrong can let hot attic air into your kitchen. A bathroom fan 
+        vented incorrectly can fill your attic with mold. This is <strong>Building Science</strong>, 
+        and it's the foundation of everything we do.
+      </p>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-principle">
+        <h4>🔬 The Systemic View</h4>
+        <p>"A systemic view is the view that all systems are composed of interrelated subsystems. 
+        A whole is not just the sum of the parts, but the system itself can be explained only as a totality." 
+        — Fred Kerlinger. Your HVAC, insulation, ventilation, and building envelope must work as one.</p>
+      </div>
+      <div class="philosophy-principle">
+        <h4>📋 Manual J — The National Standard</h4>
+        <p>Every air conditioning system we design starts with a Manual J load calculation — 
+        a national code requirement that most contractors skip. Without it, you get equipment 
+        that's too big, too small, or wrong for your home. We do it right, every time.</p>
+      </div>
+      <div class="philosophy-principle">
+        <h4>🌡️ Thermal Imaging Diagnostics</h4>
+        <p>We don't guess. Our infrared thermal scans reveal exactly where heat is escaping, 
+        where moisture is hiding, and where your insulation is failing. Basic test: $300. 
+        Comprehensive: up to $1,000. Every single home should be tested.</p>
+      </div>
+      <div class="philosophy-principle">
+        <h4>🎓 We Teach. We Don't Just Sell.</h4>
+        <p>Bailey prefers to teach homeowners to do things themselves. YouTube videos, 
+        DIY guides, and free consultations are part of our philosophy. When the job is 
+        beyond DIY — or you just want it done right — we're a phone call away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPANDED SERVICES ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label" style="text-align:center">Full-Service Home Performance</div>
+    <h2 class="section-title">40+ Services — One Trusted Partner</h2>
+    <p class="section-subtitle">
+      Most HVAC companies offer 3 services. Bailey delivers 40+ — from geothermal heat pumps 
+      and commercial refrigeration to solar hot water and building automation. If it involves 
+      temperature, air, water, or energy in your home or business, we handle it.
+    </p>
+
+    <!-- Category: HVAC Core -->
+    <div class="services-category">
+      <h3>❄️ Heating, Cooling & Air Quality <span class="cat-badge">Core Services</span></h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+        <div class="services-badge"><p><strong>Air Conditioners</strong><br>Install, repair, maintain — all brands</p></div>
+        <div class="services-badge"><p><strong>Furnaces</strong><br>80%-95% efficiency, gas/electric</p></div>
+        <div class="services-badge"><p><strong>Heat Pumps</strong><br>Including geothermal systems</p></div>
+        <div class="services-badge"><p><strong>Mini Splits</strong><br>Ductless systems, single & multi-zone</p></div>
+        <div class="services-badge"><p><strong>Duct Work</strong><br>Design, sealing, insulation — R-6/R-8 code</p></div>
+        <div class="services-badge"><p><strong>Air Purification</strong><br>Air Oasis BiPolar 2400 — coronavirus tested</p></div>
+        <div class="services-badge"><p><strong>Humidification / Dehumidification</strong><br>Whole-home moisture control</p></div>
+        <div class="services-badge"><p><strong>Air Filtration</strong><br>High-MERV & HEPA systems</p></div>
+      </div>
+    </div>
+
+    <!-- Category: Specialty Systems -->
+    <div class="services-category">
+      <h3>🔥 Specialty Heating & Water <span class="cat-badge" style="background:#EA580C">Premium</span></h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+        <div class="services-badge"><p><strong>Boilers & Chillers</strong><br>Hydronic heating & cooling</p></div>
+        <div class="services-badge"><p><strong>Radiant Heat</strong><br>In-floor & panel radiant systems</p></div>
+        <div class="services-badge"><p><strong>Infrared Radiant Heat</strong><br>Efficient spot heating</p></div>
+        <div class="services-badge"><p><strong>Steam Heat</strong><br>Steam boiler service & repair</p></div>
+        <div class="services-badge"><p><strong>Pool Heaters</strong><br>Extend your swim season</p></div>
+        <div class="services-badge"><p><strong>Sauna Heaters</strong><br>Custom sauna installations</p></div>
+        <div class="services-badge"><p><strong>Domestic Solar Hot Water</strong><br>Renewable water heating</p></div>
+        <div class="services-badge"><p><strong>Hydronics</strong><br>Pumps, valves, & circulation systems</p></div>
+      </div>
+    </div>
+
+    <!-- Category: Commercial -->
+    <div class="services-category">
+      <h3>🏢 Commercial & Industrial <span class="cat-badge" style="background:#4338CA">Commercial</span></h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+        <div class="services-badge"><p><strong>Refrigeration</strong><br>Walk-in coolers, freezers, ice machines</p></div>
+        <div class="services-badge"><p><strong>Commercial Kitchen Hoods</strong><br>Ventilation & fire safety</p></div>
+        <div class="services-badge"><p><strong>Cooling Towers & Fluid Coolers</strong><br>Industrial process cooling</p></div>
+        <div class="services-badge"><p><strong>Building Automation Systems</strong><br>Smart temperature & energy controls</p></div>
+        <div class="services-badge"><p><strong>Smoke Control & Detection</strong><br>Life safety systems</p></div>
+        <div class="services-badge"><p><strong>Temperature Controls</strong><br>Programmable & smart thermostats</p></div>
+        <div class="services-badge"><p><strong>Energy Recovery</strong><br>ERV/HRV ventilation systems</p></div>
+        <div class="services-badge"><p><strong>Gas Piping</strong><br>Natural gas & propane lines</p></div>
+      </div>
+    </div>
+
+    <!-- Category: Insulation & Envelope -->
+    <div class="services-category">
+      <h3>🏡 Insulation & Building Envelope <span class="cat-badge" style="background:#D97706">Energy Savings</span></h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+        <div class="services-badge"><p><strong>Blown Attic Insulation</strong><br>R-38 target — $400 PSO rebate!</p></div>
+        <div class="services-badge"><p><strong>Spray Foam Insulation</strong><br>Air-sealing + insulation in one</p></div>
+        <div class="services-badge"><p><strong>Crawl Space Encapsulation</strong><br>Vapor barriers & vent management</p></div>
+        <div class="services-badge"><p><strong>Attic Fans</strong><br>Powered & solar attic ventilation</p></div>
+        <div class="services-badge"><p><strong>Fireplaces / Chimneys / Flues</strong><br>Inspection, repair, installation</p></div>
+        <div class="services-badge"><p><strong>Vents & Ventilation</strong><br>Bath, kitchen, & whole-house ventilation</p></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:16px">
+      <span class="tag-ps">Plus: Electric Motors, Valves, Condensate Removal, Load Calculations, Incinerators, and more</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-label" style="text-align:center">No Surprises. No Hidden Fees.</div>
+    <h2 class="section-title">Transparent Pricing — What You See Is What You Pay</h2>
+    <p class="section-subtitle">
+      Jon at Bailey Home Service believes in honest, upfront pricing. No bait-and-switch. 
+      No "we'll tell you when we get there." Here's exactly what our services cost — 
+      pulled straight from our published Price Book.
+    </p>
+
+    <div class="pricing-tabs">
+      <a class="pricing-tab active" data-tab="services" onclick="switchTab('services')">🔧 Service & Repair</a>
+      <a class="pricing-tab" data-tab="install" onclick="switchTab('install')">📦 Installation Pricing</a>
+      <a class="pricing-tab" data-tab="equipment" onclick="switchTab('equipment')">🏭 Equipment (by the piece)</a>
+      <a class="pricing-tab" data-tab="ameristar" onclick="switchTab('ameristar')">🔥 Ameristar Furnaces</a>
+    </div>
+
+    <!-- Tab: Service & Repair -->
+    <div class="pricing-table-wrapper active" data-tab-content="services">
+      <table class="pricing-table">
+        <thead><tr><th>Service</th><th>Price</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>HVAC Service Call</td><td class="price">$65</td><td>Plus labor and parts</td></tr>
+          <tr><td>Labor Rate (HVAC)</td><td class="price">$100/hr</td><td>Standard hourly rate</td></tr>
+          <tr><td>Freon Leak Detection</td><td class="price">$100/hr</td><td>First 30 min free with service call</td></tr>
+          <tr><td>Emergency Service</td><td class="price">$100</td><td>Light maintenance + repair, parts extra</td></tr>
+          <tr><td>AC & Heating Maintenance</td><td class="price">$95</td><td>Full tune-up, peak performance check</td></tr>
+          <tr><td>Capacitor Replacement</td><td class="price">$80</td><td>Parts & labor included</td></tr>
+          <tr><td>Contactor / Transformer / Disconnect</td><td class="price">$100</td><td>Parts & labor included</td></tr>
+          <tr><td>Condenser Fan Motor / Blower Motor</td><td class="price">$300</td><td>Most models</td></tr>
+          <tr><td>Acid Wash Condenser</td><td class="price">$100</td><td>Coil cleaning service</td></tr>
+          <tr><td>Indoor Evaporator Coil Cleaning</td><td class="price">$100</td><td>In-place cleaning</td></tr>
+          <tr><td>Home Performance Test (Basic)</td><td class="price">$300</td><td>Thermal scan + diagnostics</td></tr>
+          <tr><td>Home Performance Test (Comprehensive)</td><td class="price">~$1,000</td><td>Full building science analysis</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tab: Installation -->
+    <div class="pricing-table-wrapper" data-tab-content="install">
+      <table class="pricing-table">
+        <thead><tr><th>Installation Service</th><th>Price</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td>Complete System Changeout (customer supplies equipment)</td><td class="price">$1,500</td><td>Condenser, evaporator & furnace. 8-15 hrs labor. 1 yr workmanship warranty.</td></tr>
+          <tr class="highlight-row"><td>Complete System w/ 10yr Labor & Parts Warranty</td><td class="price">Call for Quote</td><td>Full warranty coverage. Call/text/email for pricing.</td></tr>
+          <tr><td>Mini Split Installation (customer supplies equipment)</td><td class="price">$800</td><td>Single-head. 7-12 hrs labor. Manufacturer warranty only.</td></tr>
+          <tr><td>TurnKey Mini Split — Allied Air 8k/12k BTU 120V</td><td class="price">$2,800</td><td>Equipment from Lock Supply. Full install included.</td></tr>
+          <tr><td>Blown Attic Insulation — R-38 Target</td><td class="price">$250 + $1.25/sq.ft.</td><td>With no existing ceiling insulation. $400 PSO Rebate available!</td></tr>
+          <tr><td>Downflow Furnace Installation (garage/outside room)</td><td class="price">$600</td><td>Labor only. Equipment not included.</td></tr>
+          <tr><td>Upflow Furnace Installation (add-on)</td><td class="price">+$400</td><td>For removing & reinstalling evaporator coil</td></tr>
+          <tr><td>Indoor Installation Surcharge</td><td class="price">+$200</td><td>Inside home placement</td></tr>
+          <tr><td>Upstairs Installation Surcharge</td><td class="price">+$200</td><td>Multi-level access</td></tr>
+          <tr><td>Attic Installation Surcharge</td><td class="price">+$200</td><td>Attic access required</td></tr>
+          <tr><td>New Flue Pipe Installation</td><td class="price">+$400</td><td>When required for venting</td></tr>
+          <tr><td>New Drain Line / Drain Pan</td><td class="price">+$200</td><td>When existing is insufficient</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tab: Equipment -->
+    <div class="pricing-table-wrapper" data-tab-content="equipment">
+      <p style="color:#64748B;margin-bottom:16px;font-size:0.9rem">
+        Brand new American Standard equipment — original packaging, 10-year manufacturer warranty, taxes included. 
+        <a href="https://www.americanstandardair.com/products/" target="_blank" style="color:#3B82F6;text-decoration:underline">View American Standard product line →</a>
+      </p>
+      <table class="pricing-table">
+        <thead><tr><th>Equipment</th><th>2 Ton</th><th>3 Ton</th><th>4 Ton</th><th>5 Ton</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Condenser — 14 SEER</strong></td><td class="price">$1,516</td><td class="price">$1,827</td><td class="price">$2,239</td><td class="price">$2,590</td></tr>
+          <tr><td><strong>Condenser — 16 SEER</strong></td><td class="price">$1,943</td><td class="price">$2,320</td><td class="price">$2,615</td><td class="price">$3,210</td></tr>
+          <tr><td><strong>Furnace — 80%</strong></td><td class="price">$812</td><td class="price">$850</td><td class="price">$1,038</td><td class="price">$1,149</td></tr>
+          <tr><td><strong>Furnace — 95%</strong></td><td class="price">$2,010</td><td class="price">$2,087</td><td class="price">$2,217</td><td class="price">$2,421</td></tr>
+          <tr><td><strong>Evaporator Coil</strong></td><td class="price">$633</td><td class="price">$717</td><td class="price">$906</td><td class="price">$911</td></tr>
+          <tr><td><strong>Copper Line Set (50ft)</strong></td><td class="price">$560</td><td class="price">$620</td><td class="price">$680</td><td class="price">$680</td></tr>
+        </tbody>
+      </table>
+      <p style="color:#64748B;margin-top:12px;font-size:0.85rem">
+        Also a dealer of: <strong>Lennox, York, Goodman, Payne, Ameristar</strong> and more. 
+        Rebates available for 16 SEER and up ACs.
+      </p>
+    </div>
+
+    <!-- Tab: Ameristar -->
+    <div class="pricing-table-wrapper" data-tab-content="ameristar">
+      <p style="color:#64748B;margin-bottom:16px;font-size:0.9rem">
+        Ameristar is manufactured by <strong>Trane</strong> (same parent company as American Standard). 
+        Budget-friendly pricing without sacrificing quality.
+      </p>
+      <table class="pricing-table">
+        <thead><tr><th>Model</th><th>BTU</th><th>Efficiency</th><th>Price (tax incl.)</th></tr></thead>
+        <tbody>
+          <tr><td>M801P060AU36AA</td><td>60,000</td><td>80%</td><td class="price">$755</td></tr>
+          <tr><td>M801P080BD45AA</td><td>80,000</td><td>80%</td><td class="price">$799</td></tr>
+          <tr><td>M801P100CD48AA</td><td>100,000</td><td>80%</td><td class="price">$850</td></tr>
+          <tr><td>M801P120DD60AA</td><td>120,000</td><td>80%</td><td class="price">$1,037</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pricing-note">
+      <p><strong>📄 Full Price Book Available</strong> — <a href="https://drive.google.com/file/d/1blilClSkfS-ziwkc7FKZSgw8j-BpomJf/view" target="_blank" style="color:#3B82F6;text-decoration:underline">Download the complete Bailey Home Service Price Book (Google Drive)</a></p>
+      <p>🏦 <strong>Financing available</strong> through <a href="https://www.oklahomacentral.creditunion/Home-Upgrades" target="_blank" style="color:#3B82F6;text-decoration:underline">Oklahoma Central Credit Union</a> — Home Upgrade Loans</p>
+      <p>🔧 <strong>Learn about static pressure testing</strong> — <a href="https://www.youtube.com/watch?v=45gX7Jb60JM" target="_blank" style="color:#3B82F6;text-decoration:underline">Watch the video</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TECHNICAL AUTHORITY ===== -->
+<section class="tech-authority" id="tech">
+  <div class="container">
+    <div class="section-label" style="text-align:center">The Technical Authority</div>
+    <h2 class="section-title">20 Years of Knowing What Others Miss</h2>
+    <p class="section-subtitle">
+      Jon at Bailey Home Service has spent two decades perfecting the science of home performance. 
+      Here's the expertise most HVAC companies don't have — but every homeowner deserves.
+    </p>
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <h4>📐 Duct Work: The Make-or-Break</h4>
+        <p>"Duct work is the most important part of your central heating and air conditioning system. 
+        It is also the easiest part to screw up." Most contractors undersize ducts to win bids — 
+        a 5-ton AC on 2-ton ducts performs like a 2-ton system. Bailey designs every duct system 
+        for the <strong>specific equipment and space</strong>, sealed and insulated to R-6 (crawl) / R-8 (attic) code.</p>
+        <div class="quote">"You can have a 5 ton air conditioner installed but if the duct work is sized for a 2 ton... your system will only be 2 ton."</div>
+      </div>
+
+      <div class="tech-card">
+        <h4>🔬 Freon Leak Detection: 3-Step Method</h4>
+        <p>Most companies give up and replace the coil. Bailey uses a <strong>3-step forensic process</strong>: 
+        (1) Electronic leak detector to locate the general area. (2) Soap bubble test to pinpoint the exact spot. 
+        (3) Coil submersion in water — like finding a tire leak. Older copper coils can be <strong>soldered and fixed</strong>. 
+        Repair cost varies; coil replacement can reach $1,000+.</p>
+        <div class="quote">"Freon leaks cause huge heat loads on the compressor... it can damage the compressor if your system ices up."</div>
+      </div>
+
+      <div class="tech-card">
+        <h4>🧼 AC Coil Cleaning: The Right Way</h4>
+        <p>Two rules: (1) Never let coil cleaner dry on the coil — rinse 100% off. (2) Be gentle with the fins — 
+        bent fins destroy airflow. Bailey provides <strong>DIY video guides</strong> for outdoor condensers, 
+        window ACs, indoor evaporators, and blower wheels. When DIY isn't enough, we do it for $100.</p>
+        <div class="quote">"If you accidentally pull the wires out of the fan and can't figure out where they go... you're going to have to pay a service fee."</div>
+      </div>
+
+      <div class="tech-card">
+        <h4>🏡 Building Science: The Big Picture</h4>
+        <p>Most contractors know equipment, not homes. Bailey understands <strong>Building Science</strong> — 
+        the study of how a home works as a complete system. Microwave vents into the attic? 
+        Mold in 3 years. Dirt piled against foundation? Water intrusion. 
+        Wrong insulation placement? Rot behind the walls. We find and fix what others miss.</p>
+        <div class="quote">"To Love your home means to not hurt it. Don't do things to your home that will harm it."</div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://www.youtube.com/watch?v=45gX7Jb60JM" target="_blank" class="btn-secondary" style="background:#3B82F6;color:#FFFFFF;border:none;display:inline-flex">🎥 Watch: Static Pressure Testing Explained</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-label" style="text-align:center">Got Questions? We've Got Answers.</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Do you install new HVAC systems?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Yes! We can design and build the perfect system for you, your family, and your home. 
+          We'll work with you to find the best price and the best equipment for your needs — 
+          whether that's American Standard, Lennox, York, Goodman, Payne, or Ameristar.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What areas do you serve?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Tulsa and areas within a <strong>20-mile radius</strong>. This includes Bixby, Broken Arrow, 
+          Sand Springs, Owasso, Collinsville, Skiatook, Oologah, and Talala.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How long have you been in the HVAC field?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <p><strong>20 years.</strong> Jon has been serving Tulsa homeowners for two decades — 
+          longer than most HVAC companies in the area have even existed.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What is "Home Performance"?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Simply put: having control of the <strong>humidity, air quality, and temperature</strong> 
+          in your home. Energy savings are just a byproduct of a high-performance home. 
+          When your home's systems work together correctly, comfort goes up and bills go down — automatically.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Do you offer financing?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Yes! Get financed locally through <a href="https://www.oklahomacentral.creditunion/Home-Upgrades" target="_blank" style="color:#3B82F6;text-decoration:underline">Oklahoma Central Credit Union</a> 
+          for home upgrade loans. We also help you navigate <strong>PSO rebates</strong> (up to $400 for attic insulation, 
+          plus rebates for 16 SEER+ ACs), and there are <strong>free weatherization upgrades</strong> available for homeowners 
+          making under $50k through <a href="https://powerforwardwithpso.com/weatherization-assistance/" target="_blank" style="color:#3B82F6;text-decoration:underline">PSO's program</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Can I install equipment myself to save money?</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Absolutely! Bailey actually <strong>prefers to teach</strong> homeowners to do things themselves when possible. 
+          We sell equipment with 10-year manufacturer warranties at our published prices — 
+          you buy it, install it yourself, and save on labor. If you run into trouble or 
+          change your mind, we're just a phone call away to finish the job.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PSO & FINANCING ===== -->
+<section class="pso-section" id="savings">
+  <div class="container">
+    <div class="section-label" style="text-align:center">Save Thousands with PSO</div>
+    <h2 class="section-title">Rebates, Incentives & Financing</h2>
+    <div class="pso-grid">
+      <div class="pso-card">
+        <h3>⚡ PSO Rebates — You Qualify</h3>
+        <ul>
+          <li><strong>$400 rebate</strong> — Blown attic insulation to R-38 (just $250 + $1.25/sq.ft.)</li>
+          <li><strong>Double rebates</strong> — Multiple upgrade bonuses through PSO</li>
+          <li><strong>16 SEER+ AC rebates</strong> — Save on high-efficiency systems</li>
+          <li><strong>Free WiFi thermostat</strong> — Through <a href="https://psopowerhours.com/" target="_blank" style="color:#3B82F6;text-decoration:underline">PSO Power Hours</a></li>
+          <li><strong>Free weatherization</strong> — For homeowners under $50k income</li>
+        </ul>
+        <a href="https://powerforwardwithpso.com/rebates/#filter=.multiple-upgrade-bonus" target="_blank" class="pso-cta">Check PSO Multiple Rebates →</a>
+      </div>
+      <div class="pso-card">
+        <h3>🏦 Financing & Special Programs</h3>
+        <ul>
+          <li><strong>Oklahoma Central Credit Union</strong> — Home Upgrade Loans for HVAC</li>
+          <li><strong>10-year manufacturer warranty</strong> on all American Standard equipment</li>
+          <li><strong>Upgrade to 10yr labor + parts warranty</strong> on complete system changeouts</li>
+          <li><strong>Free estimates</strong> on all services — no obligation, no pressure</li>
+          <li><strong>DIY pricing</strong> — Buy equipment at cost, install yourself, save thousands</li>
+        </ul>
+        <p style="margin-top:16px;color:#64748B;font-size:0.85rem">
+          "We help every customer navigate rebates, incentives, and financing so your 
+          comfort upgrade pays for itself over time."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label" style="text-align:center">Let's Talk</div>
+    <h2 class="section-title">Get Your Free Estimate Today</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>📞 Reach Us</h3>
+        <p>📍 <span><strong>Bailey Home Service</strong><br>1802 W Archer St, Tulsa, OK 74127</span></p>
+        <p>📞 <span><strong>Call/Text:</strong> <a href="tel:+19184067384" style="color:#1E40AF">(918) 406-7384</a></span></p>
+        <p>✉️ <span><strong>Email:</strong> <a href="mailto:jon@baileyhomeservice.com" style="color:#1E40AF">jon@baileyhomeservice.com</a></span></p>
+        <p>🌐 <span><strong>Facebook:</strong> <a href="https://www.facebook.com/Jwb137/" target="_blank" style="color:#1E40AF">facebook.com/Jwb137/</a></span></p>
+        <p>🔧 <strong>Service Area:</strong> Tulsa + 20-mile radius — Bixby, Broken Arrow, Sand Springs, Owasso, Collinsville, Skiatook, Oologah, Talala</p>
+        <p>🕐 <strong>Hours:</strong> 24/7 emergency service available</p>
+        <div style="margin-top:24px;background:#FFFFFF;border-radius:12px;padding:20px;border:1px solid #E9EEF6">
+          <p style="font-weight:600;color:#1E40AF;margin-bottom:8px">💬 "We prefer to teach someone to do something themselves."</p>
+          <p style="color:#64748B;font-size:0.85rem">If you can DIY, we'll show you how. If you need help, we're here. 
+          Either way, you get honest advice and transparent pricing — no pressure, no games.</p>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" action="#" method="post">
+          <h3 style="margin-bottom:16px">Send Us a Note</h3>
+          <p style="color:#64748B;font-size:0.9rem;margin-bottom:16px">We'll get right back to you!</p>
+          <input type="text" placeholder="Your Name *" required>
+          <input type="email" placeholder="Your Email *" required>
+          <input type="text" placeholder="Subject *" required>
+          <textarea placeholder="How can we help? *" required></textarea>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="hero-badge" style="margin-bottom:16px">🔥 Tulsa's Most Trusted Home Performance Company</div>
+    <h2>Ready to Love Your Home Again?</h2>
+    <p>
+      Whether you need emergency AC repair, a complete American Standard system upgrade, 
+      free WiFi thermostat installation, or PSO rebate-qualified attic insulation — 
+      Bailey brings 20 years of Building Science expertise and a family promise.
+    </p>
+    <div class="cta-buttons">
+      <a href="tel:+19184067384" class="btn-primary">📞 Call Now: (918) 406-7384</a>
+      <a href="mailto:jon@baileyhomeservice.com" class="cta-phone">✉️ jon@baileyhomeservice.com</a>
+    </div>
+    <p style="margin-top:24px;color:#60A5FA;font-size:0.85rem">
+      ⚡ PSO Rebate Eligible · Free Estimates · Family Owned · 1802 W Archer St, Tulsa, OK 74127
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Bailey Home Service</h4>
+        <p>Love Your Home — serving Tulsa since 2006.</p>
+        <p style="margin-top:8px">1802 W Archer St<br>Tulsa, OK 74127</p>
+        <p style="margin-top:8px">📞 <a href="tel:+19184067384">(918) 406-7384</a></p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#services">HVAC Install & Maintenance</a>
+        <a href="#services">Refrigeration Systems</a>
+        <a href="#services">Whole-Home Insulation</a>
+        <a href="#pricing">Transparent Pricing</a>
+        <a href="#tech">Technical Expertise</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#savings">PSO Rebates & Financing</a>
+        <a href="#contact">Contact Us</a>
+        <a href="https://www.facebook.com/Jwb137/" target="_blank">Facebook →</a>
+        <a href="https://www.youtube.com/watch?v=45gX7Jb60JM" target="_blank">Static Pressure Video →</a>
+      </div>
+      <div>
+        <h4>Why Bailey</h4>
+        <p>⚡ PSO Rebate Provider</p>
+        <p>🏠 Family Owned & Operated</p>
+        <p>⭐ 20 Years Experience</p>
+        <p>🔧 24/7 Emergency Service</p>
+        <p>📋 Manual J Certified</p>
+        <p>🎓 Building Science Expert</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Bailey Home Service. All rights reserved.</p>
+      <span class="pso-badge">⚡ PSO Authorized Rebate Provider — Save on Every Install</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ Accordion
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+// Pricing Tabs
+function switchTab(tabId) {
+  document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pricing-table-wrapper').forEach(w => w.classList.remove('active'));
+  document.querySelector(`.pricing-tab[data-tab="${tabId}"]`).classList.add('active');
+  document.querySelector(`[data-tab-content="${tabId}"]`).classList.add('active');
+}
+
+// FAQ: open first item by default
+document.addEventListener('DOMContentLoaded', function() {
+  // Set first FAQ open
+  const firstFaq = document.querySelector('.faq-item');
+  if (firstFaq) firstFaq.classList.add('open');
+});
+</script>
+</body>
+</html>

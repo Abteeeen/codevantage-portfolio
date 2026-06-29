@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <!-- Logo mark - house shape -->
+  <rect x="4" y="20" width="32" height="32" rx="4" fill="#1E40AF"/>
+  <polygon points="2,22 20,6 38,22" fill="#EA580C"/>
+  <rect x="14" y="34" width="12" height="18" rx="1" fill="#FFFFFF" opacity="0.9"/>
+  <!-- Text -->
+  <text x="46" y="32" font-family="'Poppins',sans-serif" font-weight="700" font-size="18" fill="#1E40AF">Bailey Home Service</text>
+  <text x="46" y="48" font-family="'Open Sans',sans-serif" font-weight="400" font-size="11" fill="#64748B">Love Your Home</text>
+</svg>
