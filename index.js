@@ -418,6 +418,76 @@ document.addEventListener("DOMContentLoaded", function() {
       showcaseSliderLine.style.left = sliderVal + "%";
     });
   }
+
+  // Looped Terminal Logs Logic for YouTube Showcase Item
+  const homeLogs = [
+    '127.0.0.1 - - [29/Jun/2026 18:20:55] "POST /render HTTP/1.1" 202 -',
+    '<span style="color: #fbbf24;">--- OPENMONTAGE AGENT STARTING ---</span>',
+    'Task: Generate video for topic \'The Lead Masks of Vintem Hill, 1966\'',
+    '<span style="color: #a78bfa;">1. Parsing n8n script into scene plan via Gemini...</span>',
+    'Title: The Lead Masks of Vintem Hill, 1966',
+    '<span style="color: #a78bfa;">2. Fetching Pexels assets...</span>',
+    '  - Downloaded asset for \'dark fog eyes\'',
+    '  - Downloaded asset for \'two men suits\'',
+    '  - Downloaded asset for \'lead mask face\'',
+    '  - Downloaded asset for \'police investigation\'',
+    '<span style="color: #a78bfa;">2b. Generating voiceover and subtitles via edge-tts...</span>',
+    '  Split script into 5 segments.',
+    '  -> Synthesizing segment 1/5 with en-US-Aria... done.',
+    '  -> Concatenating audio clips...',
+    '<span style="color: #a78bfa;">3. Generating Remotion Edit Decisions...</span>',
+    '<span style="color: #a78bfa;">4. Rendering video with Remotion engine...</span>',
+    'Bundled code         ━━━━━━━━━━━━━━━━━━ 2484ms',
+    'Codec                h264',
+    'Output               D:\\output_short.mp4',
+    'Rendering frames     ━━━━━━━━━━━━━━━━━━ 100%',
+    'Encoded video        ━━━━━━━━━━━━━━━━━━ 45837ms',
+    '<span style="color: #22c55e;">SUCCESS: Video rendered to output_short.mp4</span>',
+    '<span style="color: #60a5fa;">Automatically uploading to YouTube...</span>',
+    'Authenticating with YouTube API...',
+    'Uploading output_short.mp4 to YouTube...',
+    '<span style="color: #22c55e; font-weight: bold;">SUCCESS! Video automatically uploaded!</span>',
+    'Video ID: tvAEmBdORfA',
+    'Waiting for next cron trigger...'
+  ];
+
+  const homeTerminal = document.getElementById('home-terminal-output');
+  if (homeTerminal) {
+    let lineIdx = 0;
+
+    function typeHomeLine() {
+      if (lineIdx < homeLogs.length) {
+        const p = document.createElement('div');
+        p.innerHTML = homeLogs[lineIdx];
+        p.style.marginBottom = '4px';
+        homeTerminal.appendChild(p);
+        homeTerminal.scrollTop = homeTerminal.scrollHeight;
+        lineIdx++;
+
+        let delay = Math.random() * 150 + 50;
+        if (homeLogs[lineIdx - 1].includes("Rendering frames")) delay = 800;
+        if (homeLogs[lineIdx - 1].includes("Uploading output_short.mp4")) delay = 1000;
+
+        setTimeout(typeHomeLine, delay);
+      } else {
+        // Loop restart
+        setTimeout(() => {
+          homeTerminal.innerHTML = '';
+          lineIdx = 0;
+          setTimeout(typeHomeLine, 1000);
+        }, 5000); // Wait 5 seconds before clearing and restarting
+      }
+    }
+
+    // Run when in view
+    const homeTermObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setTimeout(typeHomeLine, 500);
+        homeTermObserver.disconnect();
+      }
+    }, { threshold: 0.1 });
+    homeTermObserver.observe(homeTerminal);
+  }
 });
 
 // Lead Capture Form

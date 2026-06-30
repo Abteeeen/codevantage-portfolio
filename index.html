@@ -418,56 +418,20 @@
                 <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Auto</span></div>
                 <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">3x</span><span class="tab-metric-label" style="font-size:0.5rem;">Cron</span></div>
               </div>
-            </div>
-            <!-- Media -->
+                <!-- Media -->
             <div class="showcase-media-wrap">
-              <div class="browser-frame">
-                <div class="browser-header">
-                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">youtube_uploader.py</span>
+              <div class="browser-frame" style="background: #0f172a; border: 1px solid #334155; padding-bottom: 0;">
+                <div class="browser-header" style="background: #1e293b; border-bottom: 1px solid #334155;">
+                  <span class="browser-dot" style="background: #ef4444;"></span>
+                  <span class="browser-dot" style="background: #eab308;"></span>
+                  <span class="browser-dot" style="background: #22c55e;"></span>
+                  <span style="color: #94a3b8; font-family: monospace; font-size: 11px; margin-left: 10px;">agent.py — CodeVantage AI</span>
                 </div>
-                <div class="code-block" style="text-align: left; max-height: 400px; overflow-y: auto; margin: 0; border-radius: 0 0 12px 12px; border: none; font-size: 0.8rem; line-height: 1.6;">
-<span class="keyword">import</span> os
-<span class="keyword">import</span> sys
-<span class="keyword">from</span> googleapiclient.discovery <span class="keyword">import</span> build
-<span class="keyword">from</span> googleapiclient.errors <span class="keyword">import</span> HttpError
-<span class="keyword">from</span> google_auth_oauthlib.flow <span class="keyword">import</span> InstalledAppFlow
-
-<span class="keyword">class</span> <span class="func">YouTubeShortsPipeline</span>:
-    <span class="keyword">def</span> <span class="func">__init__</span>(self, credentials_path):
-        self.scopes = [<span class="string">"https://www.googleapis.com/auth/youtube.upload"</span>]
-        self.youtube = self.authenticate(credentials_path)
-
-    <span class="keyword">def</span> <span class="func">authenticate</span>(self, path):
-        flow = InstalledAppFlow.from_client_secrets_file(path, self.scopes)
-        credentials = flow.run_local_server(port=0)
-        <span class="keyword">return</span> build(<span class="string">"youtube"</span>, <span class="string">"v3"</span>, credentials=credentials)
-
-    <span class="keyword">def</span> <span class="func">upload_short</span>(self, video_path, title, description, tags):
-        body = {
-            <span class="string">"snippet"</span>: {
-                <span class="string">"title"</span>: title[:95] + <span class="string">" #shorts"</span>,
-                <span class="string">"description"</span>: description,
-                <span class="string">"tags"</span>: tags,
-                <span class="string">"categoryId"</span>: <span class="string">"22"</span>
-            },
-            <span class="string">"status"</span>: {
-                <span class="string">"privacyStatus"</span>: <span class="string">"public"</span>,
-                <span class="string">"selfDeclaredMadeForKids"</span>: <span class="keyword">False</span>
-            }
-        }
-        
-        request = self.youtube.videos().insert(
-            part=<span class="string">"snippet,status"</span>,
-            body=body,
-            media_body=video_path
-        )
-        response = request.execute()
-        <span class="keyword">print</span>(<span class="string">f"Uploaded video ID: {response['id']}"</span>)
-        <span class="keyword">return</span> response[<span class="string">'id'</span>]
+                <div class="terminal-content" id="home-terminal-output" style="padding: 20px; font-family: 'Fira Code', monospace; font-size: 13px; color: #38bdf8; line-height: 1.5; height: 350px; overflow-y: auto; text-align: left;">
+                  <!-- Logs will loop typing here -->
                 </div>
               </div>
-            </div>
+            </div>          </div>
             <!-- Mobile-only CTA -->
             <div class="mobile-details" style="margin-top: 1rem;">
               <a href="projects/youtube-automation.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
