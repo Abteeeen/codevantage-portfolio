@@ -53,14 +53,99 @@
   <!-- ============ PROOF OF WORK ============ -->
   <section class="proof-of-work">
     <div class="container">
-      <div class="browser-frame reveal">
-        <div class="browser-header">
-          <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+      <div class="browser-frame reveal" style="background: #0f172a; border: 1px solid #334155; padding-bottom: 0;">
+        <div class="browser-header" style="background: #1e293b; border-bottom: 1px solid #334155;">
+          <span class="browser-dot" style="background: #ef4444;"></span>
+          <span class="browser-dot" style="background: #eab308;"></span>
+          <span class="browser-dot" style="background: #22c55e;"></span>
+          <span style="color: #94a3b8; font-family: monospace; font-size: 12px; margin-left: 10px;">agent.py — CodeVantage AI</span>
         </div>
-        <video class="browser-video" src="../assets/youtube.mp4" autoplay loop muted playsinline></video>
+        <div class="terminal-content" id="terminal-output" style="padding: 20px; font-family: 'Fira Code', monospace; font-size: 14px; color: #38bdf8; line-height: 1.5; height: 400px; overflow-y: auto; text-align: left;">
+          <!-- Logs will be typed here -->
+        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const logs = [
+        '127.0.0.1 - - [29/Jun/2026 18:20:55] "POST /render HTTP/1.1" 202 -',
+        '<span style="color: #fbbf24;">--- OPENMONTAGE AGENT STARTING ---</span>',
+        'Task: Generate video for topic \'The Lead Masks of Vintem Hill, 1966\'',
+        '<span style="color: #a78bfa;">1. Parsing n8n script into scene plan via Gemini...</span>',
+        'Title: The Lead Masks of Vintem Hill, 1966',
+        '<span style="color: #a78bfa;">2. Fetching Pexels assets...</span>',
+        '  - Downloaded asset for \'dark fog eyes\'',
+        '  - Downloaded asset for \'two men suits\'',
+        '  - Downloaded asset for \'lead mask face\'',
+        '  - Downloaded asset for \'old note paper\'',
+        '  - Downloaded asset for \'police investigation\'',
+        '  - Downloaded asset for \'twilight hill lights\'',
+        '<span style="color: #a78bfa;">2b. Generating voiceover and subtitles via edge-tts...</span>',
+        '  Split script into 5 segments.',
+        '  -> Synthesizing segment 1/5 with en-US-AriaNeural...',
+        '  -> Synthesizing segment 2/5 with en-US-ChristopherNeural...',
+        '  -> Synthesizing segment 3/5 with en-US-ChristopherNeural...',
+        '  -> Synthesizing segment 4/5 with en-US-AriaNeural...',
+        '  -> Synthesizing segment 5/5 with en-US-AriaNeural...',
+        '  -> Concatenating audio clips...',
+        '<span style="color: #a78bfa;">3. Generating Remotion Edit Decisions...</span>',
+        '<span style="color: #a78bfa;">4. Rendering video with Remotion engine...</span>',
+        'Bundled code         ━━━━━━━━━━━━━━━━━━ 2484ms',
+        'Composition          Explainer',
+        'Codec                h264',
+        'Output               D:\\output_short.mp4',
+        'Concurrency          4x',
+        'Rendering frames     ━━━━━━━━━━━━━━━━━━ 100%',
+        'Downloaded assets    ━━━━━━━━━━━━━━━━━━ 6 files',
+        'Encoded video        ━━━━━━━━━━━━━━━━━━ 45837ms',
+        '<span style="color: #22c55e;">SUCCESS: Video rendered to output_short.mp4</span>',
+        'Render finished successfully in background!',
+        '<span style="color: #60a5fa;">Automatically uploading to YouTube...</span>',
+        'Authenticating with YouTube API...',
+        'Uploading output_short.mp4 to YouTube...',
+        '<span style="color: #22c55e; font-weight: bold;">SUCCESS! Video automatically uploaded to YouTube!</span>',
+        'Video ID: tvAEmBdORfA',
+        '<span style="color: #22c55e;">Uploading custom thumbnail...</span>',
+        '<span style="color: #22c55e; font-weight: bold;">SUCCESS! Thumbnail uploaded!</span>',
+        'Waiting for next cron trigger...'
+      ];
+
+      const terminal = document.getElementById('terminal-output');
+      let lineIndex = 0;
+
+      function typeLine() {
+        if (lineIndex < logs.length) {
+          const p = document.createElement('div');
+          p.innerHTML = logs[lineIndex];
+          p.style.marginBottom = '4px';
+          terminal.appendChild(p);
+          
+          // Auto-scroll to bottom
+          terminal.scrollTop = terminal.scrollHeight;
+          
+          lineIndex++;
+          
+          // Randomize typing speed for realism
+          let delay = Math.random() * 150 + 50; 
+          if (logs[lineIndex - 1].includes("Rendering frames")) delay = 800;
+          if (logs[lineIndex - 1].includes("Uploading output_short.mp4")) delay = 1200;
+          
+          setTimeout(typeLine, delay);
+        }
+      }
+
+      // Start typing animation when section is in view
+      const observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) {
+          setTimeout(typeLine, 500);
+          observer.disconnect();
+        }
+      });
+      observer.observe(terminal);
+    });
+  </script>
 
   <!-- ====== Problem / Solution ====== -->
   <section id="problem-solution">
