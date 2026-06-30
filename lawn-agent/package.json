@@ -1,0 +1,25 @@
+{
+  "name": "lawn-agent",
+  "version": "0.1.0",
+  "description": "AI agent that scans satellite imagery for dead lawns in Brisbane & Gold Coast QLD, renders a green restoration, and mails the owner a postcard.",
+  "main": "scripts/pipeline.js",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/pipeline.js",
+    "fetch-addresses": "node scripts/01-fetch-addresses.js",
+    "fetch-satellite": "node scripts/02-fetch-satellite.js",
+    "classify": "node scripts/03-classify-lawn.js",
+    "rank": "node scripts/04-rank-leads.js",
+    "render": "node scripts/05-render-lawn.js",
+    "lookup-owner": "node scripts/06-lookup-owner.js",
+    "postcard": "node scripts/07-generate-postcard.js",
+    "send": "node scripts/08-send-postcard.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
