@@ -136,16 +136,35 @@
           
           setTimeout(typeLine, delay);
         } else {
-          // Finished typing logs! Trigger the cool transition to the video
+          // Finished typing logs! Trigger the transition to the video
           setTimeout(() => {
             terminal.style.opacity = '0';
             setTimeout(() => {
               terminal.style.display = 'none';
               videoContainer.style.display = 'flex';
-              // Trigger reflow to ensure transition works
               void videoContainer.offsetWidth; 
               videoContainer.style.opacity = '1';
+              resultVideo.currentTime = 0;
               resultVideo.play();
+
+              // Play the video for 20 seconds, then fade back to terminal and loop
+              setTimeout(() => {
+                videoContainer.style.opacity = '0';
+                setTimeout(() => {
+                  resultVideo.pause();
+                  videoContainer.style.display = 'none';
+                  
+                  // Reset terminal content and loop index
+                  terminal.innerHTML = '';
+                  terminal.style.display = 'block';
+                  void terminal.offsetWidth;
+                  terminal.style.opacity = '1';
+                  lineIndex = 0;
+                  
+                  // Start typing again
+                  setTimeout(typeLine, 1000);
+                }, 1000);
+              }, 20000); // 20 seconds play time
             }, 500);
           }, 1500);
         }
