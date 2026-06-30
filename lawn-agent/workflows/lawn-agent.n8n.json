@@ -34,6 +34,30 @@
     },
     {
       "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": { "value": "={{$env.GOOGLE_SHEETS_ID}}" },
+        "sheetName": "RawScan",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "runDate": "={{ $now.toISODate() }}",
+            "address": "={{ $json.address }}",
+            "suburb": "={{ $json.suburb }}",
+            "postcode": "={{ $json.postcode }}",
+            "propertyType": "={{ $json.propertyType }}",
+            "lat": "={{ $json.lat }}",
+            "lng": "={{ $json.lng }}"
+          }
+        }
+      },
+      "id": "log_raw",
+      "name": "1b. Log Raw Apify Results",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [220, 200]
+    },
+    {
+      "parameters": {
         "jsCode": "const { inZone, isStandaloneHouse } = require('../lib/zones.js');\nreturn items.filter(i => isStandaloneHouse(i.json.propertyType) && inZone(i.json.postcode));"
       },
       "id": "zone_gate",
@@ -41,6 +65,28 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": { "value": "={{$env.GOOGLE_SHEETS_ID}}" },
+        "sheetName": "FilteredScan",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "runDate": "={{ $now.toISODate() }}",
+            "address": "={{ $json.address }}",
+            "suburb": "={{ $json.suburb }}",
+            "postcode": "={{ $json.postcode }}",
+            "zone": "={{ $json.zone }}"
+          }
+        }
+      },
+      "id": "log_filtered",
+      "name": "2b. Log In-Zone Results",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [440, 200]
     },
     {
       "parameters": {
@@ -152,8 +198,8 @@
   ],
   "connections": {
     "Daily Trigger": { "main": [[{ "node": "1. Fetch Address List", "type": "main", "index": 0 }]] },
-    "1. Fetch Address List": { "main": [[{ "node": "2. In-Zone Gate (QLD)", "type": "main", "index": 0 }]] },
-    "2. In-Zone Gate (QLD)": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }]] },
+    "1. Fetch Address List": { "main": [[{ "node": "2. In-Zone Gate (QLD)", "type": "main", "index": 0 }, { "node": "1b. Log Raw Apify Results", "type": "main", "index": 0 }]] },
+    "2. In-Zone Gate (QLD)": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "2b. Log In-Zone Results", "type": "main", "index": 0 }]] },
     "3. Fetch Satellite Image": { "main": [[{ "node": "4. AI Lawn Classifier", "type": "main", "index": 0 }]] },
     "4. AI Lawn Classifier": { "main": [[{ "node": "5. Rank & Select Top Lead", "type": "main", "index": 0 }]] },
     "5. Rank & Select Top Lead": { "main": [[{ "node": "6. AI Lawn Render", "type": "main", "index": 0 }]] },
