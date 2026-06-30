@@ -269,11 +269,57 @@
       const sliderLine = document.getElementById("baileySliderLine");
       
       if(slider && afterImage && sliderLine) {
+        // Function to update visual slider positions
+        const updateSlider = (val) => {
+          afterImage.style.width = val + "%";
+          sliderLine.style.left = val + "%";
+          slider.value = val;
+        };
+
+        // Standard user input
         slider.addEventListener("input", function(e) {
-          const sliderVal = e.target.value;
-          afterImage.style.width = sliderVal + "%";
-          sliderLine.style.left = sliderVal + "%";
+          stopAutoSlide();
+          updateSlider(e.target.value);
         });
+
+        // Auto-sliding variables
+        let dir = 1;
+        let currentVal = 50;
+        let autoSlideActive = true;
+        let animationFrameId = null;
+
+        // Smooth frame-based loop
+        function animate() {
+          if (!autoSlideActive) return;
+          
+          currentVal += 0.25 * dir; // Speed of auto-slide
+          if (currentVal >= 80) {
+            dir = -1;
+          } else if (currentVal <= 20) {
+            dir = 1;
+          }
+          
+          updateSlider(currentVal);
+          animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function stopAutoSlide() {
+          autoSlideActive = false;
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+          }
+        }
+
+        // Start slide
+        animate();
+
+        // Listen for mouse/touch interactions to stop auto-slide
+        const container = document.getElementById("baileySlider");
+        if (container) {
+          container.addEventListener("mouseenter", stopAutoSlide);
+          container.addEventListener("touchstart", stopAutoSlide);
+          slider.addEventListener("mousedown", stopAutoSlide);
+        }
       }
     });
   </script>
