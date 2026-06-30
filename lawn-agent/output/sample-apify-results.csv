@@ -1,0 +1,21 @@
+propertyId,listingType,propertyType,street,suburb,state,postcode,fullAddress,priceDisplay,bedrooms,bathrooms,parkingSpaces,hasStudy,hasBalcony,hasPool,hasGarage
+151596524,buy,house,600 Gowan Road,Calamvale,QLD,4116,"600 Gowan Road, Calamvale, QLD 4116",Auction,4,2,3,false,false,false,true
+151644136,buy,house,7 Evergreen Street,Rochedale,QLD,4123,"7 Evergreen Street, Rochedale, QLD 4123",FOR SALE,6,6,2,false,false,false,true
+151641456,buy,duplex/semi-detached,189/25 Farinazzo Street,Richlands,QLD,4077,"189/25 Farinazzo Street, Richlands, QLD 4077","FOR SALE - First Inspection this Weekend!",3,2,1,false,false,false,true
+151640860,buy,house,98 Oceana Terrace,Manly,QLD,4179,"98 Oceana Terrace, Manly, QLD 4179",For Sale by Negotiation,4,3,3,false,false,false,true
+151640552,buy,house,47 Glencairn Avenue,Indooroopilly,QLD,4068,"47 Glencairn Avenue, Indooroopilly, QLD 4068","Top Offer Closing - Tuesday 4 August at 4pm",6,5,2,false,true,false,true
+151639164,buy,house,77 Clausen Street,Mount Gravatt East,QLD,4122,"77 Clausen Street, Mount Gravatt East, QLD 4122",FOR SALE,3,2,1,false,false,false,true
+151639112,buy,house,50 Sherborne Street,Carindale,QLD,4152,"50 Sherborne Street, Carindale, QLD 4152",For Sale,4,2,2,false,false,false,true
+151638764,buy,house,65 Orchard Terrace,St Lucia,QLD,4067,"65 Orchard Terrace, St Lucia, QLD 4067",FOR SALE,2,1,1,false,true,false,true
+151643448,buy,house,98 Beck Street,Paddington,QLD,4064,"98 Beck Street, Paddington, QLD 4064",For Sale,6,3,2,false,false,false,false
+151643084,buy,house,36 Hannam Street,Wynnum,QLD,4178,"36 Hannam Street, Wynnum, QLD 4178","Smartre Sale $1,100,000",3,1,1,false,false,false,true
+151642988,buy,acreage/semi-rural,79 Fleming Road,Hemmant,QLD,4174,"79 Fleming Road, Hemmant, QLD 4174","Smartre Sale $1,720,000",3,1,4,false,false,false,false
+151642692,buy,house,30 Bernarra Street,The Gap,QLD,4061,"30 Bernarra Street, The Gap, QLD 4061","Offers Over $999,000!!",3,1,1,false,true,false,false
+151642428,buy,house,31 Beckett Road,McDowall,QLD,4053,"31 Beckett Road, McDowall, QLD 4053",FOR SALE,3,1,2,false,false,false,true
+151642040,buy,house,32/19 Russell Street,Everton Park,QLD,4053,"32/19 Russell Street, Everton Park, QLD 4053","OFFERS OVER $1,049,900",3,2,2,true,true,true,true
+151641216,buy,house,Address available on request,Doolandella,QLD,4077,"Address available on request, Doolandella, QLD 4077",Contact Agent,4,2,2,false,false,false,true
+151640688,buy,house,Address available on request,Doolandella,QLD,4077,"Address available on request, Doolandella, QLD 4077",Contact Agent,4,2,2,false,false,false,true
+151269108,sold,house,21 Wilde Street,Wynnum,QLD,4178,"21 Wilde Street, Wynnum, QLD 4178","$1,620,000",4,2,2,false,false,false,true
+150935924,sold,house,1 Fairview Street,Fairfield,QLD,4103,"1 Fairview Street, Fairfield, QLD 4103","$1,335,000",4,2,1,false,true,false,true
+151582504,sold,house,81 Coutts Street,Bulimba,QLD,4171,"81 Coutts Street, Bulimba, QLD 4171","$2,160,000",3,1,2,false,false,false,true
+150810236,sold,house,19 Werona Crt,Karana Downs,QLD,4306,"19 Werona Crt, Karana Downs, QLD 4306","$1,050,000",3,3,6,false,false,false,false

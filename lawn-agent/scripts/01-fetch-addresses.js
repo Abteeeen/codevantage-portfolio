@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import fetch from 'node-fetch';
 import { inZone, isStandaloneHouse } from '../lib/zones.js';
+import { geocodeAddress } from '../lib/geocode.js';
 
 /**
  * Sources a candidate address list for a target region using an Apify real-estate
@@ -32,17 +33,30 @@ export async function fetchAddresses(region) {
 
   const listings = await res.json();
 
-  return listings
+  // Real listings sometimes hide the street ("Address available on request") —
+  // those can't be geocoded or mailed, so drop them before the zone gate.
+  const candidates = listings
     .filter((l) => isStandaloneHouse(l.propertyType))
-    .filter((l) => inZone(l.postcode))
-    .map((l) => ({
-      address: l.address,
-      lat: l.lat,
-      lng: l.lng,
-      postcode: l.postcode,
-      suburb: l.suburb,
-      zone: inZone(l.postcode)
-    }));
+    .filter((l) => inZone(l.address?.postcode))
+    .filter((l) => l.address?.street && !l.address.street.toLowerCase().includes('available on request'));
+
+  const geocoded = [];
+  for (const l of candidates) {
+    const coords = await geocodeAddress(l.address.full);
+    if (!coords) continue;
+    geocoded.push({
+      address: l.address.full,
+      lat: coords.lat,
+      lng: coords.lng,
+      postcode: l.address.postcode,
+      suburb: l.address.suburb,
+      propertyType: l.propertyType,
+      listingType: l.listingType,
+      zone: inZone(l.address.postcode)
+    });
+  }
+
+  return geocoded;
 }
 
 function sampleAddresses(region) {
