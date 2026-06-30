@@ -13,7 +13,7 @@
     },
     {
       "parameters": {
-        "url": "https://api.apify.com/v2/acts/YOUR_APIFY_ACTOR_ID/run-sync-get-dataset-items",
+        "url": "https://api.apify.com/v2/acts/abotapi~realestate-au-scraper/run-sync-get-dataset-items",
         "method": "POST",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpQueryAuth",
