@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tender-Capture System — Government Tender Automation | CodeVantage</title>
+  <link rel="icon" type="image/png" href="../logo.png">
+  <meta name="description" content="AI system that scans government tender portals hourly, classifies with Gemini AI, applies geo-filtering for QLD coverage, and drafts EOI responses — fully automated on n8n.">
+  <meta name="keywords" content="AI tender automation, government tenders, n8n, Gemini AI, AusTender, VendorPanel, bid automation, EOI drafting">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="tender-agent.css">
+</head>
+<body>
+
+  <!-- ============ BACK NAV ============ -->
+  <nav class="back-nav" aria-label="Back navigation">
+    <div class="container back-nav__inner">
+      <a href="../index.html" class="back-nav__link" aria-label="Back to all projects">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+        All Projects
+      </a>
+      <span class="back-nav__title">AI Tender-Capture System</span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="project-hero" id="top">
+    <div class="container">
+      <p class="project-hero__label reveal">Case Study — Chief Group Services</p>
+      <h1 class="project-hero__title reveal reveal-d1">AI Tender-Capture System</h1>
+      <p class="project-hero__desc reveal reveal-d2">
+        An autonomous AI pipeline that scans AusTender, VendorPanel, and Brisbane City Council every hour, classifies tenders with Gemini 2.5 Flash, applies a deterministic geo-filter across 731 QLD suburbs, drafts Expression of Interest responses, and outputs everything to a structured Google Sheet — zero manual monitoring.
+      </p>
+      <div class="project-hero__badges reveal reveal-d3">
+        <span class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Hourly Scanning
+        </span>
+        <span class="badge badge--green">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          3 Live Sources
+        </span>
+        <span class="badge badge--amber">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          AI Bid Drafting
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PROOF OF WORK — TENDER RESULTS ============ -->
+  <section class="proof-of-work">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Proof of Work</p>
+        <h2 class="sh__title">Live Tender Pipeline — Sample Output</h2>
+      </div>
+
+      <!-- Pipeline Stats -->
+      <div class="pipeline-bar reveal reveal-d1">
+        <div class="pipeline-stat">
+          <div class="pipeline-stat__value pipeline-stat__value--navy">3</div>
+          <div class="pipeline-stat__label">Sources Scanned</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat__value pipeline-stat__value--blue">142</div>
+          <div class="pipeline-stat__label">Tenders Found</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat__value pipeline-stat__value--gold">38</div>
+          <div class="pipeline-stat__label">Keyword Matched</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat__value pipeline-stat__value--green">12</div>
+          <div class="pipeline-stat__label">In-Zone Passed</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat__value pipeline-stat__value--green">5</div>
+          <div class="pipeline-stat__label">EOIs Drafted</div>
+        </div>
+      </div>
+
+      <!-- Tender Results Table -->
+      <div class="tender-results reveal reveal-d2">
+        <div class="table-wrap">
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Tender Title</th>
+                <th>Source</th>
+                <th>Deadline</th>
+                <th>Zone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tier-badge tier-badge--a">A</span></td>
+                <td>QLD Police — Security Guard Services Panel (SEQ Region)</td>
+                <td><span class="source-badge">AusTender</span></td>
+                <td><span class="deadline-badge deadline-badge--urgent">3 days</span></td>
+                <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> In-Zone</span></td>
+              </tr>
+              <tr>
+                <td><span class="tier-badge tier-badge--a">A</span></td>
+                <td>QLD Health — Access Control & CCTV Maintenance (Brisbane)</td>
+                <td><span class="source-badge">VendorPanel</span></td>
+                <td><span class="deadline-badge deadline-badge--normal">12 days</span></td>
+                <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> In-Zone</span></td>
+              </tr>
+              <tr>
+                <td><span class="tier-badge tier-badge--b">B</span></td>
+                <td>Brisbane City Council — Commercial Cleaning Services (CBD)</td>
+                <td><span class="source-badge">BCC Portal</span></td>
+                <td><span class="deadline-badge deadline-badge--safe">21 days</span></td>
+                <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> In-Zone</span></td>
+              </tr>
+              <tr>
+                <td><span class="tier-badge tier-badge--c">C</span></td>
+                <td>QLD Health — Cleaning Services (Toowoomba Hospital)</td>
+                <td><span class="source-badge">AusTender</span></td>
+                <td><span class="deadline-badge deadline-badge--safe">28 days</span></td>
+                <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> In-Zone</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- EOI Draft Preview -->
+      <div class="eoi-preview reveal reveal-d3">
+        <div class="eoi-preview__label">AI-Generated EOI Draft — QLD Police Security Panel</div>
+        <div class="eoi-preview__text">
+          <p>Dear Procurement Team,</p>
+          <p>Chief Group Services Pty Ltd is pleased to express our interest in the QLD Police Security Guard Services Panel (SEQ Region). As a Queensland-based security and facility services provider, we maintain active coverage across the South East Queensland corridor, including Brisbane CBD, Gold Coast, Logan, and Ipswich.</p>
+          <p>Our team holds current QBCC licenses, Master Security Licence #4125678, and all personnel carry valid QLD Security Provider Licences. We have successfully delivered comparable guard services for government and commercial clients across the region.</p>
+          <p>We welcome the opportunity to submit a full tender response and can provide references, insurance certificates, and capability statements upon request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM / SOLUTION ============ -->
+  <section id="problem-solution" aria-labelledby="ps-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">The Challenge</p>
+        <h2 class="sh__title" id="ps-title">Why Businesses Miss Government Tenders</h2>
+      </div>
+
+      <div class="two-col reveal reveal-d1">
+        <div class="problem-card">
+          <div class="card-icon card-icon--problem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="card-title">The Problem</h3>
+          <ul class="card-list">
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Tenders are scattered across 6+ portals — staff manually check each one daily
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              High-value tenders have 7–14 day windows — discovery delays mean missed deadlines
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              No geo-filtering — teams waste hours reviewing tenders outside their service area
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              EOI drafting takes 2–4 hours per tender — bottleneck for small teams
+            </li>
+          </ul>
+        </div>
+
+        <div class="solution-card">
+          <div class="card-icon card-icon--solution">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="card-title">Our Solution</h3>
+          <ul class="card-list">
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Scans AusTender, VendorPanel, and BCC hourly via RSS + Apify
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Gemini 2.5 Flash classifies into Tier A/B/C/Reject with confidence scores
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Deterministic In-Zone Gate — 731 suburbs, 154 postcodes within 50km of Brisbane/Gold Coast
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Auto-drafts EOI responses with company credentials and outputs to Google Sheets
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section id="architecture" aria-labelledby="arch-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">System Design</p>
+        <h2 class="sh__title" id="arch-title">Tender Pipeline Architecture</h2>
+      </div>
+
+      <div class="arch-diagram reveal reveal-d1">
+        <div class="flow">
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <span class="flow-node__label">Hourly Cron</span>
+            <span class="flow-node__sub">Schedule trigger</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+            </div>
+            <span class="flow-node__label">RSS / Scrape</span>
+            <span class="flow-node__sub">3 portals</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <span class="flow-node__label">Keyword Filter</span>
+            <span class="flow-node__sub">Security / Cleaning</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14H8a4 4 0 0 0-4 4v2h16v-2a4 4 0 0 0-4-4z"/></svg>
+            </div>
+            <span class="flow-node__label">Gemini Classify</span>
+            <span class="flow-node__sub">Tier A / B / C</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span class="flow-node__label">In-Zone Gate</span>
+            <span class="flow-node__sub">731 suburbs</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <span class="flow-node__label">EOI Draft</span>
+            <span class="flow-node__sub">AI-generated</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <span class="flow-node__label">Google Sheets</span>
+            <span class="flow-node__sub">19-column output</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zone Gate Callout -->
+      <div class="zone-callout reveal reveal-d2">
+        <strong>In-Zone Gate:</strong> A deterministic geo-filter (no AI, no API calls) that checks every tender location against a hardcoded list of <strong>731 QLD suburbs</strong> and <strong>154 postcodes</strong> within a 50km radius of Brisbane CBD and Gold Coast. Only tenders with confirmed in-zone locations proceed to EOI drafting. This eliminates false positives from AI hallucination and costs $0 to run.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOURCE COVERAGE ============ -->
+  <section id="sources" aria-labelledby="src-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Data Sources</p>
+        <h2 class="sh__title" id="src-title">Tender Portal Coverage</h2>
+      </div>
+
+      <div class="table-wrap source-table reveal reveal-d1">
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Portal</th>
+              <th>Method</th>
+              <th>Frequency</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AusTender (Federal)</td>
+              <td><span class="endpoint">RSS Feed</span></td>
+              <td>Every hour</td>
+              <td><span class="status-live">Live</span></td>
+            </tr>
+            <tr>
+              <td>VendorPanel (QLD Gov)</td>
+              <td><span class="endpoint">RSS Feed</span></td>
+              <td>Every hour</td>
+              <td><span class="status-live">Live</span></td>
+            </tr>
+            <tr>
+              <td>Brisbane City Council</td>
+              <td><span class="endpoint">Apify Scraper</span></td>
+              <td>Every hour</td>
+              <td><span class="status-live">Live</span></td>
+            </tr>
+            <tr>
+              <td>TenderLink</td>
+              <td><span class="endpoint">Apify Scraper</span></td>
+              <td>Daily</td>
+              <td><span class="status-phase2">Phase 2</span></td>
+            </tr>
+            <tr>
+              <td>University of QLD</td>
+              <td><span class="endpoint">Apify Scraper</span></td>
+              <td>Daily</td>
+              <td><span class="status-phase2">Phase 2</span></td>
+            </tr>
+            <tr>
+              <td>Private Sector (Seek)</td>
+              <td><span class="endpoint">Apify Scraper</span></td>
+              <td>Daily</td>
+              <td><span class="status-phase2">Phase 2</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="workflows" aria-labelledby="wf-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Under the Hood</p>
+        <h2 class="sh__title" id="wf-title">The 4 n8n Workflows Powering the System</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step-card reveal">
+          <div class="step-card__num">1</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Hourly Tender Scanner</h3>
+            <p class="step-card__desc">
+              Runs every 60 minutes via cron trigger. Fetches new listings from AusTender RSS, VendorPanel RSS, and Brisbane City Council (via Apify actor). Applies keyword matching against 24 terms (security, cleaning, guard, CCTV, access control, etc.) and deduplicates against previously seen tender IDs stored in n8n static data.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">CRON → /tender-scanner</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card reveal reveal-d1">
+          <div class="step-card__num">2</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">AI Classifier (Gemini 2.5 Flash)</h3>
+            <p class="step-card__desc">
+              Each matched tender is sent to Gemini 2.5 Flash via OpenRouter with a structured prompt. Returns a JSON object with tier (A/B/C/Reject), confidence score, reasoning, and extracted metadata (location, deadline, category). Tier A = direct service match, Tier B = adjacent opportunity, Tier C = subcontracting potential.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST → /ai-classify</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card reveal reveal-d2">
+          <div class="step-card__num">3</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">In-Zone Gate (Deterministic Geo-Filter)</h3>
+            <p class="step-card__desc">
+              Zero-cost, zero-API geo-filter. Checks the AI-extracted location against a hardcoded lookup table of 731 QLD suburbs and 154 postcodes within 50km of Brisbane CBD and Gold Coast. Uses string normalization and fuzzy suburb matching. No AI hallucination risk — purely deterministic pass/fail.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">IF → /zone-check</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card reveal reveal-d3">
+          <div class="step-card__num">4</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Bid Draft Builder</h3>
+            <p class="step-card__desc">
+              For Tier A and B tenders that pass the In-Zone Gate, Gemini drafts a tailored Expression of Interest referencing CGS's licenses, service area, and relevant experience. Output is written to a 19-column Google Sheet with tender URL, classification, deadline, draft EOI, and action status.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST → /draft-eoi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEST RESULTS ============ -->
+  <section id="test-results" aria-labelledby="tr-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Quality Assurance</p>
+        <h2 class="sh__title" id="tr-title">10-Scenario Verification</h2>
+      </div>
+
+      <div class="table-wrap reveal reveal-d1">
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Scenario</th>
+              <th>Expected Behavior</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Security tender with Brisbane location</td>
+              <td>Classified Tier A, passes In-Zone, EOI drafted</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Cleaning tender in Toowoomba (out-of-zone)</td>
+              <td>Classified correctly, rejected by In-Zone Gate</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Duplicate tender from two sources</td>
+              <td>Deduplicated — only processed once</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>IT services tender (irrelevant category)</td>
+              <td>Rejected by keyword filter — never reaches AI</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Tender with 3-day deadline</td>
+              <td>Flagged as urgent in Google Sheet</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Gemini returns malformed JSON</td>
+              <td>Graceful retry with structured output prompt</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>AusTender RSS returns empty feed</td>
+              <td>Skipped gracefully — no false alerts</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Tender mentions "Gold Coast" suburb name</td>
+              <td>In-Zone Gate resolves to correct postcode range</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>19-column Google Sheet output</td>
+              <td>All columns populated with correct data types</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>EOI draft references correct licenses</td>
+              <td>Company credentials included in every draft</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section id="tech-stack" aria-labelledby="ts-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Technologies</p>
+        <h2 class="sh__title" id="ts-title">Tech Stack</h2>
+      </div>
+
+      <div class="tech-grid reveal reveal-d1">
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          n8n — Workflow Orchestration
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Gemini 2.5 Flash — AI Classification
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          OpenRouter — AI Provider
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          AusTender RSS — Federal Tenders
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          VendorPanel RSS — QLD Tenders
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Apify — Web Scraping (BCC)
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Google Sheets — Output CRM
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ============ -->
+  <section id="metrics" aria-labelledby="m-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">By the Numbers</p>
+        <h2 class="sh__title" id="m-title">Key Metrics</h2>
+      </div>
+
+      <div class="metrics reveal reveal-d1">
+        <div class="metric">
+          <p class="metric__value">3</p>
+          <p class="metric__label">Live Sources</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">10/10</p>
+          <p class="metric__label">Tests Passed</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">731</p>
+          <p class="metric__label">Suburbs Mapped</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">60m</p>
+          <p class="metric__label">Scan Interval</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">~$0.01</p>
+          <p class="metric__label">Per Classification</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">24/7</p>
+          <p class="metric__label">Monitoring</p>
+        </div>
+      </div>
+
+      <div class="cost-row reveal reveal-d2">
+        <div class="cost-row__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="cost-row__text">
+          <strong>~$0.01 per tender classified</strong> using Gemini 2.5 Flash via OpenRouter. The In-Zone Gate is <strong>completely free</strong> — deterministic string matching, no API calls. A typical day processing 50 tenders costs approximately <strong>$0.50</strong> — compared to <strong>8+ hours of manual portal checking</strong>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>AI Tender-Capture System — Built by <a href="../index.html">CodeVantage</a></p>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

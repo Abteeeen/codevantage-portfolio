@@ -406,32 +406,75 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-// Lead Capture Form Simulation
+// Lead Capture Form
 document.addEventListener("DOMContentLoaded", function() {
-  const leadBtn = document.getElementById("leadBtn");
-  const leadInput = document.getElementById("leadInput");
-  const leadForm = document.getElementById("leadForm");
-  const leadLoader = document.getElementById("leadLoader");
-  const leadSuccess = document.getElementById("leadSuccess");
-  
-  if(leadBtn && leadInput) {
+  const leadBtn      = document.getElementById("leadBtn");
+  const leadInput    = document.getElementById("leadInput");
+  const leadInitial  = document.getElementById("leadInitial");
+  const leadLoader   = document.getElementById("leadLoader");
+  const leadSuccess  = document.getElementById("leadSuccess");
+  const leadDone     = document.getElementById("leadDone");
+  const leadEmailForm = document.getElementById("leadEmailForm");
+  const leadEmail    = document.getElementById("leadEmail");
+  const leadSubmitBtn = document.getElementById("leadSubmitBtn");
+  const leadEmailError = document.getElementById("leadEmailError");
+
+  // Step 1 → 2 → 3: simulate analysis
+  if (leadBtn && leadInput) {
     leadBtn.addEventListener("click", function(e) {
       e.preventDefault();
       const val = leadInput.value.trim();
-      if(val === "") {
-        alert("Please enter a website or business name.");
+      if (!val) {
+        leadInput.focus();
+        leadInput.style.borderColor = "#ef4444";
+        setTimeout(() => leadInput.style.borderColor = "", 2000);
         return;
       }
-      
-      // Hide form, show loader
-      leadForm.style.display = "none";
-      leadLoader.style.display = "block";
-      
-      // Simulate API call and AI analysis delay
+      leadInitial.style.display = "none";
+      leadLoader.style.display  = "block";
+
       setTimeout(function() {
-        leadLoader.style.display = "none";
+        leadLoader.style.display  = "none";
         leadSuccess.style.display = "block";
-      }, 3500); // 3.5 seconds of "analyzing"
+      }, 3500);
+    });
+  }
+
+  // Step 3 → 4: send email via Formspree
+  // SETUP: Go to https://formspree.io → sign up → create a form → paste the endpoint below
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+  if (leadEmailForm) {
+    leadEmailForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const email = leadEmail.value.trim();
+      if (!email) return;
+
+      leadSubmitBtn.textContent = "Sending...";
+      leadSubmitBtn.disabled = true;
+      leadEmailError.style.display = "none";
+
+      // Store the business URL the user entered (carried from step 1)
+      const businessInput = leadInput ? leadInput.value.trim() : "";
+
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ email: email, business: businessInput, _subject: "New AI Analysis Lead — CodeVantage" })
+        });
+
+        if (res.ok) {
+          leadSuccess.style.display = "none";
+          leadDone.style.display    = "block";
+        } else {
+          throw new Error("Formspree error");
+        }
+      } catch {
+        leadEmailError.style.display = "block";
+        leadSubmitBtn.textContent = "Send Report";
+        leadSubmitBtn.disabled = false;
+      }
     });
   }
 });

@@ -47,7 +47,7 @@
         <a href="#contact" class="btn btn--secondary"><svg class="btn--icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Book a Call</span></a>
       </div>
       <div class="hero__stats reveal reveal-delay-4">
-        <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="6">0</span>+</div><div class="hero__stat-label">AI Products</div></div>
+        <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="8">0</span>+</div><div class="hero__stat-label">AI Products</div></div>
         <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="15">0</span></div><div class="hero__stat-label">Engineers</div></div>
         <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="24">0</span>/7</div><div class="hero__stat-label">Autonomous</div></div>
       </div>
@@ -98,24 +98,41 @@
   <section class="lead-capture reveal">
     <div class="container">
       <div class="lead-capture-box">
-        <h3>Try It On Your Business</h3>
-        <p>Enter your website or business name and see how our AI agents would optimize your operations.</p>
-        <div class="lead-form" id="leadForm">
-          <input type="text" id="leadInput" placeholder="e.g. www.myrestaurant.com" autocomplete="off">
-          <button id="leadBtn" class="btn btn--primary">Generate AI Analysis</button>
+
+        <!-- Step 1: initial input -->
+        <div id="leadInitial">
+          <h3>Try It On Your Business</h3>
+          <p>Enter your website or business name and see how our AI agents would optimize your operations.</p>
+          <div class="lead-form" id="leadForm">
+            <input type="text" id="leadInput" placeholder="e.g. www.myrestaurant.com" autocomplete="off">
+            <button id="leadBtn" class="btn btn--primary">Generate AI Analysis</button>
+          </div>
         </div>
+
+        <!-- Step 2: loading -->
         <div id="leadLoader" class="lead-loader" style="display: none;">
           <div class="spinner"></div>
           <p>Analyzing your business structure...</p>
         </div>
+
+        <!-- Step 3: email capture -->
         <div id="leadSuccess" class="lead-success" style="display: none;">
           <h4>Analysis Complete!</h4>
-          <p>We found 3 workflow bottlenecks and 1 missed revenue opportunity. Enter your email to receive your personalized AI optimization report.</p>
-          <div class="lead-form">
-            <input type="email" placeholder="Enter your email address">
-            <button class="btn btn--primary">Send Report</button>
-          </div>
+          <p>We found <strong>3 workflow bottlenecks</strong> and <strong>1 missed revenue opportunity</strong>. Enter your email to receive your personalized AI optimization report.</p>
+          <form id="leadEmailForm" class="lead-form">
+            <input type="email" id="leadEmail" placeholder="Enter your email address" required>
+            <button type="submit" id="leadSubmitBtn" class="btn btn--primary">Send Report</button>
+          </form>
+          <p id="leadEmailError" style="color:#ef4444; font-size:0.8rem; margin-top:0.5rem; display:none;">Something went wrong. Email us at <a href="mailto:admin@codevantage.io" style="color:var(--primary-light);">admin@codevantage.io</a></p>
         </div>
+
+        <!-- Step 4: done -->
+        <div id="leadDone" style="display: none;">
+          <div style="font-size:2rem; margin-bottom:0.75rem;">✅</div>
+          <h4 style="color: var(--success); margin-bottom:0.5rem;">Report on its way!</h4>
+          <p style="color: var(--text-muted); font-size:0.875rem;">Check your inbox — we'll send your personalized AI optimization report within 24 hours.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -339,6 +356,22 @@
           <h3 class="service-card__title">Social Pain Agent</h3>
           <p class="service-card__desc">Scrapes social groups to identify customer pain points and buying signals, generates hyper-targeted outreach messages.</p>
           <div class="service-card__tech"><span class="tech-badge">CrewAI</span><span class="tech-badge">LangChain</span><span class="tech-badge">Python</span></div>
+          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="projects/review-agent.html" class="service-card reveal reveal-delay-6" style="--card-accent:#7C3AED;--card-accent-2:#F59E0B;">
+          <div class="service-card__icon" style="background:rgba(124,58,237,0.1);color:#A78BFA;border-color:rgba(124,58,237,0.15);"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h3 class="service-card__title">AI Review Agent</h3>
+          <p class="service-card__desc">Monitors Google reviews 24/7, generates personalized AI replies in 28 seconds, auto-publishes positive and escalates negative — 100% response rate.</p>
+          <div class="service-card__tech"><span class="tech-badge">n8n</span><span class="tech-badge">GPT-4o</span><span class="tech-badge">Google Business API</span></div>
+          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a>
+
+        <a href="projects/tender-agent.html" class="service-card reveal reveal-delay-6" style="--card-accent:#1E3A5F;--card-accent-2:#D97706;">
+          <div class="service-card__icon" style="background:rgba(30,58,95,0.1);color:#1E3A5F;border-color:rgba(30,58,95,0.15);"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <h3 class="service-card__title">AI Tender-Capture</h3>
+          <p class="service-card__desc">Scans government tender portals hourly, classifies with Gemini AI, geo-filters across 731 QLD suburbs, and auto-drafts EOI responses to Google Sheets.</p>
+          <div class="service-card__tech"><span class="tech-badge">n8n</span><span class="tech-badge">Gemini 2.5</span><span class="tech-badge">AusTender</span></div>
           <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
         </a>
 

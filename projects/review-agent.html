@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Review Reputation Agent — Automated Google Review Management | CodeVantage</title>
+  <link rel="icon" type="image/png" href="../logo.png">
+  <meta name="description" content="AI agent that monitors Google reviews, generates personalized replies with GPT-4o, auto-publishes positive responses, and escalates negative reviews — fully autonomous on n8n.">
+  <meta name="keywords" content="AI review agent, Google reviews automation, reputation management, n8n, GPT-4o, review response, business automation">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="review-agent.css">
+</head>
+<body>
+
+  <!-- ============ BACK NAV ============ -->
+  <nav class="back-nav" aria-label="Back navigation">
+    <div class="container back-nav__inner">
+      <a href="../index.html" class="back-nav__link" aria-label="Back to all projects">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+        All Projects
+      </a>
+      <span class="back-nav__title">AI Review Agent</span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="project-hero" id="top">
+    <div class="container">
+      <p class="project-hero__label reveal">Case Study</p>
+      <h1 class="project-hero__title reveal reveal-d1">AI Review Reputation Agent</h1>
+      <p class="project-hero__desc reveal reveal-d2">
+        An autonomous AI system that monitors your Google Business reviews 24/7, generates personalized responses with GPT-4o, auto-publishes positive replies, and escalates negative reviews to the owner — all running on n8n with zero human effort.
+      </p>
+      <div class="project-hero__badges reveal reveal-d3">
+        <span class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          24/7 Monitoring
+        </span>
+        <span class="badge badge--green">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          &lt;30s Response Time
+        </span>
+        <span class="badge badge--amber">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          ~$0.002 Per Reply
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PROOF OF WORK — LIVE REVIEW DEMO ============ -->
+  <section class="proof-of-work">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Proof of Work</p>
+        <h2 class="sh__title">Live AI Responses — Before &amp; After</h2>
+      </div>
+
+      <div class="review-demo">
+        <div class="review-demo__grid reveal reveal-d1">
+
+          <!-- Positive Review -->
+          <div class="review-card">
+            <div class="review-card__header">
+              <div class="review-card__stars">★★★★★</div>
+              <span class="review-card__time">2 hours ago</span>
+            </div>
+            <div class="review-card__author">
+              <div class="review-card__avatar review-card__avatar--pos">AK</div>
+              <div>
+                <div class="review-card__name">Arun Kumar</div>
+                <div class="review-card__via">Google Reviews</div>
+              </div>
+            </div>
+            <div class="review-card__text">
+              "Amazing experience at this restaurant! The butter chicken was absolutely divine and the naan was fresh out of the tandoor. Staff was very attentive and friendly. Will definitely come back with family next weekend."
+            </div>
+            <div class="review-card__response-label review-card__response-label--auto">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              AI Auto-Published in 28 seconds
+            </div>
+            <div class="review-card__response">
+              "Thank you so much, Arun! We're thrilled you loved the butter chicken — our chef takes special pride in getting that recipe just right. Fresh tandoori naan is non-negotiable for us! We'd love to welcome you and your family next weekend. See you soon! — Raj, Owner"
+            </div>
+            <div class="review-card__status review-card__status--sent">
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Published
+            </div>
+          </div>
+
+          <!-- Negative Review -->
+          <div class="review-card">
+            <div class="review-card__header">
+              <div class="review-card__stars">★★☆☆☆</div>
+              <span class="review-card__time">5 hours ago</span>
+            </div>
+            <div class="review-card__author">
+              <div class="review-card__avatar review-card__avatar--neg">SM</div>
+              <div>
+                <div class="review-card__name">Sneha Menon</div>
+                <div class="review-card__via">Google Reviews</div>
+              </div>
+            </div>
+            <div class="review-card__text">
+              "Waited 45 minutes for our order even though the restaurant was half empty. Food was okay but the wait was unacceptable. The waiter didn't even apologize. Disappointed as I had high expectations."
+            </div>
+            <div class="review-card__response-label review-card__response-label--draft">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              AI Draft — Sent to Owner for Approval
+            </div>
+            <div class="review-card__response review-card__response--draft">
+              "Sneha, thank you for your honest feedback — and I sincerely apologize for the long wait and the lack of communication from our team. That's not the standard we hold ourselves to. I've personally spoken with our kitchen and service staff about this. I'd love the chance to make it right — if you're willing, please email us at [email] and your next meal is on the house. — Raj, Owner"
+            </div>
+            <div class="review-card__status review-card__status--pending">
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Awaiting Owner Approval
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 30 Day Digest -->
+        <div class="digest-card reveal reveal-d2">
+          <div class="sh" style="margin-bottom: 1rem;">
+            <p class="sh__label">Weekly Digest — Raj's Kitchen (30 Days)</p>
+          </div>
+          <div class="digest-bar">
+            <div class="digest-stat">
+              <div class="digest-stat__value digest-stat__value--purple">47</div>
+              <div class="digest-stat__label">Total Reviews</div>
+            </div>
+            <div class="digest-stat">
+              <div class="digest-stat__value digest-stat__value--green">41</div>
+              <div class="digest-stat__label">Auto-Replied</div>
+            </div>
+            <div class="digest-stat">
+              <div class="digest-stat__value digest-stat__value--amber">6</div>
+              <div class="digest-stat__label">Escalated</div>
+            </div>
+            <div class="digest-stat">
+              <div class="digest-stat__value digest-stat__value--green">100%</div>
+              <div class="digest-stat__label">Response Rate</div>
+            </div>
+            <div class="digest-stat">
+              <div class="digest-stat__value digest-stat__value--green">28s</div>
+              <div class="digest-stat__label">Avg Response</div>
+            </div>
+            <div class="digest-stat">
+              <div class="digest-stat__value digest-stat__value--green">4.3→4.6</div>
+              <div class="digest-stat__label">Rating Change</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM / SOLUTION ============ -->
+  <section id="problem-solution" aria-labelledby="ps-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">The Challenge</p>
+        <h2 class="sh__title" id="ps-title">Why Businesses Need an AI Review Agent</h2>
+      </div>
+
+      <div class="two-col reveal reveal-d1">
+        <div class="problem-card">
+          <div class="card-icon card-icon--problem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="card-title">The Problem</h3>
+          <ul class="card-list">
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              88% of customers check reviews before buying — unanswered = lost trust
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Negative reviews sit for days destroying reputation silently
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Manual replies cost $400–900/month in staff time
+            </li>
+            <li>
+              <svg class="icon-warn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+              Generic "Thanks for your review" replies feel robotic and hurt more than help
+            </li>
+          </ul>
+        </div>
+
+        <div class="solution-card">
+          <div class="card-icon card-icon--solution">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="card-title">Our Solution</h3>
+          <ul class="card-list">
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Monitors Google Business Profile 24/7 for new reviews
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              GPT-4o writes genuinely personalized replies — never sounds like a bot
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Positive reviews → auto-published instantly (28s avg)
+            </li>
+            <li>
+              <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Negative reviews → drafted, escalated to owner for approval
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section id="architecture" aria-labelledby="arch-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">System Design</p>
+        <h2 class="sh__title" id="arch-title">Review Pipeline Architecture</h2>
+      </div>
+
+      <div class="arch-diagram reveal reveal-d1">
+        <div class="flow">
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="flow-node__label">New Review</span>
+            <span class="flow-node__sub">Google Business</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <span class="flow-node__label">n8n Trigger</span>
+            <span class="flow-node__sub">Webhook / Poll</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14H8a4 4 0 0 0-4 4v2h16v-2a4 4 0 0 0-4-4z"/></svg>
+            </div>
+            <span class="flow-node__label">GPT-4o Drafts</span>
+            <span class="flow-node__sub">Personalized reply</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <span class="flow-node__label">Sentiment Check</span>
+            <span class="flow-node__sub">Positive / Negative</span>
+          </div>
+
+          <div class="flow-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-node__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="flow-node__label">Publish / Escalate</span>
+            <span class="flow-node__sub">Auto or approval</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="workflows" aria-labelledby="wf-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Under the Hood</p>
+        <h2 class="sh__title" id="wf-title">The 4 n8n Workflows Powering the Agent</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step-card reveal">
+          <div class="step-card__num">1</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Review Monitor</h3>
+            <p class="step-card__desc">
+              Polls Google Business Profile API every 5 minutes for new reviews. Detects new entries by comparing against the last-seen review ID stored in n8n's static data. Triggers the rest of the pipeline only when a genuinely new review arrives.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">CRON → /review-monitor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card reveal reveal-d1">
+          <div class="step-card__num">2</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Sentiment Analysis + Reply Generation</h3>
+            <p class="step-card__desc">
+              Sends the review text to GPT-4o with a system prompt that includes the business name, owner name, and tone guidelines. The model classifies sentiment (positive/neutral/negative) and generates a reply that references specific details from the review — never generic.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">POST /generate-reply</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card reveal reveal-d2">
+          <div class="step-card__num">3</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Smart Router</h3>
+            <p class="step-card__desc">
+              Routes based on sentiment: ★★★★-★★★★★ reviews are auto-published via Google Business Profile API. ★-★★★ reviews are held as drafts and sent to the owner via Slack or WhatsApp for approval before publishing.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">IF → /auto-publish OR /escalate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card reveal reveal-d3">
+          <div class="step-card__num">4</div>
+          <div class="step-card__content">
+            <h3 class="step-card__title">Weekly Digest</h3>
+            <p class="step-card__desc">
+              Every Monday at 9am, compiles a report of all reviews received, replies sent, sentiment distribution, and rating trend. Sends a formatted summary to the owner's email with a Google Sheets link for the full log.
+            </p>
+            <div class="step-card__endpoint">
+              <span class="endpoint">CRON → /weekly-digest</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEST RESULTS ============ -->
+  <section id="test-results" aria-labelledby="tr-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Quality Assurance</p>
+        <h2 class="sh__title" id="tr-title">10-Scenario Verification</h2>
+      </div>
+
+      <div class="table-wrap reveal reveal-d1">
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Scenario</th>
+              <th>Expected Behavior</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>5-star review arrives</td>
+              <td>AI drafts personalized reply and auto-publishes</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>1-star review arrives</td>
+              <td>AI drafts reply, holds for owner approval</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>3-star mixed review</td>
+              <td>Classified as negative, escalated to owner</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Review mentions specific dish</td>
+              <td>Reply references that dish by name</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Review in Hindi</td>
+              <td>Reply generated in Hindi</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Duplicate review detected</td>
+              <td>Skipped — no double-reply</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Slack notification for negative review</td>
+              <td>Owner receives alert within 60 seconds</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Owner approves draft via Slack</td>
+              <td>Reply published to Google within 10s</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Weekly digest fires on Monday</td>
+              <td>Email sent with stats + Sheets link</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>API rate limit hit</td>
+              <td>Graceful retry with exponential backoff</td>
+              <td><span class="status-pass"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pass</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section id="tech-stack" aria-labelledby="ts-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">Technologies</p>
+        <h2 class="sh__title" id="ts-title">Tech Stack</h2>
+      </div>
+
+      <div class="tech-grid reveal reveal-d1">
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          n8n — Workflow Orchestration
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          GPT-4o — Reply Generation
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Google Business Profile API
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Slack API — Owner Alerts
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Google Sheets — Review Log
+        </div>
+        <div class="tech-item">
+          <span class="tech-item__dot"></span>
+          Gmail API — Weekly Digest
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ============ -->
+  <section id="metrics" aria-labelledby="m-title">
+    <div class="container">
+      <div class="sh reveal">
+        <p class="sh__label">By the Numbers</p>
+        <h2 class="sh__title" id="m-title">Key Metrics</h2>
+      </div>
+
+      <div class="metrics reveal reveal-d1">
+        <div class="metric">
+          <p class="metric__value">28s</p>
+          <p class="metric__label">Avg Reply Time</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">10/10</p>
+          <p class="metric__label">Tests Passed</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">$0.002</p>
+          <p class="metric__label">Per Reply (AI Cost)</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">100%</p>
+          <p class="metric__label">Response Rate</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">4.3→4.6</p>
+          <p class="metric__label">Rating Lift</p>
+        </div>
+        <div class="metric">
+          <p class="metric__value">24/7</p>
+          <p class="metric__label">Monitoring</p>
+        </div>
+      </div>
+
+      <div class="cost-row reveal reveal-d2">
+        <div class="cost-row__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="cost-row__text">
+          <strong>~$0.002 per AI reply</strong> using GPT-4o. A business getting 50 reviews/month spends approximately <strong>$0.10/month</strong> on AI — compared to <strong>$400–900/month</strong> in staff time for manual replies.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>AI Review Reputation Agent — Built by <a href="../index.html">CodeVantage</a></p>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>
