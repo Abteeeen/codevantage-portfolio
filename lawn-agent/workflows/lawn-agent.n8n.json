@@ -13,31 +13,51 @@
     },
     {
       "parameters": {
-        "url": "https://api.apify.com/v2/acts/abotapi~realestate-au-scraper/run-sync-get-dataset-items",
+        "url": "https://auth.domain.com.au/v1/connect/token",
         "method": "POST",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpQueryAuth",
         "sendBody": true,
-        "jsonBody": "={{ JSON.stringify({ searchMode: 'location', location: 'Brisbane, QLD', propertyType: 'house', listingType: 'buy', maxItems: 50 }) }}"
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "client_id", "value": "PASTE_DOMAIN_CLIENT_ID_HERE" },
+            { "name": "client_secret", "value": "PASTE_DOMAIN_CLIENT_SECRET_HERE" },
+            { "name": "grant_type", "value": "client_credentials" },
+            { "name": "scope", "value": "api_listings_read" }
+          ]
+        }
       },
-      "id": "fetch_addresses",
-      "name": "1. Fetch Address List",
+      "id": "domain_auth",
+      "name": "1. Domain OAuth Token",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [220, 0],
-      "credentials": {
-        "httpQueryAuth": { "id": "", "name": "Apify Query Auth" }
-      }
+      "position": [220, 0]
     },
     {
       "parameters": {
-        "jsCode": "// AbotAPI actor returns nested address.{street,suburb,state,postcode,full} with no lat/lng.\n// Flatten fields and drop listings with a hidden street (can't geocode or mail those).\nreturn items\n  .filter(i => i.json.address?.street && !i.json.address.street.toLowerCase().includes('available on request'))\n  .map(i => ({ json: {\n    address: i.json.address.full,\n    suburb: i.json.address.suburb,\n    postcode: i.json.address.postcode,\n    propertyType: i.json.propertyType,\n    listingType: i.json.listingType\n  } }));"
+        "url": "https://api.domain.com.au/v1/listings/residential/_search",
+        "method": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "Authorization", "value": "=Bearer {{ $json.access_token }}" }]
+        },
+        "sendBody": true,
+        "jsonBody": "={{ JSON.stringify({ listingType: 'Sale', propertyTypes: ['House'], locations: [{ state: 'QLD', suburb: 'Brisbane', includeSurroundingSuburbs: true }], pageSize: 50 }) }}"
+      },
+      "id": "fetch_addresses",
+      "name": "1b. Fetch Address List (Domain Search)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Domain.com.au search returns an array of { listing: { propertyDetails: {...} } }.\n// Endpoint/field names are unverified against a live response (see README) — adjust\n// once you've confirmed your account's actual payload shape.\n// Flatten fields and drop listings with a hidden street (can't geocode or mail those).\nreturn items\n  .map(i => i.json.listing || i.json)\n  .filter(l => l.propertyDetails?.street && !l.propertyDetails.street.toLowerCase().includes('available on request'))\n  .map(l => ({ json: {\n    address: l.propertyDetails.displayableAddress || `${l.propertyDetails.street}, ${l.propertyDetails.suburb} ${l.propertyDetails.state} ${l.propertyDetails.postcode}`,\n    suburb: l.propertyDetails.suburb,\n    postcode: l.propertyDetails.postcode,\n    propertyType: l.propertyDetails.propertyType || 'house',\n    listingType: 'buy'\n  } }));"
       },
       "id": "flatten_addresses",
-      "name": "1b. Flatten Fields",
+      "name": "1c. Flatten Fields",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [220, 140]
+      "position": [340, 0]
     },
     {
       "parameters": {
@@ -56,10 +76,10 @@
         }
       },
       "id": "log_raw",
-      "name": "1c. Log Raw Apify Results",
+      "name": "1d. Log Raw Scan Results",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [220, 280]
+      "position": [340, 280]
     },
     {
       "parameters": {
@@ -76,23 +96,23 @@
         }
       },
       "id": "geocode_address",
-      "name": "1d. Geocode Address (Mapbox)",
+      "name": "1e. Geocode Address (Mapbox)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [330, 0],
+      "position": [400, 0],
       "credentials": {
         "httpQueryAuth": { "id": "", "name": "Mapbox Query Auth" }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Geocode node output replaces $json with the Mapbox response, so pull the\n// original flattened address fields back in from the upstream node by index.\nreturn items.map((i, idx) => {\n  const match = i.json.features?.[0];\n  if (!match) return null;\n  const [lng, lat] = match.center;\n  const original = $('1b. Flatten Fields').all()[idx]?.json ?? {};\n  return { json: { ...original, lat, lng } };\n}).filter(Boolean);"
+        "jsCode": "// Geocode node output replaces $json with the Mapbox response, so pull the\n// original flattened address fields back in from the upstream node by index.\nreturn items.map((i, idx) => {\n  const match = i.json.features?.[0];\n  if (!match) return null;\n  const [lng, lat] = match.center;\n  const original = $('1c. Flatten Fields').all()[idx]?.json ?? {};\n  return { json: { ...original, lat, lng } };\n}).filter(Boolean);"
       },
       "id": "merge_coords",
-      "name": "1e. Attach Coordinates",
+      "name": "1f. Attach Coordinates",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [380, 0]
+      "position": [460, 0]
     },
     {
       "parameters": {
@@ -102,7 +122,7 @@
       "name": "2. In-Zone Gate (QLD)",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [440, 0]
+      "position": [520, 0]
     },
     {
       "parameters": {
@@ -252,11 +272,12 @@
     }
   ],
   "connections": {
-    "Daily Trigger": { "main": [[{ "node": "1. Fetch Address List", "type": "main", "index": 0 }]] },
-    "1. Fetch Address List": { "main": [[{ "node": "1b. Flatten Fields", "type": "main", "index": 0 }]] },
-    "1b. Flatten Fields": { "main": [[{ "node": "1d. Geocode Address (Mapbox)", "type": "main", "index": 0 }, { "node": "1c. Log Raw Apify Results", "type": "main", "index": 0 }]] },
-    "1d. Geocode Address (Mapbox)": { "main": [[{ "node": "1e. Attach Coordinates", "type": "main", "index": 0 }]] },
-    "1e. Attach Coordinates": { "main": [[{ "node": "2. In-Zone Gate (QLD)", "type": "main", "index": 0 }]] },
+    "Daily Trigger": { "main": [[{ "node": "1. Domain OAuth Token", "type": "main", "index": 0 }]] },
+    "1. Domain OAuth Token": { "main": [[{ "node": "1b. Fetch Address List (Domain Search)", "type": "main", "index": 0 }]] },
+    "1b. Fetch Address List (Domain Search)": { "main": [[{ "node": "1c. Flatten Fields", "type": "main", "index": 0 }]] },
+    "1c. Flatten Fields": { "main": [[{ "node": "1e. Geocode Address (Mapbox)", "type": "main", "index": 0 }, { "node": "1d. Log Raw Scan Results", "type": "main", "index": 0 }]] },
+    "1e. Geocode Address (Mapbox)": { "main": [[{ "node": "1f. Attach Coordinates", "type": "main", "index": 0 }]] },
+    "1f. Attach Coordinates": { "main": [[{ "node": "2. In-Zone Gate (QLD)", "type": "main", "index": 0 }]] },
     "2. In-Zone Gate (QLD)": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "2b. Log In-Zone Results", "type": "main", "index": 0 }]] },
     "3. Fetch Satellite Image": { "main": [[{ "node": "4. AI Lawn Classifier", "type": "main", "index": 0 }]] },
     "4. AI Lawn Classifier": { "main": [[{ "node": "5. Rank & Select Top Lead", "type": "main", "index": 0 }]] },
