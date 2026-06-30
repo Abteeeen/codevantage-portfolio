@@ -308,3 +308,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
 }
+
+@media (max-width: 900px) {
+  .transformation-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 1.25rem !important;
+  }
+}
