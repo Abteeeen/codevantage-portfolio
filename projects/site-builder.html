@@ -55,6 +55,35 @@
     </div>
   </section>
 
+  <!-- ============ BEFORE / AFTER WEBSITE TRANSFORMATION ============ -->
+  <section class="container reveal" style="margin-top: 4rem;">
+    <div class="sh">
+      <div class="sh__label">Transformation</div>
+      <h2 class="sh__title">Before &amp; After Redesign</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin-top: 0.5rem;">
+        See how the AI Site Builder redesigned Bailey Home Service's legacy landing page (<a href="https://baileyhomeservice.com/" target="_blank" style="color: var(--accent);">baileyhomeservice.com</a>) into a premium, modern high-converting lead generation machine.
+      </p>
+    </div>
+
+    <div class="before-after-slider" id="baileySlider" style="min-height: 500px; height: 550px; position: relative;">
+      <div class="before-image">
+        <img src="../assets/bailey-old.png" alt="Legacy Website Design">
+        <span class="slider-label label-before">Before (Legacy Site)</span>
+      </div>
+      <div class="after-image" id="baileyAfterImage">
+        <img src="../assets/bailey-new-site.png" alt="AI Generated Redesign">
+        <span class="slider-label label-after">After (AI Redesign)</span>
+      </div>
+      <input type="range" min="0" max="100" value="50" class="slider-input" id="baileySliderInput">
+      <div class="slider-line-marker" id="baileySliderLine">
+        <div class="slider-btn-marker">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Problem / Solution -->
   <section class="container">
     <div class="two-col reveal">
@@ -233,6 +262,21 @@
   </footer>
 
   <script src="shared.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slider = document.getElementById("baileySliderInput");
+      const afterImage = document.getElementById("baileyAfterImage");
+      const sliderLine = document.getElementById("baileySliderLine");
+      
+      if(slider && afterImage && sliderLine) {
+        slider.addEventListener("input", function(e) {
+          const sliderVal = e.target.value;
+          afterImage.style.width = sliderVal + "%";
+          sliderLine.style.left = sliderVal + "%";
+        });
+      }
+    });
+  </script>
 </body>
 </html>
 
