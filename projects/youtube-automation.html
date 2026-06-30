@@ -60,8 +60,11 @@
           <span class="browser-dot" style="background: #22c55e;"></span>
           <span style="color: #94a3b8; font-family: monospace; font-size: 12px; margin-left: 10px;">agent.py — CodeVantage AI</span>
         </div>
-        <div class="terminal-content" id="terminal-output" style="padding: 20px; font-family: 'Fira Code', monospace; font-size: 14px; color: #38bdf8; line-height: 1.5; height: 400px; overflow-y: auto; text-align: left;">
+        <div class="terminal-content" id="terminal-output" style="padding: 20px; font-family: 'Fira Code', monospace; font-size: 14px; color: #38bdf8; line-height: 1.5; height: 600px; overflow-y: auto; text-align: left; transition: opacity 0.5s ease;">
           <!-- Logs will be typed here -->
+        </div>
+        <div id="video-container" style="display: none; height: 600px; background: #000; transition: opacity 1s ease; opacity: 0; display: flex; align-items: center; justify-content: center;">
+          <video id="result-video" src="../assets/demo_short.mp4" controls loop playsinline style="max-height: 100%; max-width: 100%; object-fit: contain;"></video>
         </div>
       </div>
     </div>
@@ -113,6 +116,8 @@
       ];
 
       const terminal = document.getElementById('terminal-output');
+      const videoContainer = document.getElementById('video-container');
+      const resultVideo = document.getElementById('result-video');
       let lineIndex = 0;
 
       function typeLine() {
@@ -122,17 +127,27 @@
           p.style.marginBottom = '4px';
           terminal.appendChild(p);
           
-          // Auto-scroll to bottom
           terminal.scrollTop = terminal.scrollHeight;
-          
           lineIndex++;
           
-          // Randomize typing speed for realism
           let delay = Math.random() * 150 + 50; 
           if (logs[lineIndex - 1].includes("Rendering frames")) delay = 800;
           if (logs[lineIndex - 1].includes("Uploading output_short.mp4")) delay = 1200;
           
           setTimeout(typeLine, delay);
+        } else {
+          // Finished typing logs! Trigger the cool transition to the video
+          setTimeout(() => {
+            terminal.style.opacity = '0';
+            setTimeout(() => {
+              terminal.style.display = 'none';
+              videoContainer.style.display = 'flex';
+              // Trigger reflow to ensure transition works
+              void videoContainer.offsetWidth; 
+              videoContainer.style.opacity = '1';
+              resultVideo.play();
+            }, 500);
+          }, 1500);
         }
       }
 
