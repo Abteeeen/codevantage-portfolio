@@ -1,0 +1,8 @@
+node_modules/
+.env
+output/*.png
+output/*.jpg
+output/*.json
+!output/.gitkeep
+.DS_Store
+*.log

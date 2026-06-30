@@ -1,0 +1,31 @@
+{
+  "_comment": "In-Zone Gate for Lawn Agent. Deterministic postcode-range filter — no AI, no API calls, $0 to run. Australian postcodes are allocated in contiguous regional blocks, so range matching is a reliable proxy for 'is this address in our target metro area' without needing a full suburb database.",
+  "regions": [
+    {
+      "id": "brisbane",
+      "label": "Brisbane Metro",
+      "postcodeRanges": [
+        [4000, 4179],
+        [4300, 4305]
+      ],
+      "excludePostcodes": [],
+      "notes": "Covers Brisbane CBD, inner suburbs, Logan, Ipswich fringe. Excludes outer rural QLD."
+    },
+    {
+      "id": "gold-coast",
+      "label": "Gold Coast",
+      "postcodeRanges": [
+        [4207, 4275]
+      ],
+      "excludePostcodes": [],
+      "notes": "Covers Gold Coast LGA from Coomera/Pimpama down to Coolangatta/Tweed border suburbs on the QLD side."
+    }
+  ],
+  "keywordExcludeSuburbTypes": [
+    "unit",
+    "apartment",
+    "townhouse",
+    "duplex"
+  ],
+  "_note_keywordExclude": "Filtered upstream in 01-fetch-addresses.js — front-lawn campaigns only make sense for standalone houses, not strata/unit properties."
+}
