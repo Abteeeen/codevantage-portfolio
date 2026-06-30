@@ -137,112 +137,203 @@
     </div>
   </section>
 
-  <!-- ============ FEATURED SAMPLE WORK (TABS) ============ -->
+  <!-- ============ FEATURED SAMPLE WORK (STICKY SCROLL) ============ -->
   <section class="section" id="featured-work">
     <div class="container">
-      <h2 class="section__title reveal text-center" style="text-align: center;">Proof of <span class="text-gradient">ROI</span></h2>
-      <p class="section__subtitle reveal text-center" style="max-width: 600px; margin: 0 auto 3rem auto; text-align: center; color: var(--text-muted);">See exactly how much time and money our AI solutions save businesses every single day.</p>
+      <h2 class="section__title reveal text-center" style="text-align: center; margin-bottom: 4rem;">Work That Speaks <span class="text-gradient">For Itself</span></h2>
       
-      <div class="tabs-container reveal">
-        <!-- Tab Headers -->
-        <div class="tabs-header">
-          <button class="tab-btn active" data-tab="tab-menu">Menu Rebuilder</button>
-          <button class="tab-btn" data-tab="tab-bailey">Site Builder</button>
-          <button class="tab-btn" data-tab="tab-tourist">Tourist Agent</button>
+      <div class="sticky-showcase">
+        <!-- Left Side: Sticky Panel (Desktop Only) -->
+        <div class="sticky-showcase__left">
+          <div class="sticky-showcase__card-wrap">
+            
+            <!-- Card 1: Tender Agent -->
+            <div class="sticky-showcase__card active" id="card-tender">
+              <span class="section-label">AI Agent</span>
+              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Tender Ingestor & Analyzer</h3>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
+                Hourly scanning of multiple government and private tender databases (AusTender, VendorPanel, Brisbane City Council). Geo-filters opportunities across 731 suburbs, checks custom keyword matches, conducts deep compliance audits on files and ZIP archives, and automatically writes the first bid response draft directly to Google Sheets.
+              </p>
+              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">100%</span>
+                  <span class="tab-metric-label">Automated</span>
+                </div>
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">90%</span>
+                  <span class="tab-metric-label">Speedup</span>
+                </div>
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">0</span>
+                  <span class="tab-metric-label">Missed Bids</span>
+                </div>
+              </div>
+              <a href="projects/tender-agent.html" class="btn btn--primary">Read Case Study</a>
+            </div>
+            
+            <!-- Card 2: Menu Rebuilder -->
+            <div class="sticky-showcase__card" id="card-menu">
+              <span class="section-label">AI Conversion</span>
+              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Digital Menu Rebuilder</h3>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
+                Instantly converts old scanned paper restaurant menus into stunning, branded, digital mobile-first layouts in under 2 minutes. Auto-generates enticing food descriptions, embeds QR codes for touchless access, and eliminates menu reprint fees completely.
+              </p>
+              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">2 min</span>
+                  <span class="tab-metric-label">Gen Time</span>
+                </div>
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">$0</span>
+                  <span class="tab-metric-label">Reprint Cost</span>
+                </div>
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">100%</span>
+                  <span class="tab-metric-label">Automated</span>
+                </div>
+              </div>
+              <a href="projects/menu-rebuilder.html" class="btn btn--primary">Read Case Study</a>
+            </div>
+            
+            <!-- Card 3: Site Builder -->
+            <div class="sticky-showcase__card" id="card-bailey">
+              <span class="section-label">Lead Gen Engine</span>
+              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Bailey Website Builder</h3>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
+                Scans local business registries to identify operational companies operating without websites. Pulls details from Google Places, auto-generates branded web copy and structures, and compiles high-converting landing pages dynamically in less than a minute.
+              </p>
+              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">&lt;60s</span>
+                  <span class="tab-metric-label">Per Site</span>
+                </div>
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">131</span>
+                  <span class="tab-metric-label">Leads Built</span>
+                </div>
+                <div class="tab-metric-box">
+                  <span class="tab-metric-value">10+</span>
+                  <span class="tab-metric-label">Industries</span>
+                </div>
+              </div>
+              <a href="projects/site-builder.html" class="btn btn--primary">Read Case Study</a>
+            </div>
+
+          </div>
         </div>
         
-        <!-- Tab Content -->
-        <div class="tabs-body">
-          <!-- Tab 1: Menu Rebuilder -->
-          <div class="tab-pane active" id="tab-menu">
-            <div class="browser-frame">
-              <div class="browser-header">
-                <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <!-- Right Side: Scrollable Showcase Media -->
+        <div class="sticky-showcase__right">
+          
+          <!-- Item 1: Tender Ingestor -->
+          <div class="showcase-item" id="showcase-tender" data-target-card="card-tender">
+            <!-- Mobile-only details -->
+            <div class="mobile-details">
+              <span class="section-label">AI Agent</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Tender Ingestor & Analyzer</h3>
+              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                Hourly scanning, geo-filtering, and deep document audits of AusTender, VendorPanel, and BCC RSS. Auto-drafts bids directly to Google Sheets.
+              </p>
+              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Automated</span></div>
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">90%</span><span class="tab-metric-label" style="font-size:0.5rem;">Speedup</span></div>
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">0</span><span class="tab-metric-label" style="font-size:0.5rem;">Missed Bids</span></div>
               </div>
-              <div class="before-after-slider" id="tabSlider">
-                <div class="before-image">
-                  <img src="assets/mikes-diner-old.png" alt="Old Menu">
-                  <span class="slider-label label-before">Before (Old Menu)</span>
+            </div>
+            <!-- Media -->
+            <div class="showcase-media-wrap">
+              <div class="browser-frame">
+                <div class="browser-header">
+                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">n8n_tender_workflow.json</span>
                 </div>
-                <div class="after-image" id="tabAfterImage">
-                  <img src="assets/mikes-new-menu.png" alt="AI Generated Menu">
-                  <span class="slider-label label-after">After (AI Generated)</span>
+                <video class="browser-video" src="Scarpe agent/scrape_agent_final.mp4" autoplay loop muted playsinline controls></video>
+              </div>
+            </div>
+            <!-- Mobile-only CTA -->
+            <div class="mobile-details" style="margin-top: 1rem;">
+              <a href="projects/tender-agent.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
+            </div>
+          </div>
+          
+          <!-- Item 2: Menu Rebuilder -->
+          <div class="showcase-item" id="showcase-menu" data-target-card="card-menu">
+            <!-- Mobile-only details -->
+            <div class="mobile-details">
+              <span class="section-label">AI Conversion</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Digital Menu Rebuilder</h3>
+              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                Instantly converts paper menus into mobile-first QR codes and websites with auto-generated descriptions.
+              </p>
+              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">2 min</span><span class="tab-metric-label" style="font-size:0.5rem;">Gen Time</span></div>
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">$0</span><span class="tab-metric-label" style="font-size:0.5rem;">Reprint</span></div>
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Auto</span></div>
+              </div>
+            </div>
+            <!-- Media -->
+            <div class="showcase-media-wrap">
+              <div class="browser-frame">
+                <div class="browser-header">
+                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">Interactive Before/After Slider</span>
                 </div>
-                <input type="range" min="0" max="100" value="50" class="slider" id="tabSliderInput">
-                <div class="slider-line" id="tabSliderLine">
-                  <div class="slider-button">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <div class="before-after-slider" id="showcaseSlider" style="min-height: 400px; height: 400px;">
+                  <div class="before-image">
+                    <img src="assets/mikes-diner-old.png" alt="Old Menu">
+                    <span class="slider-label label-before">Before (Old Menu)</span>
+                  </div>
+                  <div class="after-image" id="showcaseAfterImage">
+                    <img src="assets/mikes-new-menu.png" alt="AI Generated Menu">
+                    <span class="slider-label label-after">After (AI Generated)</span>
+                  </div>
+                  <input type="range" min="0" max="100" value="50" class="slider" id="showcaseSliderInput">
+                  <div class="slider-line" id="showcaseSliderLine">
+                    <div class="slider-button">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="tab-metrics-row">
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">2 min</span>
-                <span class="tab-metric-label">Build Time</span>
-              </div>
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">$0</span>
-                <span class="tab-metric-label">Manual Cost</span>
-              </div>
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">100%</span>
-                <span class="tab-metric-label">Automated</span>
-              </div>
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">∞</span>
-                <span class="tab-metric-label">Scalable</span>
-              </div>
-            </div>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <a href="projects/menu-rebuilder.html" class="btn btn-outline" style="background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; color: white; border: 1px solid rgba(255,255,255,0.1);">Read Full Case Study</a>
+            <!-- Mobile-only CTA -->
+            <div class="mobile-details" style="margin-top: 1rem;">
+              <a href="projects/menu-rebuilder.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
             </div>
           </div>
           
-          <!-- Tab 2: Bailey Site Builder -->
-          <div class="tab-pane" id="tab-bailey">
-            <div class="browser-frame">
-              <div class="browser-header">
-                <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-              </div>
-              <video class="browser-video" src="assets/bailey-pow.mp4" autoplay loop muted playsinline controls></video>
-            </div>
-            <div class="tab-metrics-row">
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">131</span>
-                <span class="tab-metric-label">Leads Found</span>
-              </div>
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">&lt;60s</span>
-                <span class="tab-metric-label">Per Site Built</span>
-              </div>
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">10</span>
-                <span class="tab-metric-label">Industries</span>
-              </div>
-              <div class="tab-metric-box">
-                <span class="tab-metric-value">AI</span>
-                <span class="tab-metric-label">Fully Driven</span>
+          <!-- Item 3: Site Builder -->
+          <div class="showcase-item" id="showcase-bailey" data-target-card="card-bailey">
+            <!-- Mobile-only details -->
+            <div class="mobile-details">
+              <span class="section-label">Lead Gen Engine</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Bailey Website Builder</h3>
+              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                Finds offline businesses via Google Places, scrapes details, and builds branded landing pages automatically.
+              </p>
+              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">&lt;60s</span><span class="tab-metric-label" style="font-size:0.5rem;">Per Site</span></div>
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">131</span><span class="tab-metric-label" style="font-size:0.5rem;">Leads</span></div>
+                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">10+</span><span class="tab-metric-label" style="font-size:0.5rem;">Ind.</span></div>
               </div>
             </div>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <a href="projects/site-builder.html" class="btn btn-outline" style="background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; color: white; border: 1px solid rgba(255,255,255,0.1);">Read Full Case Study</a>
+            <!-- Media -->
+            <div class="showcase-media-wrap">
+              <div class="browser-frame">
+                <div class="browser-header">
+                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">bailey_site_builder.mp4</span>
+                </div>
+                <video class="browser-video" src="assets/bailey-pow.mp4" autoplay loop muted playsinline controls></video>
+              </div>
+            </div>
+            <!-- Mobile-only CTA -->
+            <div class="mobile-details" style="margin-top: 1rem;">
+              <a href="projects/site-builder.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
             </div>
           </div>
           
-          <!-- Tab 3: AI Tourist Brochure -->
-          <div class="tab-pane" id="tab-tourist">
-            <div class="browser-frame" style="height: 500px; overflow: hidden; position: relative;">
-              <div class="browser-header" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 10; background: #2D3748;">
-                <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-              </div>
-              <img src="assets/tourist-brochure.png" alt="AI Tourist Brochure" style="width: 100%; height: auto; display: block; margin-top: 30px;">
-            </div>
-            <div style="text-align: center; margin-top: 1.5rem;">
-              <a href="#" class="btn btn-outline" style="background: rgba(255,255,255,0.05); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 600; color: white; border: 1px solid rgba(255,255,255,0.1); cursor: not-allowed; opacity: 0.5;" onclick="event.preventDefault();">Case Study Coming Soon</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -328,56 +328,95 @@ section { padding: clamp(3rem, 5vw, 4.5rem) 0; position: relative; }
 .label-before { right: 1rem; }
 .label-after { left: 1rem; }
 
-/* Tabs Component */
-.tabs-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+/* Sticky Scroll Showcase Section */
+.sticky-showcase {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 5rem;
+  align-items: start;
 }
 
-.tabs-header {
+.sticky-showcase__left {
+  position: sticky;
+  top: 140px;
+  height: calc(100vh - 200px);
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
 }
 
-.tab-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
+.sticky-showcase__card-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sticky-showcase__card {
+  position: absolute;
+  top: auto;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+}
+
+.sticky-showcase__card.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.sticky-showcase__right {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+  padding-bottom: 30vh;
+}
+
+.showcase-item {
+  position: relative;
+}
+
+.showcase-media-wrap {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
 }
 
-.tab-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+.showcase-media-wrap:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
 }
 
-.tab-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: white;
-}
-
-.tab-pane {
+.mobile-details {
   display: none;
-  animation: fadeIn 0.4s ease forwards;
 }
 
-.tab-pane.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Responsive Sticky Scroll rules */
+@media (max-width: 900px) {
+  .sticky-showcase {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .sticky-showcase__left {
+    display: none;
+  }
+  .sticky-showcase__right {
+    gap: 4rem;
+    padding-bottom: 2rem;
+  }
+  .mobile-details {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
 }
 
 

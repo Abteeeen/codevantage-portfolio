@@ -372,36 +372,50 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-// Tabs Logic
+// Sticky Scroll Showcase Logic
 document.addEventListener("DOMContentLoaded", function() {
-  const tabBtns = document.querySelectorAll(".tab-btn");
-  const tabPanes = document.querySelectorAll(".tab-pane");
+  const showcaseItems = document.querySelectorAll(".showcase-item");
+  const showcaseCards = document.querySelectorAll(".sticky-showcase__card");
   
-  if (tabBtns.length > 0) {
-    tabBtns.forEach(btn => {
-      btn.addEventListener("click", function() {
-        // Remove active class from all
-        tabBtns.forEach(b => b.classList.remove("active"));
-        tabPanes.forEach(p => p.classList.remove("active"));
-        
-        // Add active class to clicked tab
-        this.classList.add("active");
-        const target = this.getAttribute("data-tab");
-        document.getElementById(target).classList.add("active");
+  if (showcaseItems.length > 0 && showcaseCards.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -55% 0px", // Trigger when card occupies the center area
+      threshold: 0.1
+    };
+
+    const showcaseObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetCardId = entry.target.getAttribute("data-target-card");
+          
+          // Remove active class from all cards
+          showcaseCards.forEach(card => card.classList.remove("active"));
+          
+          // Add active class to target card
+          const targetCard = document.getElementById(targetCardId);
+          if (targetCard) {
+            targetCard.classList.add("active");
+          }
+        }
       });
+    }, observerOptions);
+
+    showcaseItems.forEach(item => {
+      showcaseObserver.observe(item);
     });
   }
 
-  // Update Slider Logic for Tabs
-  const tabSlider = document.getElementById("tabSliderInput");
-  const tabAfterImage = document.getElementById("tabAfterImage");
-  const tabSliderLine = document.getElementById("tabSliderLine");
+  // Showcase Before/After Slider Logic
+  const showcaseSlider = document.getElementById("showcaseSliderInput");
+  const showcaseAfterImage = document.getElementById("showcaseAfterImage");
+  const showcaseSliderLine = document.getElementById("showcaseSliderLine");
   
-  if(tabSlider && tabAfterImage && tabSliderLine) {
-    tabSlider.addEventListener("input", function(e) {
+  if (showcaseSlider && showcaseAfterImage && showcaseSliderLine) {
+    showcaseSlider.addEventListener("input", function(e) {
       const sliderVal = e.target.value;
-      tabAfterImage.style.width = sliderVal + "%";
-      tabSliderLine.style.left = sliderVal + "%";
+      showcaseAfterImage.style.width = sliderVal + "%";
+      showcaseSliderLine.style.left = sliderVal + "%";
     });
   }
 });
