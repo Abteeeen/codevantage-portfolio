@@ -14,10 +14,15 @@
     {
       "parameters": {
         "url": "https://overpass-api.de/api/interpreter",
-        "method": "POST",
-        "sendBody": true,
-        "contentType": "form-urlencoded",
-        "bodyParameters": {
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "*/*" }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
           "parameters": [
             {
               "name": "data",
