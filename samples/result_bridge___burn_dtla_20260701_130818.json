@@ -1,0 +1,33 @@
+{
+  "store": {
+    "name": "Bridge & Burn DTLA",
+    "address": "1318 7th Street Los Angeles CA 90021",
+    "phone": "+1-213-278-0455",
+    "website": "https://www.bridgeandburn.com",
+    "rating": 0.0,
+    "review_count": 0,
+    "score": 40.0,
+    "status": "postcard_created",
+    "owner_name": ""
+  },
+  "garments_found": 23,
+  "selected_garment": {
+    "category": "",
+    "description": "Striking black dress with orange flowers, perfect for cinematic lighting",
+    "score": 10.0,
+    "source": "website"
+  },
+  "reel": {
+    "video_path": "",
+    "video_url": "",
+    "thumbnail_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\bridge___burn_dtla\\garments\\menuSofia-Wildflower_0044.jpg"
+  },
+  "postcard": {
+    "front_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\bridge___burn_dtla\\postcard_front.png",
+    "back_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\bridge___burn_dtla\\postcard_back.png",
+    "reel_url": "https://youragency.com/reel/osm_node_5309679953"
+  },
+  "mail_tracking_id": "SKIPPED_BAD_ADDRESS",
+  "error": "",
+  "timestamp": "20260701_130818"
+}

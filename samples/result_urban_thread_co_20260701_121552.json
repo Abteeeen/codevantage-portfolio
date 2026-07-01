@@ -1,0 +1,33 @@
+{
+  "store": {
+    "name": "Urban Thread Co",
+    "address": "456 Style Street, Los Angeles, CA 90017",
+    "phone": "(213) 555-0202",
+    "website": "https://urbanthread.co",
+    "rating": 4.2,
+    "review_count": 134,
+    "score": 80,
+    "status": "postcard_created",
+    "owner_name": "James Chen"
+  },
+  "garments_found": 0,
+  "selected_garment": {
+    "category": "dress",
+    "description": "Demo garment for Urban Thread Co",
+    "score": 9.0,
+    "source": "demo"
+  },
+  "reel": {
+    "video_path": "",
+    "video_url": "https://youragency.com/reel/demo_002",
+    "thumbnail_path": ""
+  },
+  "postcard": {
+    "front_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\urban_thread_co\\postcard_front.png",
+    "back_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\urban_thread_co\\postcard_back.png",
+    "reel_url": "https://youragency.com/reel/demo_002"
+  },
+  "mail_tracking_id": "",
+  "error": "",
+  "timestamp": "20260701_121552"
+}

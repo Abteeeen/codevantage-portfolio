@@ -1,0 +1,29 @@
+{
+  "store": {
+    "name": "Image Gear USA",
+    "address": "106 East 17th Street Los Angeles CA 90015",
+    "phone": "+1-626-705-6161",
+    "website": "http://imagegearusa.com",
+    "rating": 0.0,
+    "review_count": 0,
+    "score": 40.0,
+    "status": "reel_rendered",
+    "owner_name": ""
+  },
+  "garments_found": 1,
+  "selected_garment": {
+    "category": "",
+    "description": "Apparel",
+    "score": 0.0,
+    "source": "website"
+  },
+  "reel": {
+    "video_path": "",
+    "video_url": "",
+    "thumbnail_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\image_gear_usa\\garments\\apparel-thumb.jpg"
+  },
+  "postcard": null,
+  "mail_tracking_id": "",
+  "error": "Video generation failed \u2014 postcard not sent",
+  "timestamp": "20260701_151456"
+}

@@ -1,0 +1,33 @@
+{
+  "store": {
+    "name": "Bella Moda Boutique",
+    "address": "123 Fashion Ave, Los Angeles, CA 90015",
+    "phone": "(213) 555-0101",
+    "website": "https://bellamodaboutique.com",
+    "rating": 4.5,
+    "review_count": 87,
+    "score": 85,
+    "status": "postcard_created",
+    "owner_name": "Maria Santos"
+  },
+  "garments_found": 0,
+  "selected_garment": {
+    "category": "dress",
+    "description": "Demo garment for Bella Moda Boutique",
+    "score": 9.0,
+    "source": "demo"
+  },
+  "reel": {
+    "video_path": "",
+    "video_url": "https://youragency.com/reel/demo_001",
+    "thumbnail_path": ""
+  },
+  "postcard": {
+    "front_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\bella_moda_boutique\\postcard_front.png",
+    "back_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\bella_moda_boutique\\postcard_back.png",
+    "reel_url": "https://youragency.com/reel/demo_001"
+  },
+  "mail_tracking_id": "",
+  "error": "",
+  "timestamp": "20260701_121552"
+}

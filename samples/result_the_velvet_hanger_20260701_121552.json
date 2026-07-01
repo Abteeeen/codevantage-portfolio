@@ -1,0 +1,33 @@
+{
+  "store": {
+    "name": "The Velvet Hanger",
+    "address": "789 Rodeo Drive, Beverly Hills, CA 90210",
+    "phone": "(310) 555-0303",
+    "website": "https://thevelvethanger.com",
+    "rating": 4.8,
+    "review_count": 212,
+    "score": 95,
+    "status": "postcard_created",
+    "owner_name": "Sofia Laurent"
+  },
+  "garments_found": 0,
+  "selected_garment": {
+    "category": "dress",
+    "description": "Demo garment for The Velvet Hanger",
+    "score": 9.0,
+    "source": "demo"
+  },
+  "reel": {
+    "video_path": "",
+    "video_url": "https://youragency.com/reel/demo_003",
+    "thumbnail_path": ""
+  },
+  "postcard": {
+    "front_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\the_velvet_hanger\\postcard_front.png",
+    "back_path": "D:\\Abhiram Work Space\\Real AI automation\\content-studio-agent-\\samples\\sample_output\\the_velvet_hanger\\postcard_back.png",
+    "reel_url": "https://youragency.com/reel/demo_003"
+  },
+  "mail_tracking_id": "",
+  "error": "",
+  "timestamp": "20260701_121552"
+}

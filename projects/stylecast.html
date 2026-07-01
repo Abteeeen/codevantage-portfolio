@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleCast Agent — Automated Clothing Store Reels &amp; Postcards | CodeVantage</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <meta name="description" content="An autonomous AI agent that finds offline clothing stores, extracts products, renders garments onto models in video reels, and physically mails custom postcards.">
+    <link rel="stylesheet" href="../projects/shared.css">
+    <link rel="stylesheet" href="stylecast.css">
+</head>
+<body>
+
+    <!-- ====== Back Navigation ====== -->
+    <nav class="back-nav" aria-label="Back navigation">
+        <div class="container back-nav__inner">
+            <a href="../index.html" class="back-nav__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                All Projects
+            </a>
+            <span class="back-nav__title">StyleCast Agent</span>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">AI Agent · End-to-End Autonomous</div>
+            <h1>
+                Find clothing stores.<br>
+                Make their <span class="accent">cinematic reel</span>.<br>
+                Mail it. On autopilot.
+            </h1>
+            <p>
+                One command discovers real offline clothing stores, selects their best product using AI,
+                generates a video, prints a postcard, and physically mails it to the owner — zero manual steps.
+            </p>
+            <div class="hero-btns">
+                <a href="https://github.com/Abteeeen/Content-studio-agent-/tree/main/webapp" target="_blank" class="btn btn-primary">Launch GitHub WebApp</a>
+                <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
+                <a href="#get-this" class="btn btn-outline">Get This Workflow</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="n">7</div><div class="l">Autonomous Steps</div></div>
+                <div class="hero-stat"><div class="n">56</div><div class="l">Stores Found in LA</div></div>
+                <div class="hero-stat"><div class="n">$0.10</div><div class="l">Cost per Store</div></div>
+                <div class="hero-stat"><div class="n">0</div><div class="l">Human Decisions</div></div>
+                <div class="hero-stat"><div class="n">90%+</div><div class="l">Postcard Open Rate</div></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section id="how-it-works" style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2>How the Agent Works</h2>
+            <p class="subtitle">7 fully automated steps. Give it a city — it handles everything else.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">1</div>
+                    <h3>Discover Stores</h3>
+                    <p>Queries OpenStreetMap or Yelp for clothing stores near any city. Found 56 stores in Los Angeles in under 10 seconds.</p>
+                    <div class="step-tech">OSM / Yelp / Google Places</div>
+                </div>
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">2</div>
+                    <h3>Score &amp; Qualify</h3>
+                    <p>Scores every store 0–100 on website quality, contact info, address completeness. Drops chains and incomplete leads. 20/56 passed.</p>
+                    <div class="step-tech">Custom scoring engine</div>
+                </div>
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">3</div>
+                    <h3>Scrape Their Products</h3>
+                    <p>Visits the store's actual website and pulls clothing images using BeautifulSoup. No API needed — works on any website.</p>
+                    <div class="step-tech">BeautifulSoup scraper</div>
+                </div>
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">4</div>
+                    <h3>AI Picks Best Garment</h3>
+                    <p>Sends all images to Groq Vision AI. Scores each on color, silhouette, uniqueness, and cinematic impact. Picks winner with a written reason.</p>
+                    <div class="step-tech">Groq Llama 4 Scout Vision</div>
+                </div>
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">5</div>
+                    <h3>Generate Video Reel</h3>
+                    <p>Optionally places the garment on a model (virtual try-on), then animates it into a 5-second cinematic video. Falls back gracefully if any API fails.</p>
+                    <div class="step-tech">WaveSpeedAI WAN 2.7 + Segmind</div>
+                </div>
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">6</div>
+                    <h3>Design Postcard</h3>
+                    <p>Creates a 4×6" print-ready postcard at 300 DPI. Front: garment with store-specific headline. Back: personalised letter + QR code linking to the video.</p>
+                    <div class="step-tech">Pillow + qrcode (free)</div>
+                </div>
+                <div class="step-card">
+                    <div class="auto-dot">AUTO</div>
+                    <div class="step-num">7</div>
+                    <h3>Physically Mail It</h3>
+                    <p>Sends postcard via Lob API. Lob prints, addresses, stamps, and delivers it to the store. Returns a tracking ID. Only fires after video is confirmed generated.</p>
+                    <div class="step-tech">Lob API</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── REAL RESULTS ── -->
+    <section style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2>Real Results Generated</h2>
+            <p class="subtitle">Actual outputs from running the pipeline on real Los Angeles stores. Not mocked, not demo data.</p>
+            <div class="results-grid">
+
+                <div class="result-card">
+                    <video controls muted loop playsinline src="../samples/image_gear_usa/cinematic_reel.mp4"></video>
+                    <div class="result-body">
+                        <div class="result-label">Los Angeles, CA · OSM Discovery</div>
+                        <div class="result-name">Image Gear USA</div>
+                        <div class="result-detail">
+                            Website scraped: imagegearusa.com<br>
+                            AI selected: Blue apron · score 9/10<br>
+                            <em>"Bold blue color and interesting silhouette"</em><br>
+                            Lob tracking: psc_14497c3c83e24fbf
+                        </div>
+                        <div class="result-tags">
+                            <span class="rtag rtag-blue">Video generated</span>
+                            <span class="rtag rtag-green">Postcard mailed ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <video controls muted loop playsinline src="../samples/bridge___burn_dtla/cinematic_reel.mp4"></video>
+                    <div class="result-body">
+                        <div class="result-label">Los Angeles, CA · OSM Discovery</div>
+                        <div class="result-name">Bridge &amp; Burn DTLA</div>
+                        <div class="result-detail">
+                            Website scraped: bridgeandburn.com<br>
+                            AI selected best garment from product catalog<br>
+                            Video animated via WaveSpeedAI WAN 2.7
+                        </div>
+                        <div class="result-tags">
+                            <span class="rtag rtag-blue">Video generated</span>
+                            <span class="rtag rtag-amber">Postcard designed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="img-wrap">
+                        <img src="../samples/image_gear_usa/postcard_front.png" alt="Postcard Front" />
+                    </div>
+                    <div class="result-body">
+                        <div class="result-label">Postcard — Front Side</div>
+                        <div class="result-name">Image Gear USA · Print-Ready Front</div>
+                        <div class="result-detail">300 DPI · 4×6" · PNG · Garment image + store-specific headline</div>
+                        <div class="result-tags"><span class="rtag rtag-green">Print ready</span></div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="img-wrap">
+                        <img src="../samples/image_gear_usa/postcard_back.png" alt="Postcard Back" />
+                    </div>
+                    <div class="result-body">
+                        <div class="result-label">Postcard — Back Side</div>
+                        <div class="result-name">Image Gear USA · Personalised Back</div>
+                        <div class="result-detail">Personalised letter to owner · QR code links to video · Return address printed</div>
+                        <div class="result-tags"><span class="rtag rtag-green">QR to video</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FREE VS PAID PATH ── -->
+    <section style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2>Free Path vs Paid Path</h2>
+            <p class="subtitle">We built and tested the free path. Here is exactly what changes when you upgrade.</p>
+            <div class="path-grid">
+                <div class="path-card active">
+                    <div class="path-badge">✓ Current — What We Built</div>
+                    <h3>Free Path</h3>
+                    <div class="path-price">~$0.10 <span style="font-size:14px;color:var(--text-muted);font-weight:400">/ store</span></div>
+                    <div class="path-rows">
+                        <div class="path-row">OpenStreetMap store discovery — zero cost, no signup</div>
+                        <div class="path-row">Groq Llama 4 Scout Vision — free tier, garment selection</div>
+                        <div class="path-row">WaveSpeedAI WAN 2.7 — $1 free credit (~16 videos)</div>
+                        <div class="path-row">Lob test mode — 300 free test postcards</div>
+                        <div class="path-row">Postcard design with Pillow — completely free</div>
+                        <div class="path-row limit">Segmind try-on — free credits, 406 errors in testing</div>
+                        <div class="path-row limit">Less store data richness vs Google</div>
+                        <div class="path-row limit">Video shows garment alone, not on a model (try-on not stable)</div>
+                    </div>
+                </div>
+                <div class="path-card upgrade">
+                    <div class="path-badge">↑ Production Upgrade</div>
+                    <h3>Paid Path</h3>
+                    <div class="path-price">~$0.90 <span style="font-size:14px;color:var(--text-muted);font-weight:400">/ store</span></div>
+                    <div class="path-rows">
+                        <div class="path-row">Google Places API — phone, hours, owner name, photos</div>
+                        <div class="path-row">Claude claude-sonnet-5 Vision — best garment reasoning</div>
+                        <div class="path-row">Replicate IDM-VTON — garment on real model, high quality</div>
+                        <div class="path-row">Replicate SVD / Kling — cinematic model reel</div>
+                        <div class="path-row">Lob live mode — real tracked physical mail delivery</div>
+                        <div class="path-row">Full store enrichment — owner name auto-populated</div>
+                        <div class="path-row">Model wearing garment in video — highest conversion</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── WHAT YOU GET IF YOU BUY THIS ── -->
+    <section id="get-this" style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2>If You Get This Workflow</h2>
+            <p class="subtitle">What you receive, how to use it, what you can earn from it.</p>
+
+            <div class="buyer-grid">
+                <div class="buyer-card">
+                    <div class="buyer-icon">📦</div>
+                    <h3>What You Get</h3>
+                    <p>Full Python source code for all 7 pipeline steps. Flask web dashboard. Database schema. Ready to run with your own API keys. No black boxes — every line is readable and modifiable.</p>
+                </div>
+                <div class="buyer-card">
+                    <div class="buyer-icon">⚡</div>
+                    <h3>Setup Time</h3>
+                    <p>15–30 minutes. Install Python, run pip install, add 4 API keys to a .env file (all free to get), run one command. No servers, no cloud setup needed to start.</p>
+                </div>
+                <div class="buyer-card">
+                    <div class="buyer-icon">🎯</div>
+                    <h3>Who Is This For</h3>
+                    <p>Content agencies targeting offline stores. Social media managers looking for a warm outreach hook. Freelancers who want an automated lead generation tool that stands out from cold emails.</p>
+                </div>
+                <div class="buyer-card">
+                    <div class="buyer-icon">🔧</div>
+                    <h3>What You Can Customise</h3>
+                    <p>Postcard design (fonts, layout, brand colors). Model photos for try-on. Target city and store category. Email follow-up copy. Dashboard branding. QR landing page design.</p>
+                </div>
+                <div class="buyer-card">
+                    <div class="buyer-icon">📈</div>
+                    <h3>How to Scale It</h3>
+                    <p>Run against multiple cities. Increase --limit to process 50+ stores per run. Set up a cron job to run weekly. Add email follow-up for stores that scan the QR. Connect CRM webhook to HubSpot or Pipedrive.</p>
+                </div>
+                <div class="buyer-card">
+                    <div class="buyer-icon">🛡️</div>
+                    <h3>What You Own</h3>
+                    <p>Everything. The code is yours. You host it, you run it, you white-label it. There is no subscription, no platform lock-in. Deploy it as a service to your clients under your brand.</p>
+                </div>
+            </div>
+
+            <!-- HOW TO RUN IT -->
+            <h3 style="margin-bottom: 12px; font-size: 18px;">How You Run It</h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">Three commands to get started:</p>
+            <div class="cmd-block">
+                <span class="cmd-comment"># 1. Install dependencies</span><br>
+                pip install -r requirements.txt<br><br>
+                <span class="cmd-comment"># 2. Add your API keys to .env (4 free keys, takes 10 minutes)</span><br>
+                WAVESPEED_API_KEY=your_key<br>
+                GROQ_API_KEY=your_key<br>
+                LOB_API_KEY=test_your_key<br>
+                SEGMIND_API_KEY=your_key<br><br>
+                <span class="cmd-comment"># 3. Run on any US city</span><br>
+                python -m pipeline.run --city "New York" --source osm --limit 10 --render-method wavespeed<br><br>
+                <span class="cmd-comment"># Optional: skip specific stores you've already contacted</span><br>
+                python -m pipeline.run --city "Chicago" --source osm --limit 5 --exclude "H&amp;M" "Zara"
+            </div>
+
+            <!-- INCOME TABLE -->
+            <h3 style="margin-bottom: 16px; margin-top: 40px; font-size: 18px;">What You Can Charge</h3>
+            <div class="income-row" style="margin-bottom: 32px;">
+                <div class="income-card">
+                    <div class="income-n">$150–300</div>
+                    <div class="income-l">Per store (one-time outreach package)</div>
+                </div>
+                <div class="income-card">
+                    <div class="income-n">$997/mo</div>
+                    <div class="income-l">Retainer per city (ongoing outreach)</div>
+                </div>
+                <div class="income-card">
+                    <div class="income-n">$3–5k</div>
+                    <div class="income-l">White-label setup for another agency</div>
+                </div>
+                <div class="income-card">
+                    <div class="income-n">~$0.90</div>
+                    <div class="income-l">Your cost per store (paid path)</div>
+                </div>
+            </div>
+
+            <!-- USE CASES TABLE -->
+            <h3 style="margin-bottom: 16px; font-size: 18px;">Use Cases</h3>
+            <table class="use-table">
+                <thead>
+                    <tr><th>Who you are</th><th>How you use it</th><th>What the store gets</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Content agency</td>
+                        <td>Run weekly against new cities. Each store gets a reel + postcard. You offer to produce more content for them as a paid client.</td>
+                        <td>A free cinematic reel of their product. A physical postcard showing what you made. A reason to call you.</td>
+                    </tr>
+                    <tr>
+                        <td>Social media manager</td>
+                        <td>Run against boutiques in your city. Use the reel as a cold outreach sample — "I made this for you, want more?"</td>
+                        <td>One free piece of high-quality video content. A tangible demonstration of your work.</td>
+                    </tr>
+                    <tr>
+                        <td>Freelance video editor</td>
+                        <td>Use the pipeline to source leads automatically. Close them with the video as proof of concept, then upsell custom reels at $300–500 each.</td>
+                        <td>A personalised video of their exact product. Not a generic pitch — something specific to them.</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing consultant</td>
+                        <td>Resell outreach-as-a-service. Charge per store or per city. Use the dashboard to show clients how many stores were contacted and which ones viewed the QR.</td>
+                        <td>Physical proof of outreach: a real postcard delivered to their door.</td>
+                    </tr>
+                    <tr>
+                        <td>Agency owner</td>
+                        <td>White-label the entire system. Rebrand dashboard and postcards. Sell as your own proprietary outreach tool to other agencies.</td>
+                        <td>N/A — you sell the tool itself, not the outreach service.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ── FAILED COMBINATIONS ── -->
+    <section style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2>What We Tried That Didn't Work</h2>
+            <p class="subtitle">Fifteen real errors hit during development. Every one diagnosed and resolved or routed around.</p>
+            <table class="fail-table">
+                <thead>
+                    <tr><th>What failed</th><th>Root cause</th><th>How it was fixed</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HuggingFace Inference API</td>
+                        <td>api-inference.huggingface.co route-blocked by Indian ISP. DNS change to 8.8.8.8 had no effect — not a DNS issue.</td>
+                        <td>Switched to WaveSpeedAI (globally routable)</td>
+                    </tr>
+                    <tr>
+                        <td>fal.ai try-on + video</td>
+                        <td>storage.fal.run and fal.run DNS-blocked in India. VPN gave 403 (VPN IP blacklisted by fal.ai).</td>
+                        <td>Abandoned. WaveSpeedAI used instead.</td>
+                    </tr>
+                    <tr>
+                        <td>Replicate IDM-VTON + SVD</td>
+                        <td>Free trial credits exhausted. 402 on every call.</td>
+                        <td>Segmind + WaveSpeedAI as free alternative</td>
+                    </tr>
+                    <tr>
+                        <td>Segmind IDM-VTON 406</td>
+                        <td>Base64 of 800px images was ~2MB — server rejected payload size.</td>
+                        <td>Resize to 768px with Pillow before encoding (~200KB). Still investigating.</td>
+                    </tr>
+                    <tr>
+                        <td>WaveSpeedAI — "480p"</td>
+                        <td>API only accepts "720p" or "1080p". Clear 400 error message.</td>
+                        <td>Changed resolution to "720p". Fixed immediately.</td>
+                    </tr>
+                    <tr>
+                        <td>WaveSpeedAI — connection aborted</td>
+                        <td>Sending raw PNG as ~2MB base64 body caused server to close connection mid-upload.</td>
+                        <td>Upload to tmpfiles.org first, pass HTTPS URL to WaveSpeed.</td>
+                    </tr>
+                    <tr>
+                        <td>WaveSpeedAI — HTTP image URL</td>
+                        <td>Garment URL was http:// — WaveSpeed requires HTTPS.</td>
+                        <td>Download and re-upload to tmpfiles.org to get HTTPS URL.</td>
+                    </tr>
+                    <tr>
+                        <td>Lob — size "6x4"</td>
+                        <td>Lob only accepts "4x6". 422 error.</td>
+                        <td>Fixed string to "4x6".</td>
+                    </tr>
+                    <tr>
+                        <td>Lob — missing use_type</td>
+                        <td>Required field not in payload. 422 "mail_use_type_can_not_be_null".</td>
+                        <td>Added use_type: "marketing" to request body.</td>
+                    </tr>
+                    <tr>
+                        <td>Lob — wrong address key</td>
+                        <td>Code read payload["to"]["city"] but key was "address_city". Sent empty city.</td>
+                        <td>Fixed to read from address_parts directly.</td>
+                    </tr>
+                    <tr>
+                        <td>OSM — 0 qualified stores</td>
+                        <td>All OSM stores have rating=0. Threshold was 50. Nothing passed.</td>
+                        <td>Lower threshold to 15 when no stores have ratings.</td>
+                    </tr>
+                    <tr>
+                        <td>Groq — deprecated model</td>
+                        <td>llama-3.2-90b-vision-preview removed by Groq with no warning.</td>
+                        <td>Switched to llama-4-scout-17b-16e-instruct.</td>
+                    </tr>
+                    <tr>
+                        <td>Overpass API 504</td>
+                        <td>Main OSM server overloaded. Timeout on every call.</td>
+                        <td>Added 2 mirror URLs with automatic fallback retry loop.</td>
+                    </tr>
+                    <tr>
+                        <td>Mailing without video</td>
+                        <td>Pipeline mailed postcards even when video failed. QR pointed to fake URL.</td>
+                        <td>Gates Steps 6+7 on video being confirmed generated.</td>
+                    </tr>
+                    <tr>
+                        <td>OSM address parsing</td>
+                        <td>OSM returns "106 East 17th St Los Angeles CA 90015" (no commas). Parser split wrong.</td>
+                        <td>Added second parser branch for space-only format with street type detection.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section style="border-top: 1px solid var(--border); text-align: center; margin-bottom: 40px;">
+        <div class="container">
+            <h2>Ready to run it?</h2>
+            <p class="subtitle">One command. A city name. StyleCast Agent handles the rest.</p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://github.com/Abteeeen/Content-studio-agent-/tree/main/webapp" target="_blank" class="btn btn-primary">Open WebApp</a>
+                <a href="#how-it-works" class="btn btn-outline">See the Pipeline</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 14px;">
+        <div class="container">
+            <p>Built by <a href="../index.html">CodeVantage AI</a>. Custom automation systems.</p>
+        </div>
+    </footer>
+
+    <script src="shared.js"></script>
+</body>
+</html>
