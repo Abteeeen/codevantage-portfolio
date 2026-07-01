@@ -13,34 +13,27 @@
     },
     {
       "parameters": {
-        "url": "https://overpass.kumi.systems/api/interpreter",
+        "url": "https://api.geoapify.com/v2/places",
         "method": "GET",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            { "name": "Accept", "value": "*/*" },
-            { "name": "User-Agent", "value": "LawnAgent/1.0 (automated lawn care lead generation)" }
-          ]
-        },
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
-            {
-              "name": "data",
-              "value": "[out:json][timeout:25];(way[\"building\"=\"house\"](33.29,-111.86,33.33,-111.82);way[\"building\"=\"house\"](32.99,-96.75,33.03,-96.71););out center 30;"
-            }
+            { "name": "categories", "value": "building.residential" },
+            { "name": "filter", "value": "rect:-111.86,33.29,-111.82,33.33" },
+            { "name": "limit", "value": "50" },
+            { "name": "apiKey", "value": "d97d84d5b68243e3967eaafe581ae9b4" }
           ]
         }
       },
       "id": "fetch_addresses",
-      "name": "1. Fetch Houses (Overpass — Chandler AZ + Plano TX)",
+      "name": "1. Fetch Houses — Chandler AZ (Geoapify)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [220, 0]
     },
     {
       "parameters": {
-        "jsCode": "// Overpass returns { elements: [ { center: {lat, lon}, tags: { addr:housenumber, addr:street, ... } } ] }\nconst elements = $json.elements || [];\nreturn elements\n  .filter(el => el.center && el.tags?.['addr:housenumber'] && el.tags?.['addr:street'])\n  .map(el => {\n    const t = el.tags;\n    const city = t['addr:city'] || t['addr:suburb'] || '';\n    const state = t['addr:state'] || '';\n    const postcode = t['addr:postcode'] || '';\n    const address = `${t['addr:housenumber']} ${t['addr:street']}, ${city}, ${state} ${postcode}`.trim();\n    return { json: { address, city, state, postcode, lat: el.center.lat, lng: el.center.lon, propertyType: 'house', source: 'openstreetmap' } };\n  })\n  .filter(i => i.json.address && i.json.lat && i.json.lng);"
+        "jsCode": "// Geoapify Places API returns GeoJSON FeatureCollection.\n// Each feature has geometry.coordinates [lng, lat] and properties with address fields.\nconst features = $json.features || [];\nreturn features\n  .filter(f => f.geometry?.coordinates && f.properties?.address_line1)\n  .map(f => {\n    const p = f.properties;\n    const [lng, lat] = f.geometry.coordinates;\n    const city = p.city || p.suburb || p.district || '';\n    const state = p.state_code || p.state || '';\n    const postcode = p.postcode || '';\n    const address = p.address_line1 + (p.address_line2 ? ', ' + p.address_line2 : '');\n    return { json: { address, city, state, postcode, lat, lng, propertyType: 'house', source: 'geoapify' } };\n  })\n  .filter(i => i.json.address && i.json.lat && i.json.lng);"
       },
       "id": "flatten_addresses",
       "name": "1b. Flatten & Filter",
@@ -211,8 +204,8 @@
     }
   ],
   "connections": {
-    "Daily Trigger": { "main": [[{ "node": "1. Fetch Houses (Overpass — Chandler AZ + Plano TX)", "type": "main", "index": 0 }]] },
-    "1. Fetch Houses (Overpass — Chandler AZ + Plano TX)": { "main": [[{ "node": "1b. Flatten & Filter", "type": "main", "index": 0 }]] },
+    "Daily Trigger": { "main": [[{ "node": "1. Fetch Houses — Chandler AZ (Geoapify)", "type": "main", "index": 0 }]] },
+    "1. Fetch Houses — Chandler AZ (Geoapify)": { "main": [[{ "node": "1b. Flatten & Filter", "type": "main", "index": 0 }]] },
     "1b. Flatten & Filter": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "1c. Log Raw Scan Results", "type": "main", "index": 0 }]] },
     "3. Fetch Satellite Image": { "main": [[{ "node": "4. AI Lawn Classifier", "type": "main", "index": 0 }]] },
     "4. AI Lawn Classifier": { "main": [[{ "node": "5. Rank & Select Top Lead", "type": "main", "index": 0 }]] },
