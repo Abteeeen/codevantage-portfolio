@@ -1,6 +1,6 @@
 # Lawn Agent
 
-AI agent that scans satellite imagery for dead, brown front lawns across **Brisbane & Gold Coast, QLD**, renders a photoreal "lush and green" restoration, and automates a postcard mail campaign — a lead-gen system for lawn care and landscaping companies.
+AI agent that scans satellite imagery for dead, brown front lawns across **Phoenix, AZ and Dallas, TX**, renders a photoreal "lush and green" restoration, and automates a postcard mail campaign — a lead-gen system for lawn care and landscaping companies.
 
 > Every step from satellite to mailbox is automated: address sourcing → satellite pull → AI lawn detection → ranking → photoreal render → owner lookup → postcard generation → mail dispatch → log.
 
@@ -10,7 +10,7 @@ AI agent that scans satellite imagery for dead, brown front lawns across **Brisb
 Schedule Trigger
       │
       ▼
-1. Fetch Address List       (Domain.com.au Developer API, QLD only — free default; Apify scraper available as a paid swap-in, see below)
+1. Fetch House List         (OpenStreetMap Overpass API — free, no API key, returns lat/lng directly)
       │
       ▼
 2. In-Zone Gate             (Brisbane + Gold Coast postcode filter — data/qld-zones.json)
@@ -42,32 +42,30 @@ Schedule Trigger
 
 A ready-to-import n8n workflow is in [`workflows/lawn-agent.n8n.json`](./workflows/lawn-agent.n8n.json). Standalone Node.js scripts for each pipeline stage are in [`scripts/`](./scripts) if you'd rather run it outside n8n or test stages individually.
 
-## Address data source: free path vs. paid path
+## Address data source: OpenStreetMap Overpass API (completely free)
 
-**Free path (current default): Domain.com.au Developer API.** Official, sanctioned listings API — not scraping, so no ToS risk — with a free developer tier. This is what `1. Domain OAuth Token` → `1b. Fetch Address List (Domain Search)` in the n8n workflow and `scripts/01-fetch-addresses.js` use by default.
+The workflow uses the **OpenStreetMap Overpass API** (`overpass-api.de`) to pull residential houses in Phoenix, AZ and Dallas, TX. No account, no API key, no credit card — completely free forever.
 
-- Sign up free at [developer.domain.com.au](https://developer.domain.com.au) → create an app → get a **Client ID** and **Client Secret**.
-- Auth is OAuth2 client-credentials: the workflow's `1. Domain OAuth Token` node trades your Client ID/Secret for a short-lived bearer token, which `1b. Fetch Address List (Domain Search)` then sends as `Authorization: Bearer ...`.
-- Paste your Client ID/Secret directly into the `1. Domain OAuth Token` node's body parameters in n8n (same manual-entry pattern used elsewhere in this workflow, since this is a self-hosted instance with no env-var access from the UI).
-- **Unverified note:** the exact request/response field names in `lib/domain.js` and the n8n Domain nodes are based on Domain's published API pattern but haven't been confirmed against a live response yet. Run it once you have a key, paste back a real sample response, and the field mapping in `1c. Flatten Fields` / `lib/domain.js` can be corrected — same process used earlier to fix the Apify field mapping.
-- Domain's search response also doesn't include lat/lng, so the existing Mapbox geocoding step (`1e. Geocode Address`) still runs after it, same as it did for Apify.
+- A single POST to `https://overpass-api.de/api/interpreter` returns up to 100 residential houses across both cities with **lat/lng already included** — no Mapbox geocoding step needed, saving API calls.
+- The query targets `building=house` and `building=residential` ways inside the Phoenix (AZ) and Dallas (TX) admin boundaries.
+- Unlike listing-based sources (Apify, Domain, RentCast), this targets **all residential houses** — not just ones currently for sale. That's a larger lead pool for lawn care: every homeowner is a potential customer, not just sellers.
 
-**Paid path (future, once there are clients): Apify `abotapi/realestate-au-scraper`.** Broader coverage (buy + sold listings, richer property detail) but costs per result and needs a funded Apify account. Confirmed working schema: nested `address.{street,suburb,state,postcode,full}`, no lat/lng (also needs the Mapbox geocoding step). The original Apify HTTP-request body/auth setup is preserved in `scripts/01-fetch-addresses.js` (`fetchFromApify`, selected via `DATA_SOURCE=apify` in `.env`) — swap it back into the n8n workflow's node 1 slot if/when a client engagement justifies the cost.
+**Future paid path (when you have clients):** Apify `abotapi/realestate-au-scraper` (AUS) or a US equivalent scraper gives richer listing data (price, bedrooms, agent contact) and is worth the per-result cost once there are paying clients.
 
-## Why Brisbane + Gold Coast first
+## Why Phoenix & Dallas first
 
-These two QLD regions give the best cost/coverage tradeoff to start:
+These two US sunbelt metros give the highest dead-lawn density and the largest lawn care market:
 
-- Dense, high-value suburban housing stock with visible front lawns (unlike inner-city apartments)
-- Good Mapbox/satellite resolution coverage in metro areas
-- Defined, mailable postcode ranges (see `data/qld-zones.json`) to keep the campaign tightly geo-targeted instead of scanning all of QLD
+- **Phoenix, AZ** — extreme desert heat kills grass constantly, massive suburban sprawl, year-round dead-lawn visibility in satellite imagery
+- **Dallas, TX** — hot humid summers with drought cycles, dense suburban housing stock, large existing lawn care industry
+- Both cities have excellent Mapbox satellite resolution in suburban areas
+- US lawn care is a ~$176B market — far larger than Australia, more agency clients to pitch
 
 ## API stack & costs
 
 | Stage | API | Free tier / cost |
 |---|---|---|
-| Address sourcing | [Domain.com.au Developer API](https://developer.domain.com.au) (free path, default) / Apify `abotapi/realestate-au-scraper` (paid path, future) | Free tier (Domain) / ~$3 per 1,000 results (Apify) |
-| Geocoding | [Mapbox Geocoding API](https://docs.mapbox.com/api/search/geocoding/) (same token as satellite imagery) | Included in Mapbox free tier |
+| House sourcing | [OpenStreetMap Overpass API](https://overpass-api.de) — Phoenix AZ + Dallas TX | **Completely free, no key** |
 | Satellite imagery | [Mapbox Static Images API](https://docs.mapbox.com/api/maps/static-images/) (satellite style) | **50,000 images/month free** — this is the entire reason the MVP is viable at $0 |
 | Lawn condition vision scoring | OpenRouter (Gemini 2.5 Flash or GPT-4o vision) | ~$0.001–0.005 per image |
 | Photoreal lawn render | Google AI Studio — Gemini 2.5 Flash Image | Free tier (Google AI Studio) — only run this on the top-ranked address, not every scan |

@@ -1,5 +1,5 @@
 {
-  "name": "Lawn Agent — Brisbane & Gold Coast",
+  "name": "Lawn Agent — Phoenix AZ & Dallas TX",
   "nodes": [
     {
       "parameters": {
@@ -13,51 +13,34 @@
     },
     {
       "parameters": {
-        "url": "https://auth.domain.com.au/v1/connect/token",
+        "url": "https://overpass-api.de/api/interpreter",
         "method": "POST",
         "sendBody": true,
         "contentType": "form-urlencoded",
         "bodyParameters": {
           "parameters": [
-            { "name": "client_id", "value": "PASTE_DOMAIN_CLIENT_ID_HERE" },
-            { "name": "client_secret", "value": "PASTE_DOMAIN_CLIENT_SECRET_HERE" },
-            { "name": "grant_type", "value": "client_credentials" },
-            { "name": "scope", "value": "api_listings_read" }
+            {
+              "name": "data",
+              "value": "[out:json][timeout:60];(area[\"name\"=\"Arizona\"][\"admin_level\"=\"4\"]->.az;area[\"name\"=\"Texas\"][\"admin_level\"=\"4\"]->.tx;area[\"name\"=\"Phoenix\"][\"admin_level\"=\"8\"](area.az)->.phoenix;area[\"name\"=\"Dallas\"][\"admin_level\"=\"8\"](area.tx)->.dallas;way[\"building\"=\"house\"](area.phoenix);way[\"building\"=\"residential\"](area.phoenix);way[\"building\"=\"house\"](area.dallas);way[\"building\"=\"residential\"](area.dallas););out center 100;"
+            }
           ]
         }
       },
-      "id": "domain_auth",
-      "name": "1. Domain OAuth Token",
+      "id": "fetch_addresses",
+      "name": "1. Fetch Houses (Overpass — Phoenix & Dallas)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [220, 0]
     },
     {
       "parameters": {
-        "url": "https://api.domain.com.au/v1/listings/residential/_search",
-        "method": "POST",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [{ "name": "Authorization", "value": "=Bearer {{ $json.access_token }}" }]
-        },
-        "sendBody": true,
-        "jsonBody": "={{ JSON.stringify({ listingType: 'Sale', propertyTypes: ['House'], locations: [{ state: 'QLD', suburb: 'Brisbane', includeSurroundingSuburbs: true }], pageSize: 50 }) }}"
-      },
-      "id": "fetch_addresses",
-      "name": "1b. Fetch Address List (Domain Search)",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [280, 0]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Domain.com.au search returns an array of { listing: { propertyDetails: {...} } }.\n// Endpoint/field names are unverified against a live response (see README) — adjust\n// once you've confirmed your account's actual payload shape.\n// Flatten fields and drop listings with a hidden street (can't geocode or mail those).\nreturn items\n  .map(i => i.json.listing || i.json)\n  .filter(l => l.propertyDetails?.street && !l.propertyDetails.street.toLowerCase().includes('available on request'))\n  .map(l => ({ json: {\n    address: l.propertyDetails.displayableAddress || `${l.propertyDetails.street}, ${l.propertyDetails.suburb} ${l.propertyDetails.state} ${l.propertyDetails.postcode}`,\n    suburb: l.propertyDetails.suburb,\n    postcode: l.propertyDetails.postcode,\n    propertyType: l.propertyDetails.propertyType || 'house',\n    listingType: 'buy'\n  } }));"
+        "jsCode": "// Overpass returns { elements: [ { center: {lat, lon}, tags: { 'addr:housenumber', 'addr:street', ... } } ] }\n// Already includes coordinates — no geocoding step needed.\nconst elements = $json.elements || [];\nreturn elements\n  .filter(el => el.center && el.tags?.['addr:housenumber'] && el.tags?.['addr:street'])\n  .map(el => {\n    const t = el.tags;\n    const city = t['addr:city'] || t['addr:suburb'] || '';\n    const state = t['addr:state'] || '';\n    const postcode = t['addr:postcode'] || '';\n    const address = `${t['addr:housenumber']} ${t['addr:street']}, ${city}, ${state} ${postcode}`.trim();\n    return { json: { address, suburb: city, city, state, postcode, lat: el.center.lat, lng: el.center.lon, propertyType: 'house', source: 'openstreetmap' } };\n  })\n  .filter(i => i.json.address && i.json.lat && i.json.lng);"
       },
       "id": "flatten_addresses",
-      "name": "1c. Flatten Fields",
+      "name": "1b. Flatten & Filter",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [340, 0]
+      "position": [380, 0]
     },
     {
       "parameters": {
@@ -69,82 +52,19 @@
           "value": {
             "runDate": "={{ $now.toISODate() }}",
             "address": "={{ $json.address }}",
-            "suburb": "={{ $json.suburb }}",
+            "city": "={{ $json.city }}",
+            "state": "={{ $json.state }}",
             "postcode": "={{ $json.postcode }}",
-            "propertyType": "={{ $json.propertyType }}"
+            "lat": "={{ $json.lat }}",
+            "lng": "={{ $json.lng }}"
           }
         }
       },
       "id": "log_raw",
-      "name": "1d. Log Raw Scan Results",
+      "name": "1c. Log Raw Scan Results",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [340, 280]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.mapbox.com/geocoding/v5/mapbox.places/{{ encodeURIComponent($json.address + ', Australia') }}.json",
-        "method": "GET",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpQueryAuth",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            { "name": "country", "value": "au" },
-            { "name": "limit", "value": "1" }
-          ]
-        }
-      },
-      "id": "geocode_address",
-      "name": "1e. Geocode Address (Mapbox)",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [400, 0],
-      "credentials": {
-        "httpQueryAuth": { "id": "", "name": "Mapbox Query Auth" }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Geocode node output replaces $json with the Mapbox response, so pull the\n// original flattened address fields back in from the upstream node by index.\nreturn items.map((i, idx) => {\n  const match = i.json.features?.[0];\n  if (!match) return null;\n  const [lng, lat] = match.center;\n  const original = $('1c. Flatten Fields').all()[idx]?.json ?? {};\n  return { json: { ...original, lat, lng } };\n}).filter(Boolean);"
-      },
-      "id": "merge_coords",
-      "name": "1f. Attach Coordinates",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [460, 0]
-    },
-    {
-      "parameters": {
-        "jsCode": "const { inZone, isStandaloneHouse } = require('../lib/zones.js');\nreturn items.filter(i => isStandaloneHouse(i.json.propertyType) && inZone(i.json.postcode));"
-      },
-      "id": "zone_gate",
-      "name": "2. In-Zone Gate (QLD)",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [520, 0]
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": { "value": "YOUR_GOOGLE_SHEET_ID" },
-        "sheetName": "FilteredScan",
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "runDate": "={{ $now.toISODate() }}",
-            "address": "={{ $json.address }}",
-            "suburb": "={{ $json.suburb }}",
-            "postcode": "={{ $json.postcode }}",
-            "zone": "={{ $json.zone }}"
-          }
-        }
-      },
-      "id": "log_filtered",
-      "name": "2b. Log In-Zone Results",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [440, 200]
+      "position": [380, 280]
     },
     {
       "parameters": {
@@ -158,7 +78,7 @@
       "name": "3. Fetch Satellite Image",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [660, 0],
+      "position": [560, 0],
       "credentials": {
         "httpQueryAuth": { "id": "", "name": "Mapbox Query Auth" }
       }
@@ -174,26 +94,26 @@
           "parameters": [{ "name": "Content-Type", "value": "application/json" }]
         },
         "sendBody": true,
-        "jsonBody": "={{ JSON.stringify({ model: 'google/gemini-2.5-flash', response_format: { type: 'json_object' }, messages: [ { role: 'system', content: 'Classify lawn condition (dead/patchy/healthy/no-visible-lawn), houseQualityTier (A/B/C), standaloneHouse boolean. Return JSON only.' }, { role: 'user', content: [ { type: 'text', text: 'Classify this property.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + $binary.data.data } } ] } ] }) }}"
+        "jsonBody": "={{ JSON.stringify({ model: 'google/gemini-2.5-flash', response_format: { type: 'json_object' }, messages: [ { role: 'system', content: 'You are a property analyst. Look at this satellite image of a US residential property. Classify: lawnCondition (dead/patchy/healthy/no-visible-lawn), lawnConfidence (0-1 float), houseQualityTier (A/B/C where A=large well-maintained home), standaloneHouse (boolean). Return JSON only.' }, { role: 'user', content: [ { type: 'text', text: 'Classify this property.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + $binary.data.data } } ] } ] }) }}"
       },
       "id": "classify_lawn",
       "name": "4. AI Lawn Classifier",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [880, 0],
+      "position": [780, 0],
       "credentials": {
         "httpHeaderAuth": { "id": "", "name": "OpenRouter Header Auth" }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Score: dead=3, patchy=1.5, healthy=0; tier A=3,B=2,C=1\nconst scored = items.map(i => {\n  const c = JSON.parse(i.json.choices[0].message.content);\n  const condScore = { dead: 3, patchy: 1.5, healthy: 0, 'no-visible-lawn': -10 }[c.lawnCondition] ?? 0;\n  const tierScore = { A: 3, B: 2, C: 1 }[c.houseQualityTier] ?? 0;\n  return { json: { ...i.json, ...c, score: condScore * (c.lawnConfidence ?? 1) + tierScore } };\n});\nscored.sort((a, b) => b.json.score - a.json.score);\nreturn [scored[0]]; // top lead only"
+        "jsCode": "// Score: dead=3, patchy=1.5, healthy=0, no-visible-lawn=-10; tier A=3,B=2,C=1\n// Only pass standaloneHouse=true properties — filters out apartments, units etc.\nconst scored = items\n  .map(i => {\n    const c = JSON.parse(i.json.choices[0].message.content);\n    if (!c.standaloneHouse) return null;\n    const condScore = { dead: 3, patchy: 1.5, healthy: 0, 'no-visible-lawn': -10 }[c.lawnCondition] ?? 0;\n    const tierScore = { A: 3, B: 2, C: 1 }[c.houseQualityTier] ?? 0;\n    return { json: { ...i.json, ...c, score: condScore * (c.lawnConfidence ?? 1) + tierScore } };\n  })\n  .filter(Boolean);\nscored.sort((a, b) => b.json.score - a.json.score);\nif (!scored.length) throw new Error('No scoreable leads this run.');\nreturn [scored[0]];"
       },
       "id": "rank_select",
       "name": "5. Rank & Select Top Lead",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1100, 0]
+      "position": [1000, 0]
     },
     {
       "parameters": {
@@ -206,13 +126,13 @@
           "parameters": [{ "name": "Content-Type", "value": "application/json" }]
         },
         "sendBody": true,
-        "jsonBody": "={{ JSON.stringify({ contents: [ { parts: [ { text: 'Replace the dead brown lawn with a lush even healthy green lawn. Keep the house, driveway, trees and lighting identical. Photoreal satellite top-down view.' }, { inline_data: { mime_type: 'image/jpeg', data: $binary.data.data } } ] } ] }) }}"
+        "jsonBody": "={{ JSON.stringify({ contents: [ { parts: [ { text: 'Replace the dead or patchy brown lawn with a lush, thick, evenly green healthy lawn. Keep the house, driveway, trees, fencing and all other elements identical. Photoreal satellite top-down view, same lighting and perspective.' }, { inline_data: { mime_type: 'image/jpeg', data: $binary.data.data } } ] } ] }) }}"
       },
       "id": "render_lawn",
       "name": "6. AI Lawn Render (Gemini 2.5 Flash Image)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1320, 0],
+      "position": [1220, 0],
       "credentials": {
         "httpHeaderAuth": { "id": "", "name": "Google AI Studio Header Auth" }
       }
@@ -225,14 +145,14 @@
       "name": "6b. Extract Rendered Image",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1430, 0]
+      "position": [1380, 0]
     },
     {
       "parameters": {
-        "jsCode": "// Stub: wire to your QLD title-search provider or listing-data fallback.\nreturn items.map(i => ({ json: { ...i.json, ownerName: i.json.ownerName || 'Homeowner' } }));"
+        "jsCode": "// Stub: wire to a US property/owner lookup API (e.g. ATTOM, BatchData, or county assessor records).\n// For demo purposes, defaults to 'Homeowner' so the pipeline completes end-to-end.\nreturn items.map(i => ({ json: { ...i.json, ownerName: i.json.ownerName || 'Homeowner' } }));"
       },
       "id": "owner_lookup",
-      "name": "7. Owner Lookup",
+      "name": "7. Owner Lookup (US — stub)",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [1540, 0]
@@ -249,7 +169,7 @@
           ]
         },
         "sendBody": true,
-        "jsonBody": "={{ JSON.stringify({ to: { firstName: $json.ownerName, addressLine1: $json.address, city: $json.suburb, provinceOrState: 'QLD', postalOrZip: String($json.postcode), countryCode: 'AU' }, size: '6x9', frontHTML: '<img src=\"' + $json.publicRenderUrl + '\" style=\"width:100%;height:100%;object-fit:cover;\"/>', backHTML: '<p>We noticed your lawn needs attention — here is what it could look like. Scan for a free quote.</p>' }) }}"
+        "jsonBody": "={{ JSON.stringify({ to: { firstName: $json.ownerName, addressLine1: $json.address, city: $json.city, provinceOrState: $json.state, postalOrZip: String($json.postcode), countryCode: 'US' }, size: '6x9', frontHTML: '<img src=\"' + $json.publicRenderUrl + '\" style=\"width:100%;height:100%;object-fit:cover;\"/>', backHTML: '<p>We noticed your lawn needs attention — here is what it could look like. Scan for a free quote.</p>' }) }}"
       },
       "id": "send_postcard",
       "name": "8. Send Postcard (PostGrid) — NOT CONFIGURED YET",
@@ -262,7 +182,20 @@
       "parameters": {
         "operation": "appendOrUpdate",
         "documentId": { "value": "YOUR_GOOGLE_SHEET_ID" },
-        "sheetName": "Leads"
+        "sheetName": "Leads",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "runDate": "={{ $now.toISODate() }}",
+            "address": "={{ $json.address }}",
+            "city": "={{ $json.city }}",
+            "state": "={{ $json.state }}",
+            "postcode": "={{ $json.postcode }}",
+            "lawnCondition": "={{ $json.lawnCondition }}",
+            "houseQualityTier": "={{ $json.houseQualityTier }}",
+            "score": "={{ $json.score }}"
+          }
+        }
       },
       "id": "log_sheet",
       "name": "9. Log to Sheet",
@@ -272,19 +205,15 @@
     }
   ],
   "connections": {
-    "Daily Trigger": { "main": [[{ "node": "1. Domain OAuth Token", "type": "main", "index": 0 }]] },
-    "1. Domain OAuth Token": { "main": [[{ "node": "1b. Fetch Address List (Domain Search)", "type": "main", "index": 0 }]] },
-    "1b. Fetch Address List (Domain Search)": { "main": [[{ "node": "1c. Flatten Fields", "type": "main", "index": 0 }]] },
-    "1c. Flatten Fields": { "main": [[{ "node": "1e. Geocode Address (Mapbox)", "type": "main", "index": 0 }, { "node": "1d. Log Raw Scan Results", "type": "main", "index": 0 }]] },
-    "1e. Geocode Address (Mapbox)": { "main": [[{ "node": "1f. Attach Coordinates", "type": "main", "index": 0 }]] },
-    "1f. Attach Coordinates": { "main": [[{ "node": "2. In-Zone Gate (QLD)", "type": "main", "index": 0 }]] },
-    "2. In-Zone Gate (QLD)": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "2b. Log In-Zone Results", "type": "main", "index": 0 }]] },
+    "Daily Trigger": { "main": [[{ "node": "1. Fetch Houses (Overpass — Phoenix & Dallas)", "type": "main", "index": 0 }]] },
+    "1. Fetch Houses (Overpass — Phoenix & Dallas)": { "main": [[{ "node": "1b. Flatten & Filter", "type": "main", "index": 0 }]] },
+    "1b. Flatten & Filter": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "1c. Log Raw Scan Results", "type": "main", "index": 0 }]] },
     "3. Fetch Satellite Image": { "main": [[{ "node": "4. AI Lawn Classifier", "type": "main", "index": 0 }]] },
     "4. AI Lawn Classifier": { "main": [[{ "node": "5. Rank & Select Top Lead", "type": "main", "index": 0 }]] },
     "5. Rank & Select Top Lead": { "main": [[{ "node": "6. AI Lawn Render (Gemini 2.5 Flash Image)", "type": "main", "index": 0 }]] },
     "6. AI Lawn Render (Gemini 2.5 Flash Image)": { "main": [[{ "node": "6b. Extract Rendered Image", "type": "main", "index": 0 }]] },
-    "6b. Extract Rendered Image": { "main": [[{ "node": "7. Owner Lookup", "type": "main", "index": 0 }]] },
-    "7. Owner Lookup": { "main": [[{ "node": "8. Send Postcard (PostGrid) — NOT CONFIGURED YET", "type": "main", "index": 0 }]] },
+    "6b. Extract Rendered Image": { "main": [[{ "node": "7. Owner Lookup (US — stub)", "type": "main", "index": 0 }]] },
+    "7. Owner Lookup (US — stub)": { "main": [[{ "node": "8. Send Postcard (PostGrid) — NOT CONFIGURED YET", "type": "main", "index": 0 }]] },
     "8. Send Postcard (PostGrid) — NOT CONFIGURED YET": { "main": [[{ "node": "9. Log to Sheet", "type": "main", "index": 0 }]] }
   },
   "meta": { "instanceId": "lawn-agent" }
