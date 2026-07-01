@@ -116,7 +116,7 @@
     },
     {
       "parameters": {
-        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
         "method": "POST",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
@@ -125,7 +125,7 @@
           "parameters": [{ "name": "Content-Type", "value": "application/json" }]
         },
         "sendBody": true,
-        "jsonBody": "={{ JSON.stringify({ contents: [ { parts: [ { text: 'Replace the dead or patchy brown lawn with a lush, thick, evenly green healthy lawn. Keep the house, driveway, trees, fencing and all other elements identical. Photoreal satellite top-down view, same lighting and perspective.' }, { inline_data: { mime_type: 'image/jpeg', data: $binary.data.data } } ] } ] }) }}"
+        "jsonBody": "={{ JSON.stringify({ model: 'google/gemini-2.5-flash-image', messages: [ { role: 'user', content: [ { type: 'text', text: 'Replace the dead or patchy brown lawn with a lush, thick, evenly green healthy lawn. Keep the house, driveway, trees, fencing and all other elements identical. Photoreal satellite top-down view, same lighting and perspective.' }, { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + $binary.data.data } } ] } ] }) }}"
       },
       "id": "render_lawn",
       "name": "6. AI Lawn Render (Gemini 2.5 Flash Image)",
@@ -133,12 +133,12 @@
       "typeVersion": 4.2,
       "position": [1220, 0],
       "credentials": {
-        "httpHeaderAuth": { "id": "", "name": "Google AI Studio Header Auth" }
+        "httpHeaderAuth": { "id": "", "name": "OpenRouter Header Auth" }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Gemini returns the rendered image as base64 inside candidates[0].content.parts[].inline_data.data\nconst part = $json.candidates?.[0]?.content?.parts?.find(p => p.inline_data);\nif (!part) throw new Error('Gemini render returned no image data.');\nreturn [{\n  json: { ...$('5. Rank & Select Top Lead').item.json },\n  binary: {\n    data: {\n      data: part.inline_data.data,\n      mimeType: part.inline_data.mime_type || 'image/png',\n      fileName: 'rendered-lawn.png'\n    }\n  }\n}];"
+        "jsCode": "// OpenRouter/Gemini image model returns the rendered image as a data URL\n// under choices[0].message.images[0].image_url.url\nconst imgUrl = $json.choices?.[0]?.message?.images?.[0]?.image_url?.url;\nif (!imgUrl) throw new Error('Render returned no image. Full response: ' + JSON.stringify($json));\n// Strip the data URL prefix to get raw base64\nconst base64 = imgUrl.replace(/^data:image\\/\\w+;base64,/, '');\nreturn [{\n  json: { ...$('5. Rank & Select Top Lead').item.json },\n  binary: {\n    data: {\n      data: base64,\n      mimeType: 'image/png',\n      fileName: 'rendered-lawn.png'\n    }\n  }\n}];"
       },
       "id": "extract_render",
       "name": "6b. Extract Rendered Image",
