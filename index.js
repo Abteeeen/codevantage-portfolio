@@ -561,4 +561,22 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
+
+  // Alternating Video Loop for StyleCast Agent
+  const stylecastVideo = document.getElementById('stylecast-video');
+  if (stylecastVideo) {
+    const stylecastVideos = [
+      'samples/image_gear_usa/cinematic_reel.mp4',
+      'samples/bridge___burn_dtla/cinematic_reel.mp4'
+    ];
+    let stylecastVideoIdx = 0;
+    
+    stylecastVideo.addEventListener('ended', function() {
+      stylecastVideoIdx = (stylecastVideoIdx + 1) % stylecastVideos.length;
+      stylecastVideo.src = stylecastVideos[stylecastVideoIdx];
+      stylecastVideo.play().catch(function(e) {
+        console.log("StyleCast video play was interrupted or blocked:", e);
+      });
+    });
+  }
 });
