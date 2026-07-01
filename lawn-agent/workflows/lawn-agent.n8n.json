@@ -13,13 +13,40 @@
     },
     {
       "parameters": {
-        "jsCode": "// Seed addresses — real suburban houses in Phoenix AZ and Dallas TX,\n// hand-picked in high dead-lawn suburbs (Chandler/Gilbert AZ, Plano/Irving TX).\n// Swap this node for a live API call once there is a paying client.\nreturn [\n  { json: { address: '1234 W Chandler Blvd, Chandler, AZ 85224', city: 'Chandler', state: 'AZ', postcode: '85224', lat: 33.3062, lng: -111.8413 } },\n  { json: { address: '876 S Gilbert Rd, Gilbert, AZ 85296', city: 'Gilbert', state: 'AZ', postcode: '85296', lat: 33.3528, lng: -111.7890 } },\n  { json: { address: '4521 E Baseline Rd, Mesa, AZ 85206', city: 'Mesa', state: 'AZ', postcode: '85206', lat: 33.3839, lng: -111.7799 } },\n  { json: { address: '2210 W Southern Ave, Tempe, AZ 85282', city: 'Tempe', state: 'AZ', postcode: '85282', lat: 33.3789, lng: -111.9400 } },\n  { json: { address: '9832 E Camelback Rd, Scottsdale, AZ 85251', city: 'Scottsdale', state: 'AZ', postcode: '85251', lat: 33.4990, lng: -111.9254 } },\n  { json: { address: '3301 N 7th Ave, Phoenix, AZ 85013', city: 'Phoenix', state: 'AZ', postcode: '85013', lat: 33.4891, lng: -112.0774 } },\n  { json: { address: '1502 W Glendale Ave, Glendale, AZ 85301', city: 'Glendale', state: 'AZ', postcode: '85301', lat: 33.5386, lng: -112.1860 } },\n  { json: { address: '6710 W Bell Rd, Peoria, AZ 85382', city: 'Peoria', state: 'AZ', postcode: '85382', lat: 33.6362, lng: -112.2307 } },\n  { json: { address: '445 E Chandler Heights Rd, Chandler, AZ 85249', city: 'Chandler', state: 'AZ', postcode: '85249', lat: 33.2487, lng: -111.8316 } },\n  { json: { address: '11203 E Apache Trail, Apache Junction, AZ 85120', city: 'Apache Junction', state: 'AZ', postcode: '85120', lat: 33.4153, lng: -111.5495 } },\n  { json: { address: '2819 Custer Pkwy, Richardson, TX 75080', city: 'Richardson', state: 'TX', postcode: '75080', lat: 32.9482, lng: -96.7298 } },\n  { json: { address: '1045 W Plano Pkwy, Plano, TX 75075', city: 'Plano', state: 'TX', postcode: '75075', lat: 33.0198, lng: -96.6989 } },\n  { json: { address: '3322 N Belt Line Rd, Irving, TX 75062', city: 'Irving', state: 'TX', postcode: '75062', lat: 32.8537, lng: -96.9489 } },\n  { json: { address: '5601 Samuell Blvd, Dallas, TX 75228', city: 'Dallas', state: 'TX', postcode: '75228', lat: 32.7874, lng: -96.6927 } },\n  { json: { address: '2104 W Spring Creek Pkwy, Plano, TX 75023', city: 'Plano', state: 'TX', postcode: '75023', lat: 33.0562, lng: -96.7234 } },\n  { json: { address: '8710 Skillman St, Dallas, TX 75243', city: 'Dallas', state: 'TX', postcode: '75243', lat: 32.8841, lng: -96.7312 } },\n  { json: { address: '1204 W Randol Mill Rd, Arlington, TX 76012', city: 'Arlington', state: 'TX', postcode: '76012', lat: 32.7459, lng: -97.1306 } },\n  { json: { address: '4300 Grapevine Mills Blvd, Grapevine, TX 76051', city: 'Grapevine', state: 'TX', postcode: '76051', lat: 32.9607, lng: -97.0781 } },\n  { json: { address: '901 N Josey Ln, Carrollton, TX 75006', city: 'Carrollton', state: 'TX', postcode: '75006', lat: 32.9887, lng: -96.8983 } },\n  { json: { address: '3100 E Renner Rd, Richardson, TX 75082', city: 'Richardson', state: 'TX', postcode: '75082', lat: 32.9924, lng: -96.6478 } }\n];"
+        "url": "https://overpass.kumi.systems/api/interpreter",
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "*/*" },
+            { "name": "User-Agent", "value": "LawnAgent/1.0 (automated lawn care lead generation)" }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "[out:json][timeout:25];(way[\"building\"=\"house\"](33.29,-111.86,33.33,-111.82);way[\"building\"=\"house\"](32.99,-96.75,33.03,-96.71););out center 30;"
+            }
+          ]
+        }
       },
       "id": "fetch_addresses",
-      "name": "1. Seed Addresses (Phoenix AZ + Dallas TX)",
+      "name": "1. Fetch Houses (Overpass — Chandler AZ + Plano TX)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Overpass returns { elements: [ { center: {lat, lon}, tags: { addr:housenumber, addr:street, ... } } ] }\nconst elements = $json.elements || [];\nreturn elements\n  .filter(el => el.center && el.tags?.['addr:housenumber'] && el.tags?.['addr:street'])\n  .map(el => {\n    const t = el.tags;\n    const city = t['addr:city'] || t['addr:suburb'] || '';\n    const state = t['addr:state'] || '';\n    const postcode = t['addr:postcode'] || '';\n    const address = `${t['addr:housenumber']} ${t['addr:street']}, ${city}, ${state} ${postcode}`.trim();\n    return { json: { address, city, state, postcode, lat: el.center.lat, lng: el.center.lon, propertyType: 'house', source: 'openstreetmap' } };\n  })\n  .filter(i => i.json.address && i.json.lat && i.json.lng);"
+      },
+      "id": "flatten_addresses",
+      "name": "1b. Flatten & Filter",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [220, 0]
+      "position": [380, 0]
     },
     {
       "parameters": {
@@ -184,8 +211,9 @@
     }
   ],
   "connections": {
-    "Daily Trigger": { "main": [[{ "node": "1. Seed Addresses (Phoenix AZ + Dallas TX)", "type": "main", "index": 0 }]] },
-    "1. Seed Addresses (Phoenix AZ + Dallas TX)": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "1c. Log Raw Scan Results", "type": "main", "index": 0 }]] },
+    "Daily Trigger": { "main": [[{ "node": "1. Fetch Houses (Overpass — Chandler AZ + Plano TX)", "type": "main", "index": 0 }]] },
+    "1. Fetch Houses (Overpass — Chandler AZ + Plano TX)": { "main": [[{ "node": "1b. Flatten & Filter", "type": "main", "index": 0 }]] },
+    "1b. Flatten & Filter": { "main": [[{ "node": "3. Fetch Satellite Image", "type": "main", "index": 0 }, { "node": "1c. Log Raw Scan Results", "type": "main", "index": 0 }]] },
     "3. Fetch Satellite Image": { "main": [[{ "node": "4. AI Lawn Classifier", "type": "main", "index": 0 }]] },
     "4. AI Lawn Classifier": { "main": [[{ "node": "5. Rank & Select Top Lead", "type": "main", "index": 0 }]] },
     "5. Rank & Select Top Lead": { "main": [[{ "node": "6. AI Lawn Render (Gemini 2.5 Flash Image)", "type": "main", "index": 0 }]] },
