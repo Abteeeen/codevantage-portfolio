@@ -205,7 +205,7 @@ const lines = [
   { t: 3.9,  lvl:'D',    txt:'render pass 12/40 · turf mask filled' },
   { t: 4.2,  lvl:'D',    txt:'render pass 27/40 · turf mask filled' },
   { t: 4.5,  lvl:'D',    txt:'render pass 40/40 · turf mask filled' },
-  { t: 4.9,  lvl:'OK',   txt:'after frame composited · lawn restored' },
+  { t: 5.0,  lvl:'OK',   txt:'after frame composited · lawn restored' },
   { t: 5.3,  lvl:'INFO', txt:'postcard · front render + QR → landing page' },
   { t: 5.7,  lvl:'OK',   txt:'mail queued · brought back to life' },
 ];
@@ -249,8 +249,6 @@ function play(){
     timer.textContent = sec;
     if (sec >= 9) { clearInterval(timerInt); }
   }, 1000);
-
-  setTimeout(play, 9000);
 }
 
 play();
