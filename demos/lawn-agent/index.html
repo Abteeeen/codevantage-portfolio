@@ -59,9 +59,11 @@ body{
   overflow:hidden;
   position:relative;
   border-right:1px solid #17231e;
+  display: flex;
+  flex-direction: column;
 }
 .prompt-line{color:#3ddc84;margin-bottom:10px;font-size:10px;opacity:.8}
-.log{color:#8fa39a;white-space:pre-wrap;margin-bottom:60px}
+.log{color:#8fa39a;white-space:pre-wrap;margin-bottom:60px;flex-grow:1;display:flex;flex-direction:column;justify-content:flex-end;overflow-y:auto}
 .log .lvl{display:inline-block;width:44px;font-weight:700}
 .lvl.info{color:#4a9eff}
 .lvl.ok{color:#3ddc84}
@@ -240,6 +242,15 @@ function resetPanel(){
   footerDiag.textContent='scanning…';
   scheduled = false;
 }
+
+let lastTime = 0;
+video.addEventListener('timeupdate', () => {
+  if (video.currentTime < lastTime) {
+    resetPanel();
+    scheduleLines(video.duration || 6);
+  }
+  lastTime = video.currentTime;
+});
 
 video.addEventListener('loadedmetadata', () => {
   resetPanel();
