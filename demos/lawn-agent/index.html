@@ -27,8 +27,6 @@ body{
   border:1px solid #17231e;
   border-radius:12px;
   overflow:hidden;
-  display:grid;
-  grid-template-columns:340px 1fr;
   box-shadow:0 40px 100px rgba(0,0,0,.6);
   position:relative;
 }
@@ -51,6 +49,7 @@ body{
 
 /* ===== LEFT: TERMINAL ===== */
 .terminal{
+  position:absolute;top:0;bottom:0;left:0;width:340px;
   background:#070b0d;
   padding:44px 14px 14px;
   font-family:'JetBrains Mono',monospace;
@@ -86,6 +85,7 @@ body{
 
 /* ===== RIGHT: VIDEO PANEL ===== */
 .photo{
+  margin-left:340px;width:calc(100% - 340px);
   position:relative;
   background:#000;
   padding-top:34px;
@@ -140,9 +140,9 @@ body{
 .footer-bar .diag{font-family:'JetBrains Mono',monospace;font-size:10px;color:#e0a336}
 
 @media (max-width:720px){
-  .stage{grid-template-columns:1fr;aspect-ratio:9/16}
+  .stage{aspect-ratio:9/16}
   .terminal{display:none}
-  .photo{padding-top:34px}
+  .photo{margin-left:0;width:100%;padding-top:34px}
 }
 </style>
 </head>
