@@ -46,7 +46,7 @@ a { color:inherit; }
 .panel + .panel { border-top:1px dashed var(--ink); }
 .split { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(20px,3.4vw,64px); align-items:center; }
 .center-col { display:flex; flex-direction:column; align-items:center; text-align:center; }
-h1 { font-weight:500; font-size:clamp(34px,min(5.6vw,9.6vh),96px); line-height:.96; letter-spacing:-.04em; margin:.18em 0 .1em; }
+h1, .h1 { font-weight:500; font-size:clamp(34px,min(5.6vw,9.6vh),96px); line-height:.96; letter-spacing:-.04em; margin:.18em 0 .1em; }
 .big { font-weight:500; font-size:clamp(30px,min(4.6vw,8vh),76px); line-height:1; letter-spacing:-.04em; margin:.2em 0 .15em; }
 .huge { font-size:clamp(40px,min(7.4vw,13vh),128px); }
 h3 { font-weight:700; font-size:clamp(15px,1.25vw,19px); letter-spacing:-.02em; }
@@ -151,17 +151,58 @@ dialog h2 { font-weight:500; font-size:clamp(24px,3vw,44px); letter-spacing:-.03
 /* ── app mode: one viewport, panels swap in place ── */
 @media (min-width:900px) and (min-height:560px) {
   .js body { height:100dvh; overflow:hidden; display:grid; grid-template-rows:auto minmax(0,1fr); gap:clamp(8px,1.8vh,20px); }
-  .js .nav { position:static; }
+  .js .nav { position:relative; top:auto; }
+  .js main { position:relative; z-index:1; }                /* above the fixed 3D layer */
   .js main { display:grid; min-height:0; }
   .js .panel { grid-area:1/1; min-height:0; padding-block:0; border:0; display:flex; flex-direction:column; overflow-y:auto; scrollbar-width:thin; }
   .js .panel[hidden] { display:none; }
+  .js .work { position:relative; }
   .js .panel > * { margin-block:auto; }              /* safe vertical centring: never clips when content is taller */
-  .js .work > .split { flex:1; min-height:0; margin:0; }
-  .js .work > .rail { margin:clamp(8px,1.8vh,20px) 0 0; }
+  .js .dock { flex:1; min-height:0; margin:0; display:flex; flex-direction:column; }
+  .js .dock > .split { flex:1; min-height:0; }
+  .js .dock > .rail { margin:clamp(8px,1.8vh,20px) 0 0; }
   .js .stage { width:min(100%, calc((100dvh - 350px) * 1.7778)); } /* frame shrinks with viewport height so nothing scrolls */
 }
+/* ── scroll intro (html.has-intro is set by index.js: desktop, motion OK, WebGL loaded). Without it these wrappers vanish. ── */
+.track, .pin { display:contents; }
+.intro-ui, #introStage { display:none; }
+@media (min-width:900px) and (min-height:560px) {
+  .has-intro #introStage { display:block; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0; }
+  .has-intro #introStage canvas { position:absolute; inset:0; width:100%; height:100%; }
+  .has-intro #introStage::after { content:''; position:absolute; inset:0; opacity:.3; mix-blend-mode:multiply; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07  0 0 0 0 .13  0 0 0 0 .1  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); } /* paper grain over the model */
+
+  /* pending: three.js is still loading — just the headline on paper. No scroller, no dead buttons; the showcase keeps its layout but stays hidden */
+  .intro-pending .intro-ui { display:block; position:absolute; inset:0; }
+  .intro-pending .hud { display:none; }
+  .intro-pending .dock { visibility:hidden; }
+
+  /* the Work panel becomes the scroller: a tall track, a pinned viewport, and the showcase docked on top of it at the very end */
+  .has-intro .work { display:block; overflow-y:auto; scrollbar-width:none; overscroll-behavior:contain; container-type:size; scroll-snap-type:y proximity; }
+  .has-intro .work::-webkit-scrollbar { display:none; }
+  .has-intro .track { display:block; position:relative; height:700cqh; margin:0; animation:none; }
+  .has-intro .track::after { content:''; position:absolute; left:0; bottom:0; width:1px; height:1px; scroll-snap-align:end; } /* settle fully docked, never half-faded */
+  .has-intro .pin { display:block; position:sticky; top:0; height:100cqh; }
+  .has-intro .intro-ui { display:block; position:absolute; inset:0; }
+  .has-intro .dock { position:absolute; inset:0; opacity:0; visibility:hidden; } /* intro.js reveals it over the landed pitch; hidden = out of tab order too */
+
+  .cap { position:absolute; left:50%; bottom:9cqh; width:min(92%,900px); translate:-50% 14px; text-align:center; opacity:0; transition:opacity .5s, translate .5s; pointer-events:none;
+         text-shadow:0 0 14px var(--paper), 0 0 14px var(--paper), 0 0 3px var(--paper); }
+  .cap.on { opacity:1; translate:-50% 0; }
+  .cap .tag { justify-content:center; font-size:clamp(16px,1.9vw,28px); }
+  .cap .big { font-size:clamp(30px,min(5vw,8.5vh),84px); margin:.12em 0 0; }
+  .cap.hero { left:0; top:9cqh; bottom:auto; width:min(46%,640px); translate:0 14px; text-align:left; }
+  .cap.hero.on { translate:0 0; }
+  .cap.hero .note { margin-left:18%; }
+
+  .hud { position:absolute; left:0; right:0; bottom:0; display:flex; align-items:center; gap:16px; }
+  .hud .line { flex:1; height:2px; background:color-mix(in srgb,var(--ink) 18%,transparent); }
+  .hud .line i { display:block; height:100%; background:var(--accent); transform-origin:left; scale:0 1; }
+  .hud button { font:inherit; padding:7px 12px; border:1px solid var(--ink); background:var(--card); color:inherit; cursor:pointer; }
+  .hud button:hover, .hud button[aria-pressed=true] { background:var(--accent); color:var(--on-accent); }
+}
+
 @media (prefers-reduced-motion:no-preference) {
-  .js .panel:not([hidden]) > * { animation:rise .45s cubic-bezier(.2,.7,.2,1) both; }
+  .js .panel:not([hidden]) > *, html:not(.has-intro).js .panel:not([hidden]) .dock { animation:rise .45s cubic-bezier(.2,.7,.2,1) both; }
   @keyframes rise { from { opacity:0; transform:translateY(-10px); } } /* from above: upward overflow never triggers a scrollbar */
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .dot, .live::before { animation:none; } }

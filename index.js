@@ -7,6 +7,7 @@
   const appMode = matchMedia('(min-width:900px) and (min-height:560px)'); // keep in sync with index.css
   const SKIP_BROKEN_MS = 4000;
 
+  const root = document.documentElement, work = $('work');
   const vid = $('vid'), dVid = $('dVid'), demoDlg = $('demoDlg'), allDlg = $('allDlg');
   let current = 0;
   let skipTimer = null; // pending "skip the broken video" timeout — must die the moment another agent is chosen
@@ -47,7 +48,7 @@
     const rail = $('rail'), active = rail.querySelector(`[data-i="${chip}"]`);
     rail.scrollTo({ left: active.offsetLeft - rail.offsetLeft - (rail.clientWidth - active.offsetWidth) / 2, behavior: still ? 'auto' : 'smooth' });
     renderStep();
-    play();
+    syncPlayback();
   }
   const next = () => go((current + 1) % AGENTS.length);
 
@@ -61,17 +62,17 @@
 
   /* ── scroll = fast-forward. Once the showcase is docked there is nothing left to scroll, so the wheel speeds the reel up
         instead and the next agent arrives sooner. Rate snaps back shortly after the wheel stops. ── */
-  const FAST_RATE = 2, FAST_RELEASE_MS = 220;
-  let fastTimer = null;
+  const FAST_RATE = 2, FAST_RELEASE_MS = 220, DOCK_SETTLE_MS = 700;
+  let fastTimer = null, dockedSince = null; // dockedSince: when the showcase became the end of the scroll
   function setFast(on) {
     vid.playbackRate = on ? FAST_RATE : 1;
     $('live').textContent = on ? `▶▶ ${FAST_RATE}× FAST-FORWARD` : 'NOW RUNNING';
     $('live').classList.toggle('fast', on);
   }
-  $('work').addEventListener('wheel', e => {
-    const panel = e.currentTarget;
-    const docked = panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2; // only when the panel itself can't scroll further
-    if (e.deltaY <= 0 || !docked || !appMode.matches || vid.paused) return;
+  work.addEventListener('wheel', e => {
+    syncPlayback();                                  // stamps dockedSince even if no scroll event has reached us yet
+    const settled = dockedSince !== null && performance.now() - dockedSince > DOCK_SETTLE_MS; // not the momentum that carried them here
+    if (e.deltaY <= 0 || !settled || !appMode.matches || vid.paused) return;
     setFast(true);                                   // re-applied every event: a new src resets playbackRate to 1
     clearTimeout(fastTimer);
     fastTimer = setTimeout(() => setFast(false), FAST_RELEASE_MS);
@@ -110,7 +111,7 @@
   function openDialog(dlg) { vid.pause(); dlg.showModal(); }
   [demoDlg, allDlg].forEach(dlg => {
     dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); }); // click on the backdrop
-    dlg.addEventListener('close', () => { dVid.pause(); if (workIsShowing()) play(); });
+    dlg.addEventListener('close', () => { dVid.pause(); syncPlayback(); });
   });
 
   /* ── panels: on desktop the hash picks the one visible panel; on small screens they simply stack ── */
@@ -118,19 +119,55 @@
   const panels = [...document.querySelectorAll('.panel')];
   const links = [...document.querySelectorAll('.nav a[href^="#"]')];
   const activeId = () => (panels.some(p => p.id === location.hash.slice(1)) ? location.hash.slice(1) : 'work');
-  const workIsShowing = () => !appMode.matches || activeId() === 'work';
+
+  /* The scroll intro (intro.js) turns the Work panel into a scroller with the showcase docked at the very end.
+     It is wanted on desktop with motion allowed; html.has-intro switches the layout, and is dropped again if the module fails. */
+  const INTRO_WAIT_MS = 2500;                              // slower than this: skip the intro rather than flip the page under the visitor
+  let introState = 'idle', introSeen = false;              // idle → pending → ready | failed
+  const introWanted = () => appMode.matches && !still && CSS.supports('container-type', 'size'); // the scroll layout is sized in cqh
+  const introOn = () => root.classList.contains('has-intro');
+  const introPending = () => root.classList.contains('intro-pending');
+  const docked = () => work.scrollTop + work.clientHeight >= work.scrollHeight - 2;   // trivially true when there is no intro
+  const showcaseLive = () => !appMode.matches || (activeId() === 'work' && !introPending() && (!introOn() || docked()));
+
+  /** The one place that decides whether the reel runs. */
+  function syncPlayback() {
+    if (docked()) { dockedSince ??= performance.now(); introSeen ||= introOn(); } else dockedSince = null;
+    if (showcaseLive() && !demoDlg.open && !allDlg.open) { if (vid.paused) play(); } else vid.pause();
+  }
+
+  function syncIntro() {
+    const wanted = introWanted();
+    root.classList.toggle('intro-pending', wanted && introState === 'pending'); // headline on paper, nothing else, while three.js loads
+    root.classList.toggle('has-intro', wanted && introState === 'ready');       // the scroll layout: only once the scene can actually draw
+    if (!wanted || introState !== 'idle' || activeId() !== 'work') return;      // ~350 KB of three.js: fetched only if it will show
+
+    introState = 'pending';
+    root.classList.add('intro-pending');
+    const settle = state => {
+      if (introState !== 'pending') return;                // first outcome wins (a late load after the timeout is ignored)
+      introState = state;
+      syncIntro(); syncPlayback();
+      if (state === 'ready' && activeId() === 'work') work.focus({ preventScroll: true }); // arrows / space / PageDown now scroll the intro
+    };
+    setTimeout(() => settle('failed'), INTRO_WAIT_MS);
+    import('./intro.js').then(() => settle('ready'), () => settle('failed'));   // rejects on no WebGL / blocked CDN → plain showcase
+  }
 
   function showPanel(moveFocus) {
     const id = activeId();
     panels.forEach(p => { p.hidden = appMode.matches && p.id !== id; });
     links.forEach(a => a.toggleAttribute('aria-current', a.hash === `#${id}`));
-    if (workIsShowing()) { if (vid.paused && !demoDlg.open && !allDlg.open) play(); } else vid.pause();
+    syncIntro();
+    if (id === 'work' && introOn() && introSeen) work.scrollTop = work.scrollHeight; // coming back: straight to the showcase, no replay
+    syncPlayback();
     if (moveFocus && appMode.matches) $(id).focus({ preventScroll: true });
   }
   addEventListener('hashchange', () => showPanel(true));
   appMode.addEventListener('change', () => showPanel(false));
+  work.addEventListener('scroll', syncPlayback, { passive: true });
   // browsers refuse autoplay in a background tab — pick the reel back up when the visitor arrives
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) showPanel(false); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) syncPlayback(); });
 
   go(0);
   showPanel(false);

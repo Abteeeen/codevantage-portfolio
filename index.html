@@ -15,9 +15,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Geist+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" } }</script>
   <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
+  <div id="introStage" aria-hidden="true"><canvas id="introCanvas"></canvas></div>
   <a class="skip mono" href="#work">Skip to content</a>
 
   <header class="nav">
@@ -31,6 +33,30 @@
   <main>
     <!-- ───────── WORK: the self-running showcase ───────── -->
     <section class="panel work" id="work" tabindex="-1" aria-label="Work">
+      <div class="track"><div class="pin">
+
+      <!-- scroll intro (desktop + motion-OK only; see intro.js). Captions are storytelling over the 3D model. -->
+      <div class="intro-ui" id="introUi">
+        <div>
+          <div class="cap hero on" data-from="0" data-to=".07">
+            <p class="mono eyebrow"><i class="dot"></i>ACCEPTING NEW CLIENTS · 15 ENGINEERS</p>
+            <p class="h1" role="heading" aria-level="1">AI systems that work while you sleep</p> <!-- the real <h1> is in the dock, hidden until it docks: never two at once -->
+            <p class="hand note"><span>scroll ↓ &nbsp;watch a town get worked</span></p>
+          </div>
+          <div class="cap" data-from=".1" data-to=".21"><p class="hand tag"><i>1</i>Pick a territory</p><p class="big">Every town is a lead list.</p></div>
+          <div class="cap" data-from=".25" data-to=".44"><p class="hand tag"><i>2</i>Territory, scanned!</p><p class="big">Satellite. Maps. Permits. Listings.</p></div>
+          <div class="cap" data-from=".47" data-to=".6"><p class="hand tag"><i>3</i>Prospects, qualified!</p><p class="big">12 found. 5 worth a pitch.</p></div>
+          <div class="cap" data-from=".63" data-to=".76"><p class="hand tag"><i>4</i>Pitches, rendered!</p><p class="big">Their roof. Their van. Their storefront.</p></div>
+          <div class="cap" data-from=".79" data-to=".88"><p class="hand tag"><i>5</i>Postcards, mailed!</p><p class="big">In the mailbox before anyone's awake.</p></div>
+        </div>
+        <div class="hud mono">
+          <span class="line" aria-hidden="true"><i id="prog"></i></span>
+          <button id="auto" type="button" aria-pressed="false">▶ Play it for me</button>
+          <button id="skip" type="button">Skip intro ↓</button>
+        </div>
+      </div>
+
+      <div class="dock" id="dock">
       <div class="split">
         <div class="pitch">
           <p class="mono eyebrow"><i class="dot"></i>ACCEPTING NEW CLIENTS · 15 ENGINEERS</p>
@@ -62,6 +88,9 @@
         </div>
       </div>
       <div class="rail mono" id="rail" role="group" aria-label="Agents"></div>
+      </div><!-- /dock -->
+
+      </div></div><!-- /pin /track -->
     </section>
 
     <!-- ───────── SERVICES ───────── -->
