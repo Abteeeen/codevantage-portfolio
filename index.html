@@ -1,843 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CodeVantage AI — Automated Agents</title>
-  <meta name="description" content="CodeVantage builds custom AI automation systems — voice agents, content pipelines, sales automation, and website builders.">
+  <meta name="description" content="CodeVantage builds custom AI automation systems — voice agents, content pipelines, sales automation, and lead-generation agents that run 24/7.">
   <meta property="og:title" content="CodeVantage — AI Automation Services">
   <meta property="og:description" content="We build AI systems that run 24/7 so you don't have to.">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="logo.png">
+  <meta property="og:image" content="https://abteeeen.github.io/codevantage-portfolio/media/roof.jpg">
+  <meta name="theme-color" content="#DDE6DC">
+  <link rel="icon" type="image/png" href="media/logo-96.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Geist+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
+  <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
+  <a class="skip mono" href="#work">Skip to content</a>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="container nav__inner">
-      <a href="#" class="nav__logo"><img src="logo.png" alt="CodeVantage" style="height:24px;margin-right:8px;"><span>Code<span class="text-gradient">Vantage</span></span></a>
-      <div class="nav__links" id="navLinks">
-        <a href="#services" class="nav__link">Services</a>
-        <a href="#process" class="nav__link">How It Works</a>
-        <a href="#results" class="nav__link">Results</a>
-        <a href="#about" class="nav__link">About</a>
-        <a href="#pricing" class="nav__link">Pricing</a>
-        <a href="#contact" class="btn nav__cta">Get In Touch</a>
-      </div>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
+  <header class="nav">
+    <a class="brand" href="#work"><img src="media/logo-96.png" alt="" width="26" height="26"><span>Code<b>Vantage</b></span></a>
+    <a class="btn btn--accent mono" href="#contact">Book a call</a>
+    <nav class="tabs mono" aria-label="Sections">
+      <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#about">About</a>
+    </nav>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero__bg">
-      <div class="hero__gradient"></div>
-      <div class="hero__grid"></div>
-      <div class="hero__orb hero__orb--1"></div>
-      <div class="hero__orb hero__orb--2"></div>
-      <canvas id="heroCanvas" class="hero__canvas"></canvas>
-    </div>
-    <div class="hero__content">
-      <div class="hero__badge reveal"><span class="hero__badge-dot"></span>Accepting new clients — June 2026</div>
-      <h1 class="hero__title reveal reveal-delay-1">We Build <span class="text-gradient">AI Systems</span><br>That Work While You Sleep</h1>
-      <p class="hero__subtitle reveal reveal-delay-2">Voice agents, content pipelines, sales automation, and website builders — autonomous AI workflows that replace entire departments.</p>
-      <div class="hero__actions reveal reveal-delay-3">
-        <a href="#services" class="btn btn--primary"><span>Explore Services</span><svg class="btn--icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        <a href="#contact" class="btn btn--secondary"><svg class="btn--icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Book a Call</span></a>
-      </div>
-      <div class="hero__stats reveal reveal-delay-4">
-        <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="8">0</span>+</div><div class="hero__stat-label">AI Products</div></div>
-        <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="15">0</span></div><div class="hero__stat-label">Engineers</div></div>
-        <div class="hero__stat"><div class="hero__stat-value"><span class="counter" data-target="24">0</span>/7</div><div class="hero__stat-label">Autonomous</div></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- TECH MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-row" aria-hidden="true">
-      <span class="marquee-item">VAPI.ai</span>
-      <span class="marquee-item">n8n</span>
-      <span class="marquee-item">GPT-4o</span>
-      <span class="marquee-item">Python</span>
-      <span class="marquee-item">CrewAI</span>
-      <span class="marquee-item">LangChain</span>
-      <span class="marquee-item">FFmpeg</span>
-      <span class="marquee-item">DeepSeek</span>
-      <span class="marquee-item">YouTube API</span>
-      <span class="marquee-item">Gmail API</span>
-      <span class="marquee-item">Google Places</span>
-      <span class="marquee-item">Node.js</span>
-      <span class="marquee-item">VAPI.ai</span>
-      <span class="marquee-item">n8n</span>
-      <span class="marquee-item">GPT-4o</span>
-      <span class="marquee-item">Python</span>
-      <span class="marquee-item">CrewAI</span>
-      <span class="marquee-item">LangChain</span>
-      <span class="marquee-item">FFmpeg</span>
-      <span class="marquee-item">DeepSeek</span>
-      <span class="marquee-item">YouTube API</span>
-      <span class="marquee-item">Gmail API</span>
-      <span class="marquee-item">Google Places</span>
-      <span class="marquee-item">Node.js</span>
-    </div>
-  </div>
-
-  <!-- ============ INTERACTIVE LEAD CAPTURE ============ -->
-  <section class="lead-capture reveal">
-    <div class="container">
-      <div class="lead-capture-box">
-
-        <!-- Step 1: initial input -->
-        <div id="leadInitial">
-          <h3>Try It On Your Business</h3>
-          <p>Enter your website or business name and see how our AI agents would optimize your operations.</p>
-          <div class="lead-form" id="leadForm">
-            <input type="text" id="leadInput" placeholder="e.g. www.myrestaurant.com" autocomplete="off">
-            <button id="leadBtn" class="btn btn--primary">Generate AI Analysis</button>
-          </div>
-        </div>
-
-        <!-- Step 2: loading -->
-        <div id="leadLoader" class="lead-loader" style="display: none;">
-          <div class="spinner"></div>
-          <p>Analyzing your business structure...</p>
-        </div>
-
-        <!-- Step 3: email capture -->
-        <div id="leadSuccess" class="lead-success" style="display: none;">
-          <h4>Analysis Complete!</h4>
-          <p>We found <strong>3 workflow bottlenecks</strong> and <strong>1 missed revenue opportunity</strong>. Enter your email to receive your personalized AI optimization report.</p>
-          <form id="leadEmailForm" class="lead-form">
-            <input type="email" id="leadEmail" placeholder="Enter your email address" required>
-            <button type="submit" id="leadSubmitBtn" class="btn btn--primary">Send Report</button>
-          </form>
-          <p id="leadEmailError" style="color:#ef4444; font-size:0.8rem; margin-top:0.5rem; display:none;">Something went wrong. Email us at <a href="mailto:admin@codevantage.io" style="color:var(--primary-light);">admin@codevantage.io</a></p>
-        </div>
-
-        <!-- Step 4: done -->
-        <div id="leadDone" style="display: none;">
-          <div style="font-size:2rem; margin-bottom:0.75rem;">✅</div>
-          <h4 style="color: var(--success); margin-bottom:0.5rem;">Report on its way!</h4>
-          <p style="color: var(--text-muted); font-size:0.875rem;">Check your inbox — we'll send your personalized AI optimization report within 24 hours.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FEATURED SAMPLE WORK (STICKY SCROLL) ============ -->
-  <section class="section" id="featured-work">
-    <div class="container">
-      <h2 class="section__title reveal text-center" style="text-align: center; margin-bottom: 4rem;">Work That Speaks <span class="text-gradient">For Itself</span></h2>
-      
-      <div class="sticky-showcase">
-        <!-- Left Side: Sticky Panel (Desktop Only) -->
-        <div class="sticky-showcase__left">
-          <div class="sticky-showcase__card-wrap">
-            
-            <!-- Card 1: Tender Agent -->
-            <div class="sticky-showcase__card active" id="card-tender">
-              <span class="section-label">AI Agent</span>
-              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Tender Ingestor & Analyzer</h3>
-              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
-                Hourly scanning of multiple government and private tender databases (AusTender, VendorPanel, Brisbane City Council). Geo-filters opportunities across 731 suburbs, checks custom keyword matches, conducts deep compliance audits on files and ZIP archives, and automatically writes the first bid response draft directly to Google Sheets.
-              </p>
-              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">100%</span>
-                  <span class="tab-metric-label">Automated</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">90%</span>
-                  <span class="tab-metric-label">Speedup</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">0</span>
-                  <span class="tab-metric-label">Missed Bids</span>
-                </div>
-              </div>
-              <a href="projects/tender-agent.html" class="btn btn--primary">Read Case Study</a>
-            </div>
-
-            <!-- Card: StyleCast Agent (Second) -->
-            <div class="sticky-showcase__card" id="card-stylecast">
-              <span class="section-label">Fashion Video AI</span>
-              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">StyleCast Agent</h3>
-              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
-                An autonomous outreach agent that discovers local clothing stores, scrapes products, uses AI to select the best garment, animates it on cinematic vertical models, and physically mails custom postcards to store owners on autopilot.
-              </p>
-              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">7-Step</span>
-                  <span class="tab-metric-label">Pipeline</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">$0.10</span>
-                  <span class="tab-metric-label">Cost/Store</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">100%</span>
-                  <span class="tab-metric-label">Autopilot</span>
-                </div>
-              </div>
-              <a href="projects/stylecast.html" class="btn btn--primary">Read Case Study</a>
-            </div>
-            
-            <!-- Card 2: Menu Rebuilder -->
-            <div class="sticky-showcase__card" id="card-menu">
-              <span class="section-label">AI Conversion</span>
-              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Digital Menu Rebuilder</h3>
-              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
-                Instantly converts old scanned paper restaurant menus into stunning, branded, digital mobile-first layouts in under 2 minutes. Auto-generates enticing food descriptions, embeds QR codes for touchless access, and eliminates menu reprint fees completely.
-              </p>
-              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">2 min</span>
-                  <span class="tab-metric-label">Gen Time</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">$0</span>
-                  <span class="tab-metric-label">Reprint Cost</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">100%</span>
-                  <span class="tab-metric-label">Automated</span>
-                </div>
-              </div>
-              <a href="projects/menu-rebuilder.html" class="btn btn--primary">Read Case Study</a>
-            </div>
-            
-            <!-- Card 3: Site Builder -->
-            <div class="sticky-showcase__card" id="card-bailey">
-              <span class="section-label">Lead Gen Engine</span>
-              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Bailey Website Builder</h3>
-              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
-                Scans local business registries to identify companies operating without websites. Pulls details from Google Places, auto-generates branded web copy and structures, and compiles high-converting landing pages dynamically in less than a minute.
-              </p>
-              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">&lt;60s</span>
-                  <span class="tab-metric-label">Per Site</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">131</span>
-                  <span class="tab-metric-label">Leads Built</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">10+</span>
-                  <span class="tab-metric-label">Industries</span>
-                </div>
-              </div>
-              <a href="projects/site-builder.html" class="btn btn--primary">Read Case Study</a>
-            </div>
-
-            <!-- Card 4: VoiceDesk AI -->
-            <div class="sticky-showcase__card" id="card-voice">
-              <span class="section-label">Voice Agent</span>
-              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">VoiceDesk AI Receptionist</h3>
-              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
-                Meet Maya — an autonomous AI voice receptionist that handles front-desk patient calls 24/7. Directly integrated with n8n to check real-time calendar availability, book appointments instantly to the CRM, and handle patient FAQs with zero human assistance.
-              </p>
-              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">24/7</span>
-                  <span class="tab-metric-label">Availability</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">8/8</span>
-                  <span class="tab-metric-label">Tests Passed</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">$0.05</span>
-                  <span class="tab-metric-label">Per Call Cost</span>
-                </div>
-              </div>
-              <a href="projects/voice-agent.html" class="btn btn--primary">Read Case Study</a>
-            </div>
-
-            <!-- Card 5: YouTube Automation -->
-            <div class="sticky-showcase__card" id="card-youtube">
-              <span class="section-label">Content Pipeline</span>
-              <h3 style="font-size: 2.25rem; margin-bottom: 1rem;">Autonomous YouTube Shorts</h3>
-              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">
-                A zero-touch content pipeline running on a cron schedule that scans social media for trending topics, extracts high-engagement clips, applies vertical crop & color grading via FFmpeg, generates descriptions with AI, and publishes 6 optimized videos daily.
-              </p>
-              <div class="tab-metrics-row" style="justify-content: flex-start; margin-bottom: 2.5rem;">
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">6 / day</span>
-                  <span class="tab-metric-label">Auto Upload</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">100%</span>
-                  <span class="tab-metric-label">Autonomous</span>
-                </div>
-                <div class="tab-metric-box">
-                  <span class="tab-metric-value">3x / day</span>
-                  <span class="tab-metric-label">Cron Scan</span>
-                </div>
-              </div>
-              <a href="projects/youtube-automation.html" class="btn btn--primary">Read Case Study</a>
-            </div>
-
-          </div>
-        </div>
-        
-        <!-- Right Side: Scrollable Showcase Media -->
-        <div class="sticky-showcase__right">
-          
-          <!-- Item 1: Tender Ingestor -->
-          <div class="showcase-item" id="showcase-tender" data-target-card="card-tender">
-            <!-- Mobile-only details -->
-            <div class="mobile-details">
-              <span class="section-label">AI Agent</span>
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Tender Ingestor & Analyzer</h3>
-              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
-                Hourly scanning, geo-filtering, and deep document audits of AusTender, VendorPanel, and BCC RSS. Auto-drafts bids directly to Google Sheets.
-              </p>
-              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Automated</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">90%</span><span class="tab-metric-label" style="font-size:0.5rem;">Speedup</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">0</span><span class="tab-metric-label" style="font-size:0.5rem;">Missed Bids</span></div>
-              </div>
-            </div>
-            <!-- Media -->
-            <div class="showcase-media-wrap">
-              <div class="browser-frame">
-                <div class="browser-header">
-                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">n8n_tender_workflow.json</span>
-                </div>
-                <video class="browser-video" src="Scarpe agent/scrape_agent_final.mp4" autoplay loop muted playsinline controls></video>
-              </div>
-            </div>
-            <!-- Mobile-only CTA -->
-            <div class="mobile-details" style="margin-top: 1rem;">
-              <a href="projects/tender-agent.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
-            </div>
-          </div>
-
-          <!-- Item: StyleCast Agent (Second) -->
-          <div class="showcase-item" id="showcase-stylecast" data-target-card="card-stylecast">
-            <!-- Mobile-only details -->
-            <div class="mobile-details">
-              <span class="section-label">Fashion Video AI</span>
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">StyleCast Agent</h3>
-              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
-                Autonomous clothing store outreach agent: discovery, video try-on rendering, and automatic physical postcard mailing.
-              </p>
-              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">7-Step</span><span class="tab-metric-label" style="font-size:0.5rem;">Workflow</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">$0.10</span><span class="tab-metric-label" style="font-size:0.5rem;">Cost</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Auto</span></div>
-              </div>
-            </div>
-            <!-- Media -->
-            <div class="showcase-media-wrap">
-              <div class="browser-frame" style="background: #0d0d0d; border: 1px solid #262626;">
-                <div class="browser-header" style="background: #151515; border-bottom: 1px solid #262626;">
-                  <span class="browser-dot" style="background: #ef4444;"></span>
-                  <span class="browser-dot" style="background: #eab308;"></span>
-                  <span class="browser-dot" style="background: #22c55e;"></span>
-                  <span style="color: #a3a3a3; font-family: monospace; font-size: 11px; margin-left: 10px;">StyleCast Dashboard</span>
-                </div>
-                <video id="stylecast-video" class="browser-video" src="samples/image_gear_usa/cinematic_reel.mp4" autoplay muted playsinline controls></video>
-              </div>
-            </div>
-            <!-- Mobile-only CTA -->
-            <div class="mobile-details" style="margin-top: 1rem;">
-              <a href="projects/stylecast.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
-            </div>
-          </div>
-          
-          <!-- Item 2: Menu Rebuilder -->
-          <div class="showcase-item" id="showcase-menu" data-target-card="card-menu">
-            <!-- Mobile-only details -->
-            <div class="mobile-details">
-              <span class="section-label">AI Conversion</span>
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Digital Menu Rebuilder</h3>
-              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
-                Instantly converts paper menus into mobile-first QR codes and websites with auto-generated descriptions.
-              </p>
-              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">2 min</span><span class="tab-metric-label" style="font-size:0.5rem;">Gen Time</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">$0</span><span class="tab-metric-label" style="font-size:0.5rem;">Reprint</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Auto</span></div>
-              </div>
-            </div>
-            <!-- Media -->
-            <div class="showcase-media-wrap">
-              <div class="browser-frame">
-                <div class="browser-header">
-                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">Interactive Before/After Slider</span>
-                </div>
-                <div class="before-after-slider" id="showcaseSlider" style="min-height: 400px; height: 400px;">
-                  <div class="before-image">
-                    <img src="assets/mikes-diner-old.png" alt="Old Menu">
-                    <span class="slider-label label-before">Before (Old Menu)</span>
-                  </div>
-                  <div class="after-image" id="showcaseAfterImage">
-                    <img src="assets/mikes-new-menu.png" alt="AI Generated Menu">
-                    <span class="slider-label label-after">After (AI Generated)</span>
-                  </div>
-                  <input type="range" min="0" max="100" value="50" class="slider" id="showcaseSliderInput">
-                  <div class="slider-line" id="showcaseSliderLine">
-                    <div class="slider-button">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Mobile-only CTA -->
-            <div class="mobile-details" style="margin-top: 1rem;">
-              <a href="projects/menu-rebuilder.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
-            </div>
-          </div>
-          
-          <!-- Item 3: Site Builder -->
-          <div class="showcase-item" id="showcase-bailey" data-target-card="card-bailey">
-            <!-- Mobile-only details -->
-            <div class="mobile-details">
-              <span class="section-label">Lead Gen Engine</span>
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Bailey Website Builder</h3>
-              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
-                Finds offline businesses via Google Places, scrapes details, and builds branded landing pages automatically.
-              </p>
-              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">&lt;60s</span><span class="tab-metric-label" style="font-size:0.5rem;">Per Site</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">131</span><span class="tab-metric-label" style="font-size:0.5rem;">Leads</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">10+</span><span class="tab-metric-label" style="font-size:0.5rem;">Ind.</span></div>
-              </div>
-            </div>
-            <!-- Media -->
-            <div class="showcase-media-wrap">
-              <div class="browser-frame">
-                <div class="browser-header">
-                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">bailey_site_builder.mp4</span>
-                </div>
-                <video class="browser-video" src="assets/bailey-pow.mp4" autoplay loop muted playsinline controls></video>
-              </div>
-            </div>
-            <!-- Mobile-only CTA -->
-            <div class="mobile-details" style="margin-top: 1rem;">
-              <a href="projects/site-builder.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
-            </div>
-          </div>
-
-          <!-- Item 4: Voice Agent -->
-          <div class="showcase-item" id="showcase-voice" data-target-card="card-voice">
-            <!-- Mobile-only details -->
-            <div class="mobile-details">
-              <span class="section-label">Voice Agent</span>
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">VoiceDesk AI Receptionist</h3>
-              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
-                Autonomous AI voice receptionist Maya that handles front-desk patient calls 24/7. Books appointments, answers FAQs.
-              </p>
-              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">24/7</span><span class="tab-metric-label" style="font-size:0.5rem;">Active</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">8/8</span><span class="tab-metric-label" style="font-size:0.5rem;">Pass</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">$0.05</span><span class="tab-metric-label" style="font-size:0.5rem;">Call</span></div>
-              </div>
-            </div>
-            <!-- Media -->
-            <div class="showcase-media-wrap">
-              <div class="browser-frame">
-                <div class="browser-header">
-                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-                  <span style="font-size:0.65rem; color:var(--text-muted); margin-left: auto;">voice_agent_final.mp4</span>
-                </div>
-                <video class="browser-video" src="voice agent/voice_agent_final.mp4" autoplay loop muted playsinline controls></video>
-              </div>
-            </div>
-            <!-- Mobile-only CTA -->
-            <div class="mobile-details" style="margin-top: 1rem;">
-              <a href="projects/voice-agent.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
-            </div>
-          </div>
-
-          <!-- Item 5: YouTube Automation -->
-          <div class="showcase-item" id="showcase-youtube" data-target-card="card-youtube">
-            <!-- Mobile-only details -->
-            <div class="mobile-details">
-              <span class="section-label">Content Pipeline</span>
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Autonomous YouTube Shorts</h3>
-              <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
-                Autonomous shorts generation pipeline executing scans, FFmpeg edits, metadata uploads, and scheduling 3x daily.
-              </p>
-              <div class="tab-metrics-row" style="margin-bottom: 1rem; justify-content: flex-start;">
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">6/day</span><span class="tab-metric-label" style="font-size:0.5rem;">Publish</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">100%</span><span class="tab-metric-label" style="font-size:0.5rem;">Auto</span></div>
-                <div class="tab-metric-box" style="padding: 0.5rem; max-width: 90px;"><span class="tab-metric-value" style="font-size:1.1rem;">3x</span><span class="tab-metric-label" style="font-size:0.5rem;">Cron</span></div>
-              </div>
-                <!-- Media -->
-            <div class="showcase-media-wrap">
-              <div class="browser-frame" style="background: #0f172a; border: 1px solid #334155; padding-bottom: 0;">
-                <div class="browser-header" style="background: #1e293b; border-bottom: 1px solid #334155;">
-                  <span class="browser-dot" style="background: #ef4444;"></span>
-                  <span class="browser-dot" style="background: #eab308;"></span>
-                  <span class="browser-dot" style="background: #22c55e;"></span>
-                  <span style="color: #94a3b8; font-family: monospace; font-size: 11px; margin-left: 10px;">agent.py — CodeVantage AI</span>
-                </div>
-                <div class="terminal-content" id="home-terminal-output" style="padding: 20px; font-family: 'Fira Code', monospace; font-size: 13px; color: #38bdf8; line-height: 1.5; height: 350px; overflow-y: auto; text-align: left;">
-                  <!-- Logs will loop typing here -->
-                </div>
-              </div>
-            </div>          </div>
-            <!-- Mobile-only CTA -->
-            <div class="mobile-details" style="margin-top: 1rem;">
-              <a href="projects/youtube-automation.html" class="btn btn--secondary" style="width: 100%;">Read Case Study</a>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label" style="justify-content:center;">Client Results</span>
-        <h2 class="section-title">What <span class="text-gradient">Clients Say</span></h2>
-        <p class="section-subtitle" style="margin: 0 auto 3rem auto; text-align:center; color: var(--text-muted);">Real businesses. Real results. Not demos.</p>
-      </div>
-      <div class="testimonials__grid">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="testimonial-badge">Menu Rebuilder</div>
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">"Our paper menus were costing us ₹15,000+ a month in reprints. CodeVantage built us a digital QR menu in 48 hours. Guests love it and we haven't touched a printer since."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">MK</div>
-            <div>
-              <div class="testimonial-name">Mike Kowalski</div>
-              <div class="testimonial-role">Owner · Mike's Diner</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="testimonial-badge">AI Site Builder</div>
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">"We had no website and were losing customers to competitors who did. Within a week, CodeVantage had a full branded site live with our photos and services. We got 3 calls the first day it went live."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">PN</div>
-            <div>
-              <div class="testimonial-name">Priya Nair</div>
-              <div class="testimonial-role">Owner · Nair Beauty Studio</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="testimonial-badge">Voice Agent</div>
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">"Our clinic was missing 40% of after-hours calls. The AI receptionist answers instantly, books appointments, handles FAQs. We haven't missed a patient lead in 2 months."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">RK</div>
-            <div>
-              <div class="testimonial-name">Dr. Rajesh Kumar</div>
-              <div class="testimonial-role">Director · City Health Clinic</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label" style="justify-content:center;">What We Build</span>
-        <h2 class="section-title">AI Services That <span class="text-gradient">Run Themselves</span></h2>
-        <p class="section-subtitle" style="margin:0 auto;">Production-proven, battle-tested, designed to operate without human intervention.</p>
-      </div>
-      <div class="services__grid">
-
-        <a href="projects/voice-agent.html" class="service-card reveal reveal-delay-1" style="--card-accent:#0891B2;--card-accent-2:#059669;">
-          <div class="service-card__icon service-card__icon--cyan"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
-          <h3 class="service-card__title">AI Voice Agent</h3>
-          <p class="service-card__desc">AI receptionist that answers calls 24/7, books appointments, handles FAQs — built from idea to MVP in under 1 hour.</p>
-          <div class="service-card__tech"><span class="tech-badge">VAPI.ai</span><span class="tech-badge">n8n</span><span class="tech-badge">GPT-4o</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/youtube-automation.html" class="service-card reveal reveal-delay-2" style="--card-accent:#E11D48;--card-accent-2:#F59E0B;">
-          <div class="service-card__icon service-card__icon--amber"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
-          <h3 class="service-card__title">YouTube Automation</h3>
-          <p class="service-card__desc">Autonomous pipeline that discovers, processes, and publishes 6 YouTube Shorts per day — zero manual effort.</p>
-          <div class="service-card__tech"><span class="tech-badge">Python</span><span class="tech-badge">FFmpeg</span><span class="tech-badge">YouTube API</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/sales-agent.html" class="service-card reveal reveal-delay-3" style="--card-accent:#0369A1;--card-accent-2:#06B6D4;">
-          <div class="service-card__icon service-card__icon--cyan"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3 class="service-card__title">AI Sales Agent</h3>
-          <p class="service-card__desc">Scans job boards and Hacker News, verifies emails via SMTP, drafts personalized outreach — 378+ leads per run.</p>
-          <div class="service-card__tech"><span class="tech-badge">Python</span><span class="tech-badge">Gmail API</span><span class="tech-badge">SMTP</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/site-builder.html" class="service-card reveal reveal-delay-4" style="--card-accent:#EA580C;--card-accent-2:#2563EB;">
-          <div class="service-card__icon service-card__icon--amber"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
-          <h3 class="service-card__title">AI Website Builder</h3>
-          <p class="service-card__desc">Discovers local businesses without websites, generates premium branded sites with AI content — 131 leads found.</p>
-          <div class="service-card__tech"><span class="tech-badge">Node.js</span><span class="tech-badge">DeepSeek</span><span class="tech-badge">Google Places</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/menu-rebuilder.html" class="service-card reveal reveal-delay-5" style="--card-accent:#DC2626;--card-accent-2:#CA8A04;">
-          <div class="service-card__icon service-card__icon--amber"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-          <h3 class="service-card__title">AI Menu Rebuilder</h3>
-          <p class="service-card__desc">Transforms paper restaurant menus into stunning digital experiences with AI descriptions, QR codes, and mobile design.</p>
-          <div class="service-card__tech"><span class="tech-badge">AI/LLM</span><span class="tech-badge">HTML/CSS</span><span class="tech-badge">QR Gen</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/social-agent.html" class="service-card reveal reveal-delay-6" style="--card-accent:#E11D48;--card-accent-2:#8B5CF6;">
-          <div class="service-card__icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-          <h3 class="service-card__title">Social Pain Agent</h3>
-          <p class="service-card__desc">Scrapes social groups to identify customer pain points and buying signals, generates hyper-targeted outreach messages.</p>
-          <div class="service-card__tech"><span class="tech-badge">CrewAI</span><span class="tech-badge">LangChain</span><span class="tech-badge">Python</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/review-agent.html" class="service-card reveal reveal-delay-6" style="--card-accent:#7C3AED;--card-accent-2:#F59E0B;">
-          <div class="service-card__icon" style="background:rgba(124,58,237,0.1);color:#A78BFA;border-color:rgba(124,58,237,0.15);"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-          <h3 class="service-card__title">AI Review Agent</h3>
-          <p class="service-card__desc">Monitors Google reviews 24/7, generates personalized AI replies in 28 seconds, auto-publishes positive and escalates negative — 100% response rate.</p>
-          <div class="service-card__tech"><span class="tech-badge">n8n</span><span class="tech-badge">GPT-4o</span><span class="tech-badge">Google Business API</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/tender-agent.html" class="service-card reveal reveal-delay-6" style="--card-accent:#1E3A5F;--card-accent-2:#D97706;">
-          <div class="service-card__icon" style="background:rgba(30,58,95,0.1);color:#1E3A5F;border-color:rgba(30,58,95,0.15);"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-          <h3 class="service-card__title">AI Tender-Capture</h3>
-          <p class="service-card__desc">Scans government tender portals hourly, classifies with Gemini AI, geo-filters across 731 QLD suburbs, and auto-drafts EOI responses to Google Sheets.</p>
-          <div class="service-card__tech"><span class="tech-badge">n8n</span><span class="tech-badge">Gemini 2.5</span><span class="tech-badge">AusTender</span></div>
-          <span class="service-card__link">View Case Study <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="projects/stylecast.html" class="service-card reveal reveal-delay-6" style="--card-accent:#f59e0b;--card-accent-2:#d97706;">
-          <div class="service-card__icon" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.15);"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-          <h3 class="service-card__title">StyleCast Agent</h3>
-          <p class="service-card__desc">Finds offline clothing stores, extracts products, renders vertical video reels on models, and mails physical postcards on autopilot.</p>
-          <div class="service-card__tech"><span class="tech-badge">Groq Vision</span><span class="tech-badge">WaveSpeedAI</span><span class="tech-badge">Lob API</span></div>
-          <span class="service-card__link">View WebApp <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- LIVE DEMOS -->
-  <section class="demos-section" id="demos">
-    <div class="container">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label" style="justify-content:center;">Live Demos</span>
-        <h2 class="section-title">Click It. <span class="text-gradient">Try It Yourself.</span></h2>
-        <p class="section-subtitle" style="margin: 0 auto 3rem auto; text-align:center; color: var(--text-muted);">These aren't mockups. These are real, deployed AI systems you can open right now.</p>
-      </div>
-      <div class="demos__grid">
-        <div class="demo-card reveal reveal-delay-1">
-          <div class="demo-card__preview">
-            <img src="assets/mikes-new-menu.png" alt="Mike's Digital Menu — live demo">
-            <div class="demo-card__overlay">
-              <a href="demos/mikes-menu/index.html" target="_blank" rel="noopener" class="demo-card__cta">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Open Live Demo
-              </a>
-            </div>
-          </div>
-          <div class="demo-card__info">
-            <h3>Mike's Diner — Digital Menu</h3>
-            <p>Paper menu → AI-generated digital experience with mobile-first design, food photo descriptions, and instant QR access.</p>
-            <div class="demo-card__tags">
-              <span class="tech-badge">AI/LLM</span>
-              <span class="tech-badge">HTML/CSS</span>
-              <span class="tech-badge">QR Gen</span>
-            </div>
-          </div>
-        </div>
-        <div class="demo-card reveal reveal-delay-2">
-          <div class="demo-card__preview">
-            <img src="assets/bailey-new-site.png" alt="Bailey AI Website Builder — live demo">
-            <div class="demo-card__overlay">
-              <a href="demos/bailey/index.html" target="_blank" rel="noopener" class="demo-card__cta">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Open Live Demo
-              </a>
-            </div>
-          </div>
-          <div class="demo-card__info">
-            <h3>Bailey — AI Website Builder</h3>
-            <p>Type a business name and city. Watch the AI instantly generate a full branded website — copy, design, contact forms, everything.</p>
-            <div class="demo-card__tags">
-              <span class="tech-badge">Node.js</span>
-              <span class="tech-badge">DeepSeek</span>
-              <span class="tech-badge">Google Places</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- PROCESS -->
-  <section class="process" id="process">
-    <div class="container">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label" style="justify-content:center;">How It Works</span>
-        <h2 class="section-title">From Idea to <span class="text-gradient">Autonomous System</span></h2>
-      </div>
-      <div class="process__grid">
-        <div class="process-step reveal reveal-delay-1"><div class="process-step__number">01</div><h3 class="process-step__title">Discovery</h3><p class="process-step__desc">We analyze your bottlenecks and map workflows that consume the most human hours.</p></div>
-        <div class="process-step reveal reveal-delay-2"><div class="process-step__number">02</div><h3 class="process-step__title">Build & Deploy</h3><p class="process-step__desc">Our 15-person pod builds production-grade systems with LLMs, APIs, and automation frameworks.</p></div>
-        <div class="process-step reveal reveal-delay-3"><div class="process-step__number">03</div><h3 class="process-step__title">Automate 24/7</h3><p class="process-step__desc">Your system runs autonomously — generating leads, posting content, answering calls.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- RESULTS -->
-  <section class="results" id="results">
-    <div class="container">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label" style="justify-content:center;">Proven Results</span>
-        <h2 class="section-title">Real <span class="text-gradient">Production Metrics</span></h2>
-      </div>
-      <div class="results__grid">
-        <div class="stat-card reveal reveal-delay-1"><div class="stat-card__value stat-card__value--violet"><span class="counter" data-target="378">0</span>+</div><div class="stat-card__label">Leads Per Run</div><div class="stat-card__detail">HN + job board scan</div></div>
-        <div class="stat-card reveal reveal-delay-2"><div class="stat-card__value stat-card__value--cyan"><span class="counter" data-target="131">0</span></div><div class="stat-card__label">Businesses Found</div><div class="stat-card__detail">Across 10 industries</div></div>
-        <div class="stat-card reveal reveal-delay-3"><div class="stat-card__value stat-card__value--amber"><span class="counter" data-target="6">0</span>/day</div><div class="stat-card__label">Videos Published</div><div class="stat-card__detail">Fully autonomous</div></div>
-        <div class="stat-card reveal reveal-delay-4"><div class="stat-card__value stat-card__value--emerald">&lt;<span class="counter" data-target="1">0</span>hr</div><div class="stat-card__label">Voice Agent MVP</div><div class="stat-card__detail">Idea to demo</div></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label" style="justify-content:center;">Investment</span>
-        <h2 class="section-title">Simple, <span class="text-gradient">Transparent Pricing</span></h2>
-        <p class="section-subtitle" style="margin: 0 auto 3rem auto; text-align:center; color: var(--text-muted);">One-time build fee. You own the system. No subscriptions, no lock-in.</p>
-      </div>
-      <div class="pricing__grid">
-
-        <div class="pricing-card reveal reveal-delay-1">
-          <div class="pricing-card__tier">Starter</div>
-          <div class="pricing-card__price">$997</div>
-          <div class="pricing-card__period">one-time build · you own the code</div>
-          <ul class="pricing-card__features">
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 1 AI automation system</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 3-week delivery</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full source code + docs</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day support</li>
-            <li class="feat-no"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Multi-system integrations</li>
-            <li class="feat-no"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Dedicated team pod</li>
+  <main>
+    <!-- ───────── WORK: the self-running showcase ───────── -->
+    <section class="panel work" id="work" tabindex="-1" aria-label="Work">
+      <div class="split">
+        <div class="pitch">
+          <p class="mono eyebrow"><i class="dot"></i>ACCEPTING NEW CLIENTS · 15 ENGINEERS</p>
+          <h1>AI systems that work while you sleep</h1>
+          <p class="hand note">
+            <svg width="34" height="22" viewBox="0 0 34 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M32 19C22 20 9 16 4 5M4 5l7 2M4 5l-1 7"/></svg>
+            <span><u>not</u> demos. deployed.</span>
+          </p>
+          <p class="sub">Voice agents, content pipelines, sales automation and lead-gen engines — autonomous AI workflows that replace entire departments. Nobody presses a button.</p>
+          <ul class="stats mono">
+            <li><b>21</b>AI AGENTS</li><li><b>15</b>ENGINEERS</li><li><b>24/7</b>AUTONOMOUS</li>
           </ul>
-          <a href="mailto:admin@codevantage.io?subject=Starter%20Plan%20Inquiry" class="btn btn--secondary pricing-card__btn">Get Started</a>
         </div>
 
-        <div class="pricing-card pricing-card--popular reveal reveal-delay-2">
-          <div class="pricing-card__popular-badge">Most Popular</div>
-          <div class="pricing-card__tier">Scale</div>
-          <div class="pricing-card__price">$2,497</div>
-          <div class="pricing-card__period">one-time build · you own the code</div>
-          <ul class="pricing-card__features">
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 3 AI automation systems</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 3-week delivery</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full source code + docs</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 90-day priority support</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Multi-system integrations</li>
-            <li class="feat-no"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Dedicated team pod</li>
+        <div class="stage">
+          <div class="head">
+            <p class="hand tag"><i id="num">1</i><span id="tag"></span></p>
+            <span class="live mono">NOW RUNNING</span>
+          </div>
+          <h2 id="name"></h2>
+          <div class="frame"><video id="vid" muted playsinline preload="auto" aria-describedby="step"></video></div>
+          <div class="bar" id="bar" aria-hidden="true"></div>
+          <div class="now mono">
+            <p id="step"></p>
+            <button class="demo" id="demoBtn" type="button"><span>Watch the demo</span></button>
+          </div>
+          <noscript><p class="sub">Turn on JavaScript to watch the agents run.</p></noscript>
+        </div>
+      </div>
+      <div class="rail mono" id="rail" role="group" aria-label="Agents"></div>
+    </section>
+
+    <!-- ───────── SERVICES ───────── -->
+    <section class="panel" id="services" tabindex="-1" aria-label="Services">
+      <div class="split">
+        <div class="pitch">
+          <p class="mono eyebrow">WHAT WE BUILD</p>
+          <h2 class="big">AI services that run themselves</h2>
+          <p class="sub">Production-proven, battle-tested, designed to operate without human intervention.</p>
+          <p class="hand tag gap">Click it. Try it yourself!</p>
+          <div class="stack">
+            <a class="demo mono" href="demos/mikes-menu/index.html"><span>Mike's Diner — digital menu</span></a>
+            <a class="demo mono" href="demos/bailey/index.html"><span>Bailey — AI website builder</span></a>
+          </div>
+        </div>
+        <ul class="cards">
+          <li class="card"><h3>AI Voice Agent</h3><p>AI receptionist that answers calls 24/7, books appointments, handles FAQs — built from idea to MVP in under 1 hour.</p><p class="mono tags">VAPI.ai · n8n · GPT-4o</p><a class="mono more" href="projects/voice-agent.html">Case study →</a></li>
+          <li class="card"><h3>YouTube Automation</h3><p>Autonomous pipeline that discovers, processes, and publishes 6 YouTube Shorts per day — zero manual effort.</p><p class="mono tags">Python · FFmpeg · YouTube API</p><a class="mono more" href="projects/youtube-automation.html">Case study →</a></li>
+          <li class="card"><h3>AI Sales Agent</h3><p>Scans job boards and Hacker News, verifies emails via SMTP, drafts personalized outreach — 378+ leads per run.</p><p class="mono tags">Python · Gmail API · SMTP</p><a class="mono more" href="projects/sales-agent.html">Case study →</a></li>
+          <li class="card"><h3>AI Website Builder</h3><p>Discovers local businesses without websites, generates premium branded sites with AI content — 131 leads found.</p><p class="mono tags">Node.js · DeepSeek · Google Places</p><a class="mono more" href="projects/site-builder.html">Case study →</a></li>
+          <li class="card"><h3>AI Menu Rebuilder</h3><p>Transforms paper restaurant menus into stunning digital experiences with AI descriptions, QR codes, and mobile design.</p><p class="mono tags">AI/LLM · HTML/CSS · QR Gen</p><a class="mono more" href="projects/menu-rebuilder.html">Case study →</a></li>
+          <li class="card"><h3>Social Pain Agent</h3><p>Scrapes social groups to identify customer pain points and buying signals, generates hyper-targeted outreach messages.</p><p class="mono tags">CrewAI · LangChain · Python</p><a class="mono more" href="projects/social-agent.html">Case study →</a></li>
+          <li class="card"><h3>AI Review Agent</h3><p>Monitors Google reviews 24/7, generates personalized AI replies in 28 seconds, auto-publishes positive and escalates negative.</p><p class="mono tags">n8n · GPT-4o · Google Business API</p><a class="mono more" href="projects/review-agent.html">Case study →</a></li>
+          <li class="card"><h3>AI Tender-Capture</h3><p>Scans government tender portals hourly, classifies with Gemini AI, geo-filters across 731 QLD suburbs, and auto-drafts EOI responses.</p><p class="mono tags">n8n · Gemini 2.5 · AusTender</p><a class="mono more" href="projects/tender-agent.html">Case study →</a></li>
+          <li class="card"><h3>StyleCast Agent</h3><p>Finds offline clothing stores, extracts products, renders vertical video reels on models, and mails physical postcards on autopilot.</p><p class="mono tags">Groq Vision · WaveSpeedAI · Lob API</p><a class="mono more" href="projects/stylecast.html">View web app →</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────── PROCESS + RESULTS ───────── -->
+    <section class="panel" id="process" tabindex="-1" aria-label="Process">
+      <div class="split">
+        <div class="pitch">
+          <p class="mono eyebrow">HOW IT WORKS</p>
+          <h2 class="big">From idea to autonomous system</h2>
+          <p class="hand note">
+            <svg width="34" height="22" viewBox="0 0 34 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M32 19C22 20 9 16 4 5M4 5l7 2M4 5l-1 7"/></svg>
+            <span>in <u>3 weeks</u>.</span>
+          </p>
+          <p class="sub">One-time build. You own the code. Then it runs without you.</p>
+        </div>
+        <div>
+          <ol class="steps3">
+            <li><i class="hand" aria-hidden="true">1</i><h3>Discovery</h3><p>We analyze your bottlenecks and map workflows that consume the most human hours.</p></li>
+            <li><i class="hand" aria-hidden="true">2</i><h3>Build &amp; Deploy</h3><p>Our 15-person pod builds production-grade systems with LLMs, APIs, and automation frameworks.</p></li>
+            <li><i class="hand" aria-hidden="true">3</i><h3>Automate 24/7</h3><p>Your system runs autonomously — generating leads, posting content, answering calls.</p></li>
+          </ol>
+          <p class="hand tag gap">Real production metrics</p>
+          <ul class="metrics">
+            <li><b>378+</b><span class="mono">LEADS PER RUN</span><small>HN + job board scan</small></li>
+            <li><b>131</b><span class="mono">BUSINESSES FOUND</span><small>Across 10 industries</small></li>
+            <li><b>6/day</b><span class="mono">VIDEOS PUBLISHED</span><small>Fully autonomous</small></li>
+            <li><b>&lt;1hr</b><span class="mono">VOICE AGENT MVP</span><small>Idea to demo</small></li>
           </ul>
-          <a href="mailto:admin@codevantage.io?subject=Scale%20Plan%20Inquiry" class="btn btn--primary pricing-card__btn">Get Started</a>
         </div>
+      </div>
+    </section>
 
-        <div class="pricing-card reveal reveal-delay-3">
-          <div class="pricing-card__tier">Enterprise</div>
-          <div class="pricing-card__price">Custom</div>
-          <div class="pricing-card__period">scoped to your workflow needs</div>
-          <ul class="pricing-card__features">
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI systems</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Dedicated 5-person pod</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full source code + docs</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 12-month SLA support</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Multi-system integrations</li>
-            <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Dedicated team pod</li>
+    <!-- ───────── PRICING ───────── -->
+    <section class="panel" id="pricing" tabindex="-1" aria-label="Pricing">
+      <div class="center-col">
+        <p class="mono eyebrow">INVESTMENT</p>
+        <h2 class="big">Simple, transparent pricing</h2>
+        <p class="sub wide">One-time build fee. You own the system. No subscriptions, no lock-in.</p>
+        <ul class="prices">
+          <li class="price">
+            <h3 class="mono">STARTER</h3><p class="amount">$997</p><p class="mono period">one-time build · you own the code</p>
+            <ul><li>1 AI automation system</li><li>3-week delivery</li><li>Full source code + docs</li><li>30-day support</li><li class="no">Multi-system integrations</li><li class="no">Dedicated team pod</li></ul>
+            <a class="btn btn--ghost mono" href="mailto:admin@codevantage.io?subject=Starter%20Plan%20Inquiry">Get started</a>
+          </li>
+          <li class="price price--pop">
+            <span class="hand sticker">most popular!</span>
+            <h3 class="mono">SCALE</h3><p class="amount">$2,497</p><p class="mono period">one-time build · you own the code</p>
+            <ul><li>3 AI automation systems</li><li>3-week delivery</li><li>Full source code + docs</li><li>90-day priority support</li><li>Multi-system integrations</li><li class="no">Dedicated team pod</li></ul>
+            <a class="btn btn--accent mono" href="mailto:admin@codevantage.io?subject=Scale%20Plan%20Inquiry">Get started</a>
+          </li>
+          <li class="price">
+            <h3 class="mono">ENTERPRISE</h3><p class="amount">Custom</p><p class="mono period">scoped to your workflow needs</p>
+            <ul><li>Unlimited AI systems</li><li>Dedicated 5-person pod</li><li>Full source code + docs</li><li>12-month SLA support</li><li>Multi-system integrations</li><li>Dedicated team pod</li></ul>
+            <a class="btn btn--ghost mono" href="mailto:admin@codevantage.io?subject=Enterprise%20Inquiry">Book a call</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────── ABOUT ───────── -->
+    <section class="panel" id="about" tabindex="-1" aria-label="About">
+      <div class="split">
+        <div class="pitch">
+          <p class="mono eyebrow">ABOUT US</p>
+          <h2 class="big">We're CodeVantage</h2>
+          <p class="sub">A 15-person AI engineering team from Coimbatore, India — building custom automation that replaces entire manual workflows.</p>
+          <p class="sub">We take business processes that require human hours and turn them into autonomous AI pipelines that run 24/7. Using LLMs, voice AI, n8n, CrewAI, and LangChain — every system is production-grade.</p>
+        </div>
+        <div>
+          <ul class="cards cards--2">
+            <li class="card"><h3>Full-Stack AI</h3><p>LLMs, RAG, voice agents, API pipelines.</p></li>
+            <li class="card"><h3>3-Week Delivery</h3><p>Briefing to production in 3 weeks.</p></li>
+            <li class="card"><h3>Production-Grade</h3><p>Tested, deployed, monitored — no demos.</p></li>
+            <li class="card"><h3>India Pricing</h3><p>US/UK quality at maximum ROI.</p></li>
           </ul>
-          <a href="mailto:admin@codevantage.io?subject=Enterprise%20Inquiry" class="btn btn--secondary pricing-card__btn">Book a Call</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="sep"></div>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about__grid">
-        <div class="about__text reveal">
-          <span class="section-label">About Us</span>
-          <h2 class="section-title">We're <span class="text-gradient">CodeVantage</span></h2>
-          <p>A 15-person AI engineering team from Coimbatore, India — building custom automation that replaces entire manual workflows.</p>
-          <p>We take business processes that require human hours and turn them into autonomous AI pipelines that run 24/7. Using LLMs, voice AI, n8n, CrewAI, and LangChain — every system is production-grade.</p>
-        </div>
-        <div class="about__highlights reveal reveal-delay-2">
-          <div class="about__highlight"><div class="about__highlight-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="about__highlight-title">Full-Stack AI</div><div class="about__highlight-desc">LLMs, RAG, voice agents, API pipelines</div></div>
-          <div class="about__highlight"><div class="about__highlight-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="about__highlight-title">3-Week Delivery</div><div class="about__highlight-desc">Briefing to production in 3 weeks</div></div>
-          <div class="about__highlight"><div class="about__highlight-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="about__highlight-title">Production-Grade</div><div class="about__highlight-desc">Tested, deployed, monitored — no demos</div></div>
-          <div class="about__highlight"><div class="about__highlight-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="about__highlight-title">India Pricing</div><div class="about__highlight-desc">US/UK quality at maximum ROI</div></div>
+          <p class="hand tag gap">What we build with</p>
+          <p class="mono tags stackline">VAPI.AI · N8N · GPT-4O · PYTHON · CREWAI · LANGCHAIN · FFMPEG · DEEPSEEK · YOUTUBE API · GMAIL API · GOOGLE PLACES · NODE.JS</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="sep"></div>
-
-  <!-- CTA -->
-  <section class="cta" id="contact">
-    <div class="container">
-      <div class="cta__card reveal">
-        <h2 class="cta__title">Ready to <span class="text-gradient">Automate</span>?</h2>
-        <p class="cta__subtitle">Tell us which process to automate. We'll tell you exactly how — for free.</p>
-        <div class="cta__actions">
-          <a href="mailto:admin@codevantage.io?subject=AI%20Automation%20Inquiry" class="btn btn--primary"><svg class="btn--icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Email Us</span></a>
-          <a href="https://codevantage.io" target="_blank" rel="noopener" class="btn btn--secondary"><svg class="btn--icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>codevantage.io</span></a>
+    <!-- ───────── CONTACT ───────── -->
+    <section class="panel" id="contact" tabindex="-1" aria-label="Contact">
+      <div class="center-col">
+        <p class="mono eyebrow"><i class="dot"></i>ACCEPTING NEW CLIENTS</p>
+        <h2 class="big huge">Ready to automate?</h2>
+        <p class="hand note center"><span>the first plan is <u>free</u>.</span></p>
+        <p class="sub wide">Tell us which process to automate. We'll tell you exactly how — for free.</p>
+        <div class="row">
+          <a class="btn btn--accent mono" href="mailto:admin@codevantage.io?subject=AI%20Automation%20Inquiry">Email us</a>
+          <a class="btn btn--ghost mono" href="https://codevantage.io" target="_blank" rel="noopener">codevantage.io ↗</a>
         </div>
-        <p class="cta__email">Or email us directly at <a href="mailto:admin@codevantage.io">admin@codevantage.io</a></p>
+        <p class="mono fine">Or email us directly at <a href="mailto:admin@codevantage.io">admin@codevantage.io</a></p>
+        <p class="mono fine">© 2026 CodeVantage. All rights reserved.</p>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__copy">&copy; 2026 CodeVantage. All rights reserved.</span>
-      <div class="footer__links"><a href="https://codevantage.io" class="footer__link" target="_blank">codevantage.io</a><a href="mailto:admin@codevantage.io" class="footer__link">admin@codevantage.io</a></div>
+  <!-- full-size player for one agent -->
+  <dialog id="demoDlg" aria-labelledby="dName">
+    <form method="dialog"><button class="x mono" aria-label="Close">✕</button></form>
+    <p class="hand tag" id="dTag"></p>
+    <h2 id="dName"></h2>
+    <p class="sub wide" id="dBlurb"></p>
+    <div class="dgrid">
+      <div class="frame"><video id="dVid" controls playsinline></video></div>
+      <ol class="mono dsteps" id="dSteps"></ol>
     </div>
-  </footer>
+  </dialog>
 
+  <!-- every agent, one click each -->
+  <dialog id="allDlg" aria-labelledby="allTitle">
+    <form method="dialog"><button class="x mono" aria-label="Close">✕</button></form>
+    <p class="hand tag">Same engine, different industry</p>
+    <h2 id="allTitle">All 21 agents</h2>
+    <div class="agrid" id="allGrid"></div>
+  </dialog>
+
+  <script src="agents.js"></script>
   <script src="index.js"></script>
 </body>
 </html>
