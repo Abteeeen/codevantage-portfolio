@@ -9,6 +9,7 @@
 
   const vid = $('vid'), dVid = $('dVid'), demoDlg = $('demoDlg'), allDlg = $('allDlg');
   let current = 0;
+  let skipTimer = null; // pending "skip the broken video" timeout — must die the moment another agent is chosen
 
   /* ── showcase: the video is the clock. Steps tick with playback; when it ends the next agent runs. ── */
 
@@ -31,6 +32,7 @@
   }
 
   function go(i) {
+    clearTimeout(skipTimer);
     current = i;
     const ag = AGENTS[i], chip = i < FEATURED_COUNT ? String(i) : 'more';
     $('num').textContent = i + 1;
@@ -51,7 +53,8 @@
   vid.addEventListener('ended', next);
   vid.addEventListener('error', () => {                    // a missing file must not stall the whole reel
     $('step').textContent = 'Demo video unavailable — skipping…';
-    setTimeout(next, SKIP_BROKEN_MS);
+    clearTimeout(skipTimer);                             // two errors in a row must not stack two skips
+    skipTimer = setTimeout(next, SKIP_BROKEN_MS);
   });
 
   /* ── rail + dialogs ── */

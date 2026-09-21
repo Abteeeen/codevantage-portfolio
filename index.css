@@ -122,7 +122,7 @@ h3 { font-weight:700; font-size:clamp(15px,1.25vw,19px); letter-spacing:-.02em; 
 .period { color:var(--mute); font-size:10px; }
 .price ul { margin:clamp(10px,2vh,20px) 0; display:grid; gap:clamp(4px,.9vh,9px); font-size:clamp(13px,1vw,15px); flex:1; align-content:start; }
 .price li::before { content:'✓'; color:var(--accent); font-weight:700; margin-right:9px; }
-.price li.no { color:color-mix(in srgb,var(--mute) 62%,transparent); text-decoration:line-through; }
+.price li.no { color:var(--mute); text-decoration:line-through; } /* full --mute: 6:1 on the card; the strike-through does the de-emphasis */
 .price li.no::before { content:'✕'; color:inherit; display:inline-block; text-decoration:none; }
 .price .btn { text-align:center; }
 
