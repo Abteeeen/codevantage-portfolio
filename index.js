@@ -43,7 +43,9 @@
     vid.src = media(ag, 'mp4');
     vid.setAttribute('aria-label', `${ag.name} demo video`);
     document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.i === chip));
-    document.querySelector(`.chip[data-i="${chip}"]`).scrollIntoView({ inline: 'nearest', block: 'nearest' });
+    // centre the active chip by scrolling the RAIL only — scrollIntoView would also scroll the page (and any parent frame)
+    const rail = $('rail'), active = rail.querySelector(`[data-i="${chip}"]`);
+    rail.scrollTo({ left: active.offsetLeft - rail.offsetLeft - (rail.clientWidth - active.offsetWidth) / 2, behavior: still ? 'auto' : 'smooth' });
     renderStep();
     play();
   }
