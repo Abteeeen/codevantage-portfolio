@@ -62,7 +62,7 @@
 
   /* ── scroll = fast-forward. Once the showcase is docked there is nothing left to scroll, so the wheel speeds the reel up
         instead and the next agent arrives sooner. Rate snaps back shortly after the wheel stops. ── */
-  const FAST_RATE = 2, FAST_RELEASE_MS = 220, DOCK_SETTLE_MS = 700;
+  const FAST_RATE = 4, FAST_RELEASE_MS = 220, DOCK_SETTLE_MS = 700;
   let fastTimer = null, dockedSince = null; // dockedSince: when the showcase became the end of the scroll
   function setFast(on) {
     vid.playbackRate = on ? FAST_RATE : 1;
