@@ -104,11 +104,13 @@ function flyCamera(camera, keys, p) {
 export function run({ stage, keys, update, progress, active, idle }) {
   const pinned = new URLSearchParams(location.search).get('p');
   const caps = [...document.querySelectorAll('[data-from]')], bar = document.getElementById('prog');
-  let p = pinned === null ? progress() : +pinned;
+  let p = 0, wasActive = false;
   (function frame(ms = 0) {
     requestAnimationFrame(frame);
-    if (!active()) return;
+    if (!active()) { wasActive = false; return; }
     const target = pinned === null ? clamp(progress()) : +pinned;
+    if (!wasActive) p = target;                      // (re)activation: start AT the scroll position. Easing is for scrolling only —
+    wasActive = true;                                // otherwise a stale p makes the whole intro visibly rewind/fast-forward on entry
     p += (target - p) * 0.1; if (Math.abs(target - p) < 0.0004) p = target;
     update(p, ms / 1000);
     caps.forEach(c => c.classList.toggle('on', p >= +c.dataset.from && p <= +c.dataset.to));
