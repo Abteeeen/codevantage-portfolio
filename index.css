@@ -78,6 +78,8 @@ h3 { font-weight:700; font-size:clamp(15px,1.25vw,19px); letter-spacing:-.02em; 
 .frame { border:1px solid var(--ink); box-shadow:8px 8px 0 var(--accent); background:#0c0d10; aspect-ratio:16/9; }
 .frame video { width:100%; height:100%; object-fit:contain; display:block; }
 .live { background:var(--ink); color:var(--paper); padding:4px 9px; display:flex; gap:7px; align-items:center; font-size:10px; flex:none; }
+.live.fast { background:var(--pop); color:var(--ink); }
+.live.fast::before { animation:none; background:var(--ink); }
 .live::before { content:''; width:6px; height:6px; border-radius:50%; background:#4ade80; animation:blink 1.2s infinite; }
 .bar { display:flex; gap:4px; margin-top:clamp(14px,2.4vh,22px); }
 .bar span { flex:1; height:6px; background:color-mix(in srgb,var(--ink) 16%,transparent); transition:background .3s; }
@@ -142,6 +144,9 @@ dialog h2 { font-weight:500; font-size:clamp(24px,3vw,44px); letter-spacing:-.03
 .acard img { width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block; background:#0c0d10; border-bottom:1px solid var(--ink); }
 .acard b { padding:9px 10px 2px; font-size:15px; letter-spacing:-.02em; }
 .acard small { padding:0 10px 11px; color:var(--mute); font-size:12px; line-height:1.4; }
+
+.hint { display:none; color:var(--mute); font-size:clamp(13px,1.2vw,17px); margin-top:clamp(10px,2vh,22px); transform:rotate(-2deg); transform-origin:left; }
+@media (min-width:900px) and (min-height:560px) and (hover:hover) and (pointer:fine) { .js .hint { display:block; } } /* wheel-only affordance */
 
 /* ── app mode: one viewport, panels swap in place ── */
 @media (min-width:900px) and (min-height:560px) {

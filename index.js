@@ -57,6 +57,24 @@
     skipTimer = setTimeout(next, SKIP_BROKEN_MS);
   });
 
+  /* ── scroll = fast-forward. Once the showcase is docked there is nothing left to scroll, so the wheel speeds the reel up
+        instead and the next agent arrives sooner. Rate snaps back shortly after the wheel stops. ── */
+  const FAST_RATE = 2, FAST_RELEASE_MS = 220;
+  let fastTimer = null;
+  function setFast(on) {
+    vid.playbackRate = on ? FAST_RATE : 1;
+    $('live').textContent = on ? `▶▶ ${FAST_RATE}× FAST-FORWARD` : 'NOW RUNNING';
+    $('live').classList.toggle('fast', on);
+  }
+  $('work').addEventListener('wheel', e => {
+    const panel = e.currentTarget;
+    const docked = panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2; // only when the panel itself can't scroll further
+    if (e.deltaY <= 0 || !docked || !appMode.matches || vid.paused) return;
+    setFast(true);                                   // re-applied every event: a new src resets playbackRate to 1
+    clearTimeout(fastTimer);
+    fastTimer = setTimeout(() => setFast(false), FAST_RELEASE_MS);
+  }, { passive: true });
+
   /* ── rail + dialogs ── */
 
   $('rail').innerHTML = AGENTS.slice(0, FEATURED_COUNT)
